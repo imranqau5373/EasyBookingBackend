@@ -1,0 +1,8 @@
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.deps.json
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.csproj.CoreCompileInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.AssemblyInfoInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.AssemblyInfo.cs
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.Video\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.pdb

@@ -1,0 +1,9 @@
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\bin\Debug\netcoreapp2.2\SpeekIO.Domain.deps.json
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\bin\Debug\netcoreapp2.2\SpeekIO.Domain.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\bin\Debug\netcoreapp2.2\SpeekIO.Domain.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.csproj.CoreCompileInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.AssemblyInfoInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.AssemblyInfo.cs
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain\obj\Debug\netcoreapp2.2\SpeekIO.Domain.csprojAssemblyReference.cache
