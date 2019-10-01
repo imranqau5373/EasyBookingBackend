@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {}
+    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj": {}
   },
   "projects": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
+    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
-        "projectName": "SpeekIO.Infrastructure.Video",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
+        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
+        "projectName": "SpeekIO.Application.Tests",
+        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\obj\\",
+        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,10 +46,6 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
-            },
-            "OpenTok": {
-              "target": "Package",
-              "version": "[3.1.0, )"
             }
           },
           "imports": [

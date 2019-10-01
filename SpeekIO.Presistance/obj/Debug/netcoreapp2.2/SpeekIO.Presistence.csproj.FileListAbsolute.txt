@@ -6,3 +6,4 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekI
 D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistence.AssemblyInfo.cs
 D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistence.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistence.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistence.csprojAssemblyReference.cache

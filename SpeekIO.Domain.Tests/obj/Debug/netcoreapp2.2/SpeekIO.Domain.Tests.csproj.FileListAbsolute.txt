@@ -1,0 +1,8 @@
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\bin\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.deps.json
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\bin\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\bin\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.csproj.CoreCompileInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.AssemblyInfoInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.AssemblyInfo.cs
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.pdb
