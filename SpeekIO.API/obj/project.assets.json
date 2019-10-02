@@ -9,6 +9,18 @@
           "buildTransitive/EntityFramework.targets": {}
         }
       },
+      "JWT/2.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.4"
+        },
+        "compile": {
+          "lib/net45/JWT.dll": {}
+        },
+        "runtime": {
+          "lib/net45/JWT.dll": {}
+        }
+      },
       "MediatR/7.0.0": {
         "type": "package",
         "compile": {
@@ -2782,6 +2794,28 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "OpenTok/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "JWT": "2.3.2",
+          "Newtonsoft.Json": "10.0.2"
+        },
+        "compile": {
+          "lib/net452/OpenTok.dll": {}
+        },
+        "runtime": {
+          "lib/net452/OpenTok.dll": {}
+        }
+      },
+      "Polly/7.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Polly.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.dll": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -4572,6 +4606,8 @@
         "dependencies": {
           "SpeekIO.Application": "1.0.0",
           "SpeekIO.Common": "1.0.0",
+          "SpeekIO.Infrastructure.SignalR": "1.0.0",
+          "SpeekIO.Infrastructure.Video": "1.0.0",
           "SpeekIO.Presistence": "1.0.0"
         },
         "compile": {
@@ -4579,6 +4615,33 @@
         },
         "runtime": {
           "bin/placeholder/SpeekIO.Infrastructure.dll": {}
+        }
+      },
+      "SpeekIO.Infrastructure.SignalR/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/SpeekIO.Infrastructure.SignalR.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpeekIO.Infrastructure.SignalR.dll": {}
+        }
+      },
+      "SpeekIO.Infrastructure.Video/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Binder": "2.2.0",
+          "OpenTok": "3.1.0",
+          "Polly": "7.1.1",
+          "SpeekIO.Common": "1.0.0",
+          "SpeekIO.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpeekIO.Infrastructure.Video.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpeekIO.Infrastructure.Video.dll": {}
         }
       },
       "SpeekIO.Presistence/1.0.0": {
@@ -4649,6 +4712,18 @@
         "tools/netcoreapp3.0/any/ef6.dll",
         "tools/netcoreapp3.0/any/ef6.pdb",
         "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
+    "JWT/2.3.2": {
+      "sha512": "C/66CjMj45sFkNEQfO1ry2rrHu8idJteUcEh0fe1NPdG8FqK6xZ4RNHRzsHfYXiIjLCY9NQW9NdECSOcU2CrUQ==",
+      "type": "package",
+      "path": "jwt/2.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jwt.2.3.2.nupkg.sha512",
+        "jwt.nuspec",
+        "lib/net45/JWT.dll"
       ]
     },
     "MediatR/7.0.0": {
@@ -7675,6 +7750,34 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "OpenTok/3.1.0": {
+      "sha512": "2LPwgevBCfBeWsUZGUgKh9xq1vLRWCmEf9eFQBfagmbfklM2qEPpDOs7HWZTRu1ctS6S1Sc3aMgCyqv5uQtHJQ==",
+      "type": "package",
+      "path": "opentok/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/OpenTok.XML",
+        "lib/net452/OpenTok.dll",
+        "opentok.3.1.0.nupkg.sha512",
+        "opentok.nuspec"
+      ]
+    },
+    "Polly/7.1.1": {
+      "sha512": "okRGHVvn0bGCeMBgaCZShlSez8rxjgthyDf/NRTYsSh5kb8IbKnX7W15d3s95Kq9uzwj7tFYiXNrCvn6d0XoeA==",
+      "type": "package",
+      "path": "polly/7.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.1/Polly.dll",
+        "lib/netstandard1.1/Polly.xml",
+        "lib/netstandard2.0/Polly.dll",
+        "lib/netstandard2.0/Polly.xml",
+        "polly.7.1.1.nupkg.sha512",
+        "polly.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -12449,6 +12552,16 @@
       "path": "../SpeekIO.Infrastructure/SpeekIO.Infrastructure.csproj",
       "msbuildProject": "../SpeekIO.Infrastructure/SpeekIO.Infrastructure.csproj"
     },
+    "SpeekIO.Infrastructure.SignalR/1.0.0": {
+      "type": "project",
+      "path": "../SpeekIO.Infrastructure.SignalR/SpeekIO.Infrastructure.SignalR.csproj",
+      "msbuildProject": "../SpeekIO.Infrastructure.SignalR/SpeekIO.Infrastructure.SignalR.csproj"
+    },
+    "SpeekIO.Infrastructure.Video/1.0.0": {
+      "type": "project",
+      "path": "../SpeekIO.Infrastructure.Video/SpeekIO.Infrastructure.Video.csproj",
+      "msbuildProject": "../SpeekIO.Infrastructure.Video/SpeekIO.Infrastructure.Video.csproj"
+    },
     "SpeekIO.Presistence/1.0.0": {
       "type": "project",
       "path": "../SpeekIO.Presistance/SpeekIO.Presistence.csproj",
@@ -12557,5 +12670,27 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'JWT 2.3.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "libraryId": "JWT",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OpenTok 3.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "libraryId": "OpenTok",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    }
+  ]
 }

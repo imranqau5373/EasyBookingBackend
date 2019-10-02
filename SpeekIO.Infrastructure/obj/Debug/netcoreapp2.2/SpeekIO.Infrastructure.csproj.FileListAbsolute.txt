@@ -16,3 +16,7 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\Spe
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.pdb
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Application.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Application.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.Video.pdb

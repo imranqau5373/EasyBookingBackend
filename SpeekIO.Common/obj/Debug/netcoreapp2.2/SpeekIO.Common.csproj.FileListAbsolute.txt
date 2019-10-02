@@ -11,4 +11,3 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.E
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.xml
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csproj.CopyComplete
-D:\GithubRepositories\SpeekIO\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csprojAssemblyReference.cache

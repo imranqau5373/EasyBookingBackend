@@ -168,6 +168,129 @@
         }
       }
     },
+    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
+        "projectName": "SpeekIO.Infrastructure.SignalR",
+        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
+        "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
+        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\raza.ashfaq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
+        "projectName": "SpeekIO.Infrastructure.Video",
+        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
+        "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
+        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\raza.ashfaq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
+              },
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "OpenTok": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.1.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
     "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -199,6 +322,12 @@
               },
               "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
                 "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
+              },
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj"
+              },
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj"
               },
               "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
                 "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj"

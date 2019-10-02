@@ -7,6 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\SpeekIO.Application\SpeekIO.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Common\SpeekIO.Common.csproj" />
+    <ProjectReference Include="..\SpeekIO.Infrastructure.SignalR\SpeekIO.Infrastructure.SignalR.csproj" />
+    <ProjectReference Include="..\SpeekIO.Infrastructure.Video\SpeekIO.Infrastructure.Video.csproj" />
     <ProjectReference Include="..\SpeekIO.Presistance\SpeekIO.Presistence.csproj" />
   </ItemGroup>
 

@@ -6,3 +6,4 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\Speek
 D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.AssemblyInfo.cs
 D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Domain.Tests\obj\Debug\netcoreapp2.2\SpeekIO.Domain.Tests.csprojAssemblyReference.cache
