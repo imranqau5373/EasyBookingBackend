@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SpeekIO.Application.Interfaces;
 using SpeekIO.Common.Extensions;
+using SpeekIO.Infrastructure.ApplicationImplementation;
 using SpeekIO.Presistence.Extensions;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             services.ConfigurePersistence(configuration);
 
             // register all dependencies here
+            services.AddTransient<IJobOperations, JobOperations>();
 
             return services;
         }

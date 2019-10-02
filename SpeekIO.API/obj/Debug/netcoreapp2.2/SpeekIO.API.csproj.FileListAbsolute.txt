@@ -21,3 +21,5 @@ D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Common
 D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Domain.pdb
 D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Presistence.pdb
 D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.csproj.CopyComplete
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Application.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Application.pdb

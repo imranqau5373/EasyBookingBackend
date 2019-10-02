@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "bf2641db761217a5f0edcb07f8432992a5c8ed6e"
+    "signature": "68fde5876a1aaee5d0f8cccec93576e1fc62e7f0"
   },
   "compilationOptions": {
     "defines": [
@@ -24,10 +24,13 @@
     ".NETCoreApp,Version=v2.2": {
       "SpeekIO.API/1.0.0": {
         "dependencies": {
+          "MediatR": "7.0.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.4.10",
+          "SpeekIO.Application": "1.0.0",
           "SpeekIO.Infrastructure": "1.0.0",
           "Swashbuckle.AspNetCore": "4.0.1"
         },
@@ -39,6 +42,32 @@
         }
       },
       "EntityFramework/6.3.0": {},
+      "MediatR/7.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.dll": {}
+        }
+      },
+      "MediatR.Extensions.Microsoft.DependencyInjection/7.0.0": {
+        "dependencies": {
+          "MediatR": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/2.2.6": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "2.2.6",
@@ -302,6 +331,18 @@
           }
         }
       },
+      "SpeekIO.Application/1.0.0": {
+        "dependencies": {
+          "MediatR": "7.0.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0"
+        },
+        "runtime": {
+          "SpeekIO.Application.dll": {}
+        },
+        "compile": {
+          "SpeekIO.Application.dll": {}
+        }
+      },
       "SpeekIO.Common/1.0.0": {
         "runtime": {
           "SpeekIO.Common.dll": {}
@@ -320,6 +361,7 @@
       },
       "SpeekIO.Infrastructure/1.0.0": {
         "dependencies": {
+          "SpeekIO.Application": "1.0.0",
           "SpeekIO.Common": "1.0.0",
           "SpeekIO.Presistence": "1.0.0"
         },
@@ -3430,6 +3472,20 @@
       "path": "entityframework/6.3.0",
       "hashPath": "entityframework.6.3.0.nupkg.sha512"
     },
+    "MediatR/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sgfHxkBsmMlHOD564SnLqTvSbAuGlFiZfc6ybxBSI1wYV/2u+Y5TXtFoIhCISFg5/s/6aMvB338QC2JseHsjTA==",
+      "path": "mediatr/7.0.0",
+      "hashPath": "mediatr.7.0.0.nupkg.sha512"
+    },
+    "MediatR.Extensions.Microsoft.DependencyInjection/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DRf8jBnjBg84da1L1L0YmwqkhCV+UJTg7bTBHOhleWrLfrtSK5h5aNeE1HOofs1Afisq03B6H2C10NmS47gmqA==",
+      "path": "mediatr.extensions.microsoft.dependencyinjection/7.0.0",
+      "hashPath": "mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore/2.2.6": {
       "type": "package",
       "serviceable": true,
@@ -3569,6 +3625,11 @@
       "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
       "path": "system.text.encoding.codepages/4.5.0",
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    },
+    "SpeekIO.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "SpeekIO.Common/1.0.0": {
       "type": "project",

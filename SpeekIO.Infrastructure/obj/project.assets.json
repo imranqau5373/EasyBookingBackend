@@ -9,6 +9,28 @@
           "buildTransitive/EntityFramework.targets": {}
         }
       },
+      "MediatR/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MediatR.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.dll": {}
+        }
+      },
+      "MediatR.Extensions.Microsoft.DependencyInjection/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "MediatR": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/2.2.6": {
         "type": "package",
         "dependencies": {
@@ -914,6 +936,20 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "SpeekIO.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "MediatR": "7.0.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpeekIO.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpeekIO.Application.dll": {}
+        }
+      },
       "SpeekIO.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -1002,6 +1038,31 @@
         "tools/netcoreapp3.0/any/ef6.dll",
         "tools/netcoreapp3.0/any/ef6.pdb",
         "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
+    "MediatR/7.0.0": {
+      "sha512": "sgfHxkBsmMlHOD564SnLqTvSbAuGlFiZfc6ybxBSI1wYV/2u+Y5TXtFoIhCISFg5/s/6aMvB338QC2JseHsjTA==",
+      "type": "package",
+      "path": "mediatr/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/MediatR.dll",
+        "lib/netstandard2.0/MediatR.dll",
+        "mediatr.7.0.0.nupkg.sha512",
+        "mediatr.nuspec"
+      ]
+    },
+    "MediatR.Extensions.Microsoft.DependencyInjection/7.0.0": {
+      "sha512": "DRf8jBnjBg84da1L1L0YmwqkhCV+UJTg7bTBHOhleWrLfrtSK5h5aNeE1HOofs1Afisq03B6H2C10NmS47gmqA==",
+      "type": "package",
+      "path": "mediatr.extensions.microsoft.dependencyinjection/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll",
+        "mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
+        "mediatr.extensions.microsoft.dependencyinjection.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/2.2.6": {
@@ -3561,6 +3622,11 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "SpeekIO.Application/1.0.0": {
+      "type": "project",
+      "path": "../SpeekIO.Application/SpeekIO.Application.csproj",
+      "msbuildProject": "../SpeekIO.Application/SpeekIO.Application.csproj"
+    },
     "SpeekIO.Common/1.0.0": {
       "type": "project",
       "path": "../SpeekIO.Common/SpeekIO.Common.csproj",
@@ -3580,6 +3646,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.NETCore.App >= 2.2.0",
+      "SpeekIO.Application >= 1.0.0",
       "SpeekIO.Common >= 1.0.0",
       "SpeekIO.Presistence >= 1.0.0"
     ]
@@ -3614,6 +3681,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+              "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj"
+            },
             "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
               "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
             },

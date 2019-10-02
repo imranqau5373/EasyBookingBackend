@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpeekIO.Application\SpeekIO.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Common\SpeekIO.Common.csproj" />
     <ProjectReference Include="..\SpeekIO.Presistance\SpeekIO.Presistence.csproj" />
   </ItemGroup>

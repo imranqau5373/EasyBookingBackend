@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SpeekIO.Application.Commands;
 
 namespace SpeekIO.API.Controllers
 {
@@ -10,6 +12,12 @@ namespace SpeekIO.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ValuesController(IMediator mediator)
+        {
+            this._mediator = mediator;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -26,8 +34,9 @@ namespace SpeekIO.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CreateJobCommand command)
         {
+            _mediator.Send(command);
         }
 
         // PUT api/values/5

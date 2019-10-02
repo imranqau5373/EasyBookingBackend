@@ -14,3 +14,5 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\Spe
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.csproj.CopyComplete
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Application.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Application.pdb

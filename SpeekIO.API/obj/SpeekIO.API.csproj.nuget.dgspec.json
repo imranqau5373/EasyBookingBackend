@@ -30,6 +30,9 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj"
+              },
               "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {
                 "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj"
               }
@@ -45,6 +48,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -69,6 +80,66 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[4.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "projectName": "SpeekIO.Application",
+        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
+        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\raza.ashfaq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -209,6 +280,9 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj"
+              },
               "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
                 "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
               },

@@ -6,4 +6,3 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Application\obj\Debug\netcoreapp2.2\SpeekI
 D:\GithubRepositories\SpeekIO\SpeekIO.Application\obj\Debug\netcoreapp2.2\SpeekIO.Application.AssemblyInfo.cs
 D:\GithubRepositories\SpeekIO\SpeekIO.Application\obj\Debug\netcoreapp2.2\SpeekIO.Application.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Application\obj\Debug\netcoreapp2.2\SpeekIO.Application.pdb
-D:\GithubRepositories\SpeekIO\SpeekIO.Application\obj\Debug\netcoreapp2.2\SpeekIO.Application.csprojAssemblyReference.cache
