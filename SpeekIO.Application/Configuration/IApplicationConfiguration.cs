@@ -9,5 +9,7 @@ namespace SpeekIO.Application.Configuration
     /// </summary>
     public interface IApplicationConfiguration
     {
+        int RetryCount { get; }
+        int Backoff { get; }
     }
 }

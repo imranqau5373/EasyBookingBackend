@@ -6,4 +6,3 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.SignalR\obj\Debug\netcoreap
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.SignalR\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.AssemblyInfo.cs
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.SignalR\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.SignalR\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.pdb
-D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure.SignalR\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.SignalR.csprojAssemblyReference.cache

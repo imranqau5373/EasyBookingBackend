@@ -14,5 +14,9 @@ namespace SpeekIO.Infrastructure.Configuration
         {
             this.configuration = configuration;
         }
+
+        public int RetryCount => configuration.GetSection("Policy")?.GetValue<int>("RetryCount") ?? 0;
+
+        public int Backoff => configuration.GetSection("Policy")?.GetValue<int>("Backoff") ?? 0;
     }
 }
