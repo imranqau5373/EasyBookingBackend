@@ -16,6 +16,7 @@ namespace SpeekIO.Infrastructure.ApplicationImplementation
         }
         public void CreateJob(string jobName)
         {
+            var response = videoService.GetArchives(1, 10);
             var session = videoService.CreateNewSession();
             videoService.CreateNewToken(new Domain.Interfaces.Models.VideoSession()
             {

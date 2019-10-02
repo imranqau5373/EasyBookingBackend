@@ -62,19 +62,32 @@ namespace SpeekIO.Infrastructure.Video.Implementation
             };
         }
 
-        public bool StartArchiving(VideoSession session, string archiveName, bool audio = true, bool video = true)
+        public VideoArchive StartArchiving(VideoSession session, string archiveName, bool audio = true, bool video = true)
         {
-            throw new NotImplementedException();
+            Archive archive = this.OpenTok.StartArchive(
+                session.Id,
+                name: archiveName,
+                hasAudio: audio,
+                hasVideo: video,
+                outputMode: OutputMode.COMPOSED
+            );
+
+            return mapper.Map<VideoArchive>(archive);
         }
 
-        public bool StopArchiving(VideoSession session)
+        public VideoArchive StopArchiving(VideoSession session)
         {
-            throw new NotImplementedException();
+            Archive archive = this.OpenTok.StopArchive(session.Id);
+            return mapper.Map<VideoArchive>(archive);
         }
-
-        public List<VideoArchive> GetArchives()
+        public (List<VideoArchive>, bool) GetArchives(int pageNumber = 1, int pageSize = 10)
         {
-            throw new NotImplementedException();
+            var offset = (pageNumber - 1) * pageSize;
+            ArchiveList archives = this.OpenTok.ListArchives(offset, pageSize);
+
+            bool hasNext = archives.TotalCount > (offset + pageSize);
+
+            return (mapper.Map<List<VideoArchive>>(archives), hasNext);
         }
     }
 }

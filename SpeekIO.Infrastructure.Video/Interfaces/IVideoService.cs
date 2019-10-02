@@ -9,11 +9,11 @@ namespace SpeekIO.Infrastructure.Video.Interfaces
 
         SessionToken CreateNewToken(VideoSession session);
 
-        bool StartArchiving(VideoSession session, string archiveName, bool audio = true, bool video = true);
+        VideoArchive StartArchiving(VideoSession session, string archiveName, bool audio = true, bool video = true);
 
-        bool StopArchiving(VideoSession session);
+        VideoArchive StopArchiving(VideoSession session);
 
-        List<VideoArchive> GetArchives();
+        (List<VideoArchive>, bool) GetArchives(int pageNumber = 1, int pageSize = 10);
 
     }
 }
