@@ -1,0 +1,16 @@
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.deps.json
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Common.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Domain.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Presistence.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Common.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Presistence.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\bin\Debug\netcoreapp2.2\SpeekIO.Domain.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.csprojAssemblyReference.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.csproj.CoreCompileInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.AssemblyInfoInputs.cache
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.AssemblyInfo.cs
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.csproj.CopyComplete
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.Infrastructure\obj\Debug\netcoreapp2.2\SpeekIO.Infrastructure.pdb

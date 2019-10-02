@@ -12,3 +12,12 @@ D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.Ra
 D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.RazorTargetAssemblyInfo.cache
 D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.dll
 D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Common.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Domain.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Presistence.dll
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Infrastructure.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Common.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Domain.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.API\bin\Debug\netcoreapp2.2\SpeekIO.Presistence.pdb
+D:\GithubRepositories\SpeekIO\SpeekIO.API\obj\Debug\netcoreapp2.2\SpeekIO.API.csproj.CopyComplete

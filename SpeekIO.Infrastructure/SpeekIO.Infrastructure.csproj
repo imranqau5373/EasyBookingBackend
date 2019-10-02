@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpeekIO.Common\SpeekIO.Common.csproj" />
+    <ProjectReference Include="..\SpeekIO.Presistance\SpeekIO.Presistence.csproj" />
+  </ItemGroup>
+
+</Project>

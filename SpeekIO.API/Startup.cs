@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using SpeekIO.Infrastructure.ApplicationModule;
 
 namespace SpeekIO.API
 {
@@ -27,6 +28,8 @@ namespace SpeekIO.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.ConfigureApplication(Configuration);
 
             services.AddSwaggerGen(c =>
             {

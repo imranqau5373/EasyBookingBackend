@@ -23,15 +23,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Infrastructure.Sign
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Infrastructure.Video", "SpeekIO.Infrastructure.Video\SpeekIO.Infrastructure.Video.csproj", "{58A01544-6F70-40FA-962F-862F839DCE34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Presistence", "SpeekIO.Presistance\SpeekIO.Presistence.csproj", "{85E71D96-6977-473D-81B4-125870742960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Presistence", "SpeekIO.Presistance\SpeekIO.Presistence.csproj", "{85E71D96-6977-473D-81B4-125870742960}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.API", "SpeekIO.API\SpeekIO.API.csproj", "{444345FD-EF78-42AD-A108-D77FC9B6CDC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.API", "SpeekIO.API\SpeekIO.API.csproj", "{444345FD-EF78-42AD-A108-D77FC9B6CDC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F6CB4697-E05C-48F9-A952-0AE92A5A00F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Application.Tests", "SpeekIO.Application.Tests\SpeekIO.Application.Tests.csproj", "{08242D2E-79DA-465B-A0B1-42AB77F6F5AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Application.Tests", "SpeekIO.Application.Tests\SpeekIO.Application.Tests.csproj", "{08242D2E-79DA-465B-A0B1-42AB77F6F5AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Domain.Tests", "SpeekIO.Domain.Tests\SpeekIO.Domain.Tests.csproj", "{AA7F3B40-1F54-4357-930D-7474E6E3A4EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Domain.Tests", "SpeekIO.Domain.Tests\SpeekIO.Domain.Tests.csproj", "{AA7F3B40-1F54-4357-930D-7474E6E3A4EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Infrastructure", "SpeekIO.Infrastructure\SpeekIO.Infrastructure.csproj", "{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{AA7F3B40-1F54-4357-930D-7474E6E3A4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7F3B40-1F54-4357-930D-7474E6E3A4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7F3B40-1F54-4357-930D-7474E6E3A4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{444345FD-EF78-42AD-A108-D77FC9B6CDC3} = {9B837587-66E7-4E56-8E08-1078B7410D41}
 		{08242D2E-79DA-465B-A0B1-42AB77F6F5AF} = {F6CB4697-E05C-48F9-A952-0AE92A5A00F5}
 		{AA7F3B40-1F54-4357-930D-7474E6E3A4EA} = {F6CB4697-E05C-48F9-A952-0AE92A5A00F5}
+		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {570F7D72-737E-4820-A432-E970857EA619}
