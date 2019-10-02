@@ -19,6 +19,14 @@ namespace SpeekIO.API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                   .ConfigureAppConfiguration((hostingContext, config) =>
+                   {
+                       var environment = hostingContext.HostingEnvironment;
+                       config.SetBasePath(environment.ContentRootPath)
+                             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                             .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
+                             .AddEnvironmentVariables();
+                   })
+                   .UseStartup<Startup>();
     }
 }
