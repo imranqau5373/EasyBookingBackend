@@ -12,6 +12,12 @@ namespace SpeekIO.Presistence.Context
     /// </summary>
     public class SpeekIOContext : DbContext
     {
+        public SpeekIOContext()
+        {
+        }
+        public SpeekIOContext(DbContextOptions options) : base(options)
+        {
+        }
         // Entities Set
         public DbSet<Attachment> Attachments { get; set; }
 

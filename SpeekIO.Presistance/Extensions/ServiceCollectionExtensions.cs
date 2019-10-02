@@ -15,6 +15,11 @@ namespace SpeekIO.Presistence.Extensions
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SpeekIOContext>(builder =>
                                                   builder.UseSqlServer(defaultConnectionString));
+
+            // migrate database changes
+            var context = services.BuildServiceProvider().GetService<SpeekIOContext>();
+            context.Database.Migrate();
+
             return services;
         }
     }
