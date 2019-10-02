@@ -13,6 +13,8 @@ namespace SpeekIO.Presistence.Configurations
         {
             builder.HasIndex(t => t.Id);
             builder.HasKey(t => t.Id);
+
+            builder.Property(t => t.Id).ValueGeneratedOnAdd();
         }
     }
 }
