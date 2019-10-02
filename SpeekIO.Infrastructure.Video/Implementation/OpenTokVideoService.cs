@@ -80,6 +80,7 @@ namespace SpeekIO.Infrastructure.Video.Implementation
             Archive archive = this.OpenTok.StopArchive(session.Id);
             return mapper.Map<VideoArchive>(archive);
         }
+
         public (List<VideoArchive>, bool) GetArchives(int pageNumber = 1, int pageSize = 10)
         {
             var offset = (pageNumber - 1) * pageSize;
