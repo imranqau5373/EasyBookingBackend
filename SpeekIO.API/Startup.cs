@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using SpeekIO.Infrastructure.ApplicationModule;
+using MediatR;
+using System.Reflection;
 
 namespace SpeekIO.API
 {
@@ -28,6 +30,8 @@ namespace SpeekIO.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMediatR(GetAssembliesForMediatR().ToArray());
 
             services.ConfigureApplication(Configuration);
 
@@ -67,6 +71,20 @@ namespace SpeekIO.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpeekIO API V1");
             });
+        }
+
+        private static List<Assembly> GetAssembliesForMediatR()
+        {
+            List<Assembly> listOfAssemblies = new List<Assembly>();
+            var mainAsm = Assembly.GetEntryAssembly();
+            listOfAssemblies.Add(mainAsm);
+
+            foreach (var refAsmName in mainAsm.GetReferencedAssemblies()
+                .Where(t=>t.Name.StartsWith("SpeekIO.",StringComparison.OrdinalIgnoreCase)))
+            {
+                listOfAssemblies.Add(Assembly.Load(refAsmName));
+            }
+            return listOfAssemblies;
         }
     }
 }

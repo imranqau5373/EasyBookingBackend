@@ -8,5 +8,8 @@ namespace SpeekIO.Infrastructure.Video.Configuration
     {
         string ApiKey { get; }
         string ApiSecret { get; }
+
+        int RetryCount { get; }
+        int Backoff { get; }
     }
 }

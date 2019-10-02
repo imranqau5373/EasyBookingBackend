@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpeekIO.Domain.Interfaces.Models
 {
-    public class Token
+    public class SessionToken
     {
         public string Value { get; set; }
     }

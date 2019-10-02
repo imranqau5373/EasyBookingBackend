@@ -20,8 +20,9 @@ namespace SpeekIO.API.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
+            await _mediator.Send(new CreateJobCommand());
             return new string[] { "value1", "value2" };
         }
 
@@ -34,9 +35,9 @@ namespace SpeekIO.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] CreateJobCommand command)
+        public void Post([FromBody] string value)
         {
-            _mediator.Send(command);
+
         }
 
         // PUT api/values/5

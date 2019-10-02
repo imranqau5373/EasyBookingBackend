@@ -4,8 +4,7 @@ using System.Text;
 
 namespace SpeekIO.Domain.Interfaces.Models
 {
-    public class Session
+    public class VideoArchive
     {
-        public string Id { get; set; }
     }
 }

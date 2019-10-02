@@ -5,15 +5,15 @@ namespace SpeekIO.Infrastructure.Video.Interfaces
 {
     public interface IVideoService
     {
-        Session CreateNewSession();
+        VideoSession CreateNewSession();
 
-        Token CreateNewToken(Session session);
+        SessionToken CreateNewToken(VideoSession session);
 
-        bool StartArchiving(Session session, string archiveName, bool audio = true, bool video = true);
+        bool StartArchiving(VideoSession session, string archiveName, bool audio = true, bool video = true);
 
-        bool StopArchiving(Session session);
+        bool StopArchiving(VideoSession session);
 
-        List<Archive> GetArchives();
+        List<VideoArchive> GetArchives();
 
     }
 }
