@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {}
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj": {}
   },
   "projects": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj",
         "projectName": "SpeekIO.Application",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

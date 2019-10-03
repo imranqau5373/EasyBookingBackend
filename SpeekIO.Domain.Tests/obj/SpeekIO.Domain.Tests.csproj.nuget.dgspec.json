@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj": {}
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj": {}
   },
   "projects": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj",
         "projectName": "SpeekIO.Domain.Tests",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain.Tests\\SpeekIO.Domain.Tests.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain.Tests\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {}
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {}
   },
   "projects": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
         "projectName": "SpeekIO.Domain",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -56,14 +56,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
         "projectName": "SpeekIO.Presistence",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -82,8 +82,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
               }
             }
           }

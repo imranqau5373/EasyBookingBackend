@@ -5865,11 +5865,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
+      "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
       "projectName": "SpeekIO.Application.Tests",
-      "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
+      "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application.Tests\\SpeekIO.Application.Tests.csproj",
       "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-      "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application.Tests\\obj\\",
+      "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

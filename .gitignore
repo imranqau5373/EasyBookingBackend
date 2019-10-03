@@ -31,3 +31,8 @@
 *.out
 *.app
 /.vs/SpeekIO.Application
+/.vs/slnx.sqlite
+*.user
+*.suo
+*.dll
+*.pdb

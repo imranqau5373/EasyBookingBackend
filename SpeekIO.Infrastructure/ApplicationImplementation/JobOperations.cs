@@ -13,5 +13,5 @@ namespace SpeekIO.Infrastructure.ApplicationImplementation
         {
             throw new NotImplementedException();
         }
-    }
+    }   
 }

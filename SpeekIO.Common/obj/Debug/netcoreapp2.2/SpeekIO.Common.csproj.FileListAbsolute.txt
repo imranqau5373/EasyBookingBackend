@@ -12,3 +12,17 @@ D:\GithubRepositories\SpeekIO\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.E
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csproj.CopyComplete
 D:\GithubRepositories\SpeekIO\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csprojAssemblyReference.cache
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\SpeekIO.Common.deps.json
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\SpeekIO.Common.dll
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\SpeekIO.Common.pdb
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csprojAssemblyReference.cache
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csproj.CoreCompileInputs.cache
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.AssemblyInfoInputs.cache
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.AssemblyInfo.cs
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.csproj.CopyComplete
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.dll
+D:\Repositories\SpeekIODotnetCore\SpeekIO.Common\obj\Debug\netcoreapp2.2\SpeekIO.Common.pdb

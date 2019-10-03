@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj",
+      "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj",
       "projectName": "SpeekIO.Common",
-      "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj",
+      "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj",
       "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-      "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\obj\\",
+      "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

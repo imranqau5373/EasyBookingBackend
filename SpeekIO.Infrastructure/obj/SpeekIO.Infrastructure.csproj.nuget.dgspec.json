@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {}
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj",
         "projectName": "SpeekIO.Application",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -64,14 +64,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj",
         "projectName": "SpeekIO.Common",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -116,14 +116,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
         "projectName": "SpeekIO.Domain",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -168,14 +168,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
         "projectName": "SpeekIO.Infrastructure.SignalR",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -220,14 +220,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
         "projectName": "SpeekIO.Infrastructure.Video",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -246,11 +246,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj"
               },
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
               }
             }
           }
@@ -303,14 +303,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj",
         "projectName": "SpeekIO.Infrastructure",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure\\SpeekIO.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -329,20 +329,20 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Application\\SpeekIO.Application.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Application\\SpeekIO.Application.csproj"
               },
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Common\\SpeekIO.Common.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Common\\SpeekIO.Common.csproj"
               },
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.SignalR\\SpeekIO.Infrastructure.SignalR.csproj"
               },
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Infrastructure.Video\\SpeekIO.Infrastructure.Video.csproj"
               },
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj"
               }
             }
           }
@@ -379,14 +379,14 @@
         }
       }
     },
-    "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
+    "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
+        "projectUniqueName": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
         "projectName": "SpeekIO.Presistence",
-        "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
+        "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\SpeekIO.Presistence.csproj",
         "packagesPath": "C:\\Users\\raza.ashfaq\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Presistance\\obj\\",
+        "outputPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Presistance\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -405,8 +405,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
-                "projectPath": "D:\\GithubRepositories\\SpeekIO\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
+              "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj": {
+                "projectPath": "D:\\Repositories\\SpeekIODotnetCore\\SpeekIO.Domain\\SpeekIO.Domain.csproj"
               }
             }
           }
