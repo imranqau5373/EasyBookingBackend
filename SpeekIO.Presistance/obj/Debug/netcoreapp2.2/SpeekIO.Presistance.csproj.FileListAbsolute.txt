@@ -1,8 +1,0 @@
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\bin\Debug\netcoreapp2.2\SpeekIO.Presistance.deps.json
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\bin\Debug\netcoreapp2.2\SpeekIO.Presistance.dll
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\bin\Debug\netcoreapp2.2\SpeekIO.Presistance.pdb
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistance.csproj.CoreCompileInputs.cache
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistance.AssemblyInfoInputs.cache
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistance.AssemblyInfo.cs
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistance.dll
-D:\GithubRepositories\SpeekIO\SpeekIO.Presistance\obj\Debug\netcoreapp2.2\SpeekIO.Presistance.pdb
