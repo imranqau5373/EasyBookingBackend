@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Presistence.Configurations;
@@ -11,7 +12,7 @@ namespace SpeekIO.Presistence.Context
     /// <summary>
     /// SpeekIO Database Context
     /// </summary>
-    public class SpeekIOContext : DbContext
+    public class SpeekIOContext : DbContext, ISpeekIODbContext
     {
         public SpeekIOContext()
         {

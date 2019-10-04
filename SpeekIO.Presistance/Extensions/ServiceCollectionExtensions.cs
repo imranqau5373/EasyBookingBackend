@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using SpeekIO.Application.Interfaces;
 
 namespace SpeekIO.Presistence.Extensions
 {
@@ -15,6 +16,8 @@ namespace SpeekIO.Presistence.Extensions
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SpeekIOContext>(builder =>
                                                   builder.UseSqlServer(defaultConnectionString));
+
+            services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
 
             // migrate database changes
             var context = services.BuildServiceProvider().GetService<SpeekIOContext>();

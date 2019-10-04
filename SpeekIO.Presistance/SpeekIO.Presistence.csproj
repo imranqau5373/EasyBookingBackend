@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpeekIO.Application\SpeekIO.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Domain\SpeekIO.Domain.csproj" />
   </ItemGroup>
 

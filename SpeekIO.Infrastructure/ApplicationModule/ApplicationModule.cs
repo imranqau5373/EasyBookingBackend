@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Common.Extensions;
-using SpeekIO.Infrastructure.ApplicationImplementation;
 using SpeekIO.Infrastructure.Configuration;
 using SpeekIO.Infrastructure.Mapping;
 using SpeekIO.Infrastructure.Video.Configuration;
@@ -26,7 +25,6 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             // register all dependencies here
             services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>();
             services.AddSingleton<IVideoConfiguration, VideoConfiguration>();
-            services.AddTransient<IJobOperations, JobOperations>();
 
             // register other services here
             services.ConfigureCommonServices(configuration);
