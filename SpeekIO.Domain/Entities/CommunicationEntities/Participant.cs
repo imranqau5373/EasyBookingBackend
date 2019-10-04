@@ -8,14 +8,17 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
 {
     public class Participant : BaseEntity, IEntity
     {
+        public ParticipantType ParticipantType { get; set; }
         public ParticipantState State { get; set; }
 
-        // TODO: Think about connection
+        // If a participant connects and then disconnects, then reconnects again then
+        // participant will have a new connection. To maintain all connections we need
+        // to create a one to many relationship
+        public List<Connection> Connections { get; set; }
 
         public DateTime? RequestedToJoinOn { get; set; }
         public DateTime? JoinedOn { get; set; }
         public DateTime? LeftOn { get; set; }
-        public ParticipantType ParticipantType { get; set; }
         public string ResolutionWidth { get; set; }
         public string ResolutionHeight { get; set; }
     }

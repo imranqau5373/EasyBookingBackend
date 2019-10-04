@@ -8,6 +8,6 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
 {
     public class RecordSession : SessionBaseEntity, IEntity
     {
-
+        public Participant Participant { get; set; }
     }
 }

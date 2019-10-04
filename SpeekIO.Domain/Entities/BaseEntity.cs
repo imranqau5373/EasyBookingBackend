@@ -7,7 +7,7 @@ namespace SpeekIO.Domain.Entities
 {
     public abstract class BaseEntity : IEntity
     {
-        public virtual string Id { get; set; }
+        public virtual long Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
 

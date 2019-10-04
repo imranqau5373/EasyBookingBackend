@@ -16,5 +16,7 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
         public string ResolutionWidth { get; set; }
         public string ResolutionHeight { get; set; }
 
+        public List<SessionArchive> Archives { get; set; }
+
     }
 }
