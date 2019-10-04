@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities;
+using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Presistence.Configurations;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,12 @@ namespace SpeekIO.Presistence.Context
         {
         }
         // Entities Set
-        public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<ConferenceSession> ConferenceSessions { get; set; }
+        public DbSet<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
+        public DbSet<Connection> Connections { get; set; }
+        public DbSet<Participant> Participants { get; set; }
+        public DbSet<RecordSession> RecordSessions { get; set; }
+        public DbSet<SessionArchive> SessionArchives { get; set; }
 
         /// <summary>
         /// Apply Configurations to the model here
@@ -27,7 +33,14 @@ namespace SpeekIO.Presistence.Context
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AttachmentConfiguration());
+            string communicationSchemaName = "Communication";
+
+            modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
+            modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
+            modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));
+            modelBuilder.ApplyConfiguration(new ParticipantConfiguration(communicationSchemaName));
+            modelBuilder.ApplyConfiguration(new RecordSessionConfiguration(communicationSchemaName));
+            modelBuilder.ApplyConfiguration(new SessionArchiveConfiguration(communicationSchemaName));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
 
         public ConferenceSessionState State { get; set; }
 
-        public List<ConferenceSessionEvents> ConferenceSessionEvents { get; set; }
+        public List<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
 
     }
 }

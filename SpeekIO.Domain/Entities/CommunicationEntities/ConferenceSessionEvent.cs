@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SpeekIO.Domain.Entities.CommunicationEntities
 {
-    public class ConferenceSessionEvents : BaseEntity, IEntity
+    public class ConferenceSessionEvent : BaseEntity, IEntity
     {
         public ConferenceSession ConferenceSession { get; set; }
 
