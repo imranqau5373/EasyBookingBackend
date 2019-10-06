@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
+using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Presistence.Configurations;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace SpeekIO.Presistence.Context
     /// <summary>
     /// SpeekIO Database Context
     /// </summary>
-    public class SpeekIOContext : DbContext, ISpeekIODbContext
+    public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
     {
         public SpeekIOContext()
         {

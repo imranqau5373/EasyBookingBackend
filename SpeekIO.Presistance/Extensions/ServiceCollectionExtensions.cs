@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using SpeekIO.Domain.Entities.Identity;
 
 namespace SpeekIO.Presistence.Extensions
 {
@@ -16,6 +18,13 @@ namespace SpeekIO.Presistence.Extensions
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SpeekIOContext>(builder =>
                                                   builder.UseSqlServer(defaultConnectionString));
+
+            services.AddIdentity<ApplicationUser, UserRole>()
+                        .AddEntityFrameworkStores<SpeekIOContext>()
+                        .AddUserManager<ApplicationUserManager>()
+                        .AddSignInManager<ApplicationSignInManager>()
+                        .AddDefaultTokenProviders();
+
 
             services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
 
