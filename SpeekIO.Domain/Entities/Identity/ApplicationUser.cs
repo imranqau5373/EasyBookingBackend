@@ -8,6 +8,5 @@ namespace SpeekIO.Domain.Entities.Identity
 {
     public class ApplicationUser : IdentityUser<long>, IEntity
     {
-        public Profile UserProfile { get; set; }
     }
 }

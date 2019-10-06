@@ -17,13 +17,23 @@ namespace SpeekIO.Presistence.Configurations
         }
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
+            MapSchema(builder);
+            MapPrimaryKey(builder);
+        }
+
+        protected virtual void MapSchema(EntityTypeBuilder<T> builder)
+        {
             Type type = typeof(T);
             builder.ToTable(type.Name, SchemaName);
+        }
+
+        protected virtual void MapPrimaryKey(EntityTypeBuilder<T> builder)
+        {
+            builder.HasKey(t => t.Id);
+            builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
             builder.HasIndex(t => t.Id);
 
-            builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).ValueGeneratedOnAdd();
         }
     }
 }

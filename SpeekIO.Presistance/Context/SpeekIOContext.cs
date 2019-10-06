@@ -23,6 +23,7 @@ namespace SpeekIO.Presistence.Context
         {
         }
         // Entities Set
+        public DbSet<Profile> Profiles { get; set; }
         public DbSet<ConferenceSession> ConferenceSessions { get; set; }
         public DbSet<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
         public DbSet<Connection> Connections { get; set; }
@@ -36,8 +37,13 @@ namespace SpeekIO.Presistence.Context
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            string communicationSchemaName = "Communication";
+            base.OnModelCreating(modelBuilder);
 
+            string üserDataSchemaName = "User";
+            modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
+            modelBuilder.ApplyConfiguration(new ProfileConfiguration(üserDataSchemaName));
+
+            string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));
