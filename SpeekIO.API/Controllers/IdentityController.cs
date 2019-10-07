@@ -29,6 +29,7 @@ namespace SpeekIO.API.Controllers
 
 
         // POST api/Identity/SignUp
+        [AllowAnonymous]
         [HttpPut(nameof(SignUp))]
         public async Task<IActionResult> SignUp([FromBody] SignupCommand signupCommand)
         {
@@ -45,7 +46,7 @@ namespace SpeekIO.API.Controllers
         }
 
         // POST api/Identity/Activate
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost(nameof(Activate))]
         public async Task<IActionResult> Activate([FromBody] AccountActivationCommand activationCommand)
         {
@@ -62,6 +63,7 @@ namespace SpeekIO.API.Controllers
         }
 
         // POST api/Identity/SignIn
+        [AllowAnonymous]
         [HttpPost(nameof(SignIn))]
         public async Task<IActionResult> SignIn([FromBody] SignInCommand signInCommand)
         {
