@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpeekIO.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class IdentityController : SpeekIOController

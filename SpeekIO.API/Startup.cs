@@ -16,6 +16,11 @@ using MediatR;
 using System.Reflection;
 using FluentValidation;
 using SpeekIO.Application.Modules;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using SpeekIO.Application.Configuration;
 
 namespace SpeekIO.API
 {
@@ -44,9 +49,41 @@ namespace SpeekIO.API
 
             services.ConfigureApplication(Configuration);
 
+            IApplicationConfiguration applicationConfiguration = services.BuildServiceProvider().GetService<IApplicationConfiguration>();
+            // ===== Add Jwt Authentication ========
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                })
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = applicationConfiguration.Issuer,
+                        ValidAudience = applicationConfiguration.Issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(applicationConfiguration.AuthKey)),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+                });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "SpeekIO API", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "Authorization: Bearer {token}",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
             });
 
             // Allow CORS
@@ -73,9 +110,10 @@ namespace SpeekIO.API
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
 
             app.UseAuthentication();
+            app.UseMvc();
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

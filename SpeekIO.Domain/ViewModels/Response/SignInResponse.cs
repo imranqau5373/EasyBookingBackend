@@ -6,5 +6,6 @@ namespace SpeekIO.Domain.ViewModels.Response
 {
     public class SignInResponse : CommonResponse
     {
+        public string AuthenticationToken { get; set; }
     }
 }

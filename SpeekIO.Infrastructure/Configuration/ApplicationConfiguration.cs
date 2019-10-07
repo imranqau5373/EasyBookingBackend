@@ -18,5 +18,11 @@ namespace SpeekIO.Infrastructure.Configuration
         public int RetryCount => configuration.GetSection("Policy")?.GetValue<int>("RetryCount") ?? 0;
 
         public int Backoff => configuration.GetSection("Policy")?.GetValue<int>("Backoff") ?? 0;
+
+        public string AuthKey => configuration.GetSection("Identity")?.GetValue<string>("AuthKey");
+
+        public string Issuer => configuration.GetSection("Identity")?.GetValue<string>("Issuer");
+
+        public int TokenExpiry => configuration.GetSection("Identity")?.GetValue<int>("TokenExpiry") ?? 0;
     }
 }
