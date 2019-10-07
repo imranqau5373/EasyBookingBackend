@@ -14,6 +14,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using SpeekIO.Infrastructure.ApplicationModule;
 using MediatR;
 using System.Reflection;
+using FluentValidation;
+using SpeekIO.Application.Modules;
 
 namespace SpeekIO.API
 {
@@ -32,6 +34,13 @@ namespace SpeekIO.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMediatR(GetAssembliesForMediatR().ToArray());
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            AssemblyScanner.FindValidatorsInAssemblies(GetAssembliesForMediatR().ToArray())
+                           .ForEach(result =>
+                           {
+                               services.AddTransient(result.InterfaceType, result.ValidatorType);
+                           });
 
             services.ConfigureApplication(Configuration);
 
@@ -66,6 +75,8 @@ namespace SpeekIO.API
             app.UseHttpsRedirection();
             app.UseMvc();
 
+            app.UseAuthentication();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -80,7 +91,7 @@ namespace SpeekIO.API
             listOfAssemblies.Add(mainAsm);
 
             foreach (var refAsmName in mainAsm.GetReferencedAssemblies()
-                .Where(t=>t.Name.StartsWith("SpeekIO.",StringComparison.OrdinalIgnoreCase)))
+                .Where(t => t.Name.StartsWith("SpeekIO.", StringComparison.OrdinalIgnoreCase)))
             {
                 listOfAssemblies.Add(Assembly.Load(refAsmName));
             }

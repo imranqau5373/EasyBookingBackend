@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SpeekIO.Presistence.Migrations
 {
-    public partial class Identity : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,6 +13,9 @@ namespace SpeekIO.Presistence.Migrations
 
             migrationBuilder.EnsureSchema(
                 name: "User");
+
+            migrationBuilder.EnsureSchema(
+                name: "Portfolio");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -80,6 +83,21 @@ namespace SpeekIO.Presistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Participant", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Company",
+                schema: "Portfolio",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,7 +324,7 @@ namespace SpeekIO.Presistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Profile",
-                schema: "User",
+                schema: "Portfolio",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -314,11 +332,19 @@ namespace SpeekIO.Presistence.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    UserId = table.Column<long>(nullable: true)
+                    UserId = table.Column<long>(nullable: true),
+                    CompanyId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profile", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Profile_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalSchema: "Portfolio",
+                        principalTable: "Company",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Profile_ApplicationUser_UserId",
                         column: x => x.UserId,
@@ -464,6 +490,30 @@ namespace SpeekIO.Presistence.Migrations
                 column: "RecordSessionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Company_Id",
+                schema: "Portfolio",
+                table: "Company",
+                column: "Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profile_CompanyId",
+                schema: "Portfolio",
+                table: "Profile",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profile_Id",
+                schema: "Portfolio",
+                table: "Profile",
+                column: "Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profile_UserId",
+                schema: "Portfolio",
+                table: "Profile",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUser_Id",
                 schema: "User",
                 table: "ApplicationUser",
@@ -482,18 +532,6 @@ namespace SpeekIO.Presistence.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Profile_Id",
-                schema: "User",
-                table: "Profile",
-                column: "Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Profile_UserId",
-                schema: "User",
-                table: "Profile",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -527,7 +565,7 @@ namespace SpeekIO.Presistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Profile",
-                schema: "User");
+                schema: "Portfolio");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -539,6 +577,10 @@ namespace SpeekIO.Presistence.Migrations
             migrationBuilder.DropTable(
                 name: "RecordSession",
                 schema: "Communication");
+
+            migrationBuilder.DropTable(
+                name: "Company",
+                schema: "Portfolio");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUser",

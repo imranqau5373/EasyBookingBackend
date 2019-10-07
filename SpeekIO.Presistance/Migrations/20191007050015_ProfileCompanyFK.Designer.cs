@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191007050015_ProfileCompanyFK")]
+    partial class ProfileCompanyFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -413,12 +415,6 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<DateTime>("ModifiedOn");
 
-                    b.Property<string>("Name");
-
-                    b.Property<string>("SubDomainPrefix");
-
-                    b.Property<string>("Url");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Id");
@@ -436,17 +432,9 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("FirstName");
 
                     b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<bool>("OptInNewsletter");
-
-                    b.Property<string>("Phone");
-
-                    b.Property<string>("Timezone");
 
                     b.Property<long?>("UserId");
 

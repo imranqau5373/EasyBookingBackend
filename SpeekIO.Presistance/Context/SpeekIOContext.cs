@@ -4,6 +4,7 @@ using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Presistence.Configurations;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace SpeekIO.Presistence.Context
         {
         }
         // Entities Set
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<ConferenceSession> ConferenceSessions { get; set; }
         public DbSet<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
@@ -39,9 +41,12 @@ namespace SpeekIO.Presistence.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            string portfolioSchemaName = "Portfolio";
+            modelBuilder.ApplyConfiguration(new CompaniesConfiguration(portfolioSchemaName));
+            modelBuilder.ApplyConfiguration(new ProfileConfiguration(portfolioSchemaName));
+
             string üserDataSchemaName = "User";
             modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
-            modelBuilder.ApplyConfiguration(new ProfileConfiguration(üserDataSchemaName));
 
             string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));

@@ -19,13 +19,6 @@ namespace SpeekIO.Presistence.Extensions
             services.AddDbContext<SpeekIOContext>(builder =>
                                                   builder.UseSqlServer(defaultConnectionString));
 
-            services.AddIdentity<ApplicationUser, UserRole>()
-                        .AddEntityFrameworkStores<SpeekIOContext>()
-                        .AddUserManager<ApplicationUserManager>()
-                        .AddSignInManager<ApplicationSignInManager>()
-                        .AddDefaultTokenProviders();
-
-
             services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
 
             // migrate database changes

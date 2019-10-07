@@ -10,8 +10,8 @@ using SpeekIO.Presistence.Context;
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    [Migration("20191006072207_Identity")]
-    partial class Identity
+    [Migration("20191007084616_ProfileAndCompanyPropertiesAdded")]
+    partial class ProfileAndCompanyPropertiesAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -380,29 +380,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("ApplicationUser","User");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Identity.Profile", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<long?>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Profile","User");
-                });
-
             modelBuilder.Entity("SpeekIO.Domain.Entities.Identity.UserRole", b =>
                 {
                     b.Property<long>("Id")
@@ -426,6 +403,64 @@ namespace SpeekIO.Presistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Company", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("SubDomainPrefix");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Company","Portfolio");
+                });
+
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CompanyId");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Email");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("OptInNewsletter");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("Timezone");
+
+                    b.Property<long?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Profile","Portfolio");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -505,8 +540,13 @@ namespace SpeekIO.Presistence.Migrations
                         .HasForeignKey("RecordSessionId");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Identity.Profile", b =>
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
                 {
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
+                        .WithMany("Profiles")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
