@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SpeekIO.Application.Configuration;
+using SpeekIO.API.Filters;
 
 namespace SpeekIO.API
 {
@@ -84,6 +85,7 @@ namespace SpeekIO.API
                     In = "header",
                     Type = "apiKey"
                 });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
 
             // Allow CORS
