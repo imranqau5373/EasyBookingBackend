@@ -22,5 +22,13 @@ namespace SpeekIO.Presistence.Configurations
                    .HasForeignKey(t => t.CompanyId);
 
         }
+
+        protected override void MapPrimaryKey(EntityTypeBuilder<Profile> builder)
+        {
+            builder.HasKey(t => t.Id);
+            builder.Property(t => t.Id).ValueGeneratedNever();
+
+            builder.HasIndex(t => t.Id);
+        }
     }
 }

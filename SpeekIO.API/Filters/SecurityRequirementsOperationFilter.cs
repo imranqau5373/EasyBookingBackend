@@ -25,7 +25,7 @@ namespace SpeekIO.API.Filters
                 .OfType<AuthorizeAttribute>();
             var allowAnonymousAttributes = context.ApiDescription.ActionAttributes().OfType<AllowAnonymousAttribute>();
 
-            if (!authorizeAttributes.Any() && !allowAnonymousAttributes.Any())
+            if (allowAnonymousAttributes.Any())
             {
                 return;
             }

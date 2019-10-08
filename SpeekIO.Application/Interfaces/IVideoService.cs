@@ -1,11 +1,12 @@
 ﻿using SpeekIO.Domain.Interfaces.Models;
+using SpeekIO.Domain.Models;
 using System.Collections.Generic;
 
-namespace SpeekIO.Infrastructure.Video.Interfaces
+namespace SpeekIO.Application.Interfaces
 {
     public interface IVideoService
     {
-        VideoSession CreateNewSession();
+        VideoSession CreateNewSession(CreateNewSessionModel model);
 
         SessionToken CreateNewToken(VideoSession session);
 

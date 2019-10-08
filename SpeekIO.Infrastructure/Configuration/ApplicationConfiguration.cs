@@ -24,5 +24,7 @@ namespace SpeekIO.Infrastructure.Configuration
         public string Issuer => configuration.GetSection("Identity")?.GetValue<string>("Issuer");
 
         public int TokenExpiry => configuration.GetSection("Identity")?.GetValue<int>("TokenExpiry") ?? 0;
+
+        public string Domain => configuration.GetValue<string>("Domain") ?? "speek.io";
     }
 }

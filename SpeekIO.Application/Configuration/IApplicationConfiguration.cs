@@ -14,5 +14,6 @@ namespace SpeekIO.Application.Configuration
         string AuthKey { get; }
         string Issuer { get; }
         int TokenExpiry { get; }
+        string Domain { get; }
     }
 }

@@ -10,8 +10,8 @@ using SpeekIO.Presistence.Context;
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    [Migration("20191007084616_ProfileAndCompanyPropertiesAdded")]
-    partial class ProfileAndCompanyPropertiesAdded
+    [Migration("20191008054708_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -430,9 +430,7 @@ namespace SpeekIO.Presistence.Migrations
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<long>("Id");
 
                     b.Property<long>("CompanyId");
 
