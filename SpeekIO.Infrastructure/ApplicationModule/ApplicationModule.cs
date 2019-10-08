@@ -62,7 +62,7 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             CreateRolesIfNotExists(services);
 
             // configure automapper
-            var applicationProfile = Application.Modules.ApplicationModule.GetMappingProfile();
+            var applicationProfile = Application.Modules.ApplicationModule.GetMappingProfile(services);
             var videoProfile = Video.Extensions.ServiceCollectionExtensions.GetMappingProfile();
 
             var mappingConfig = new MapperConfiguration(mc =>

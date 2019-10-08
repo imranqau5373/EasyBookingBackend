@@ -93,7 +93,10 @@ namespace SpeekIO.Presistence.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: false)
+                    ModifiedOn = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    SubDomainPrefix = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -327,13 +330,16 @@ namespace SpeekIO.Presistence.Migrations
                 schema: "Portfolio",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Timezone = table.Column<string>(nullable: true),
+                    OptInNewsletter = table.Column<bool>(nullable: false),
                     UserId = table.Column<long>(nullable: true),
-                    CompanyId = table.Column<long>(nullable: true)
+                    CompanyId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -344,7 +350,7 @@ namespace SpeekIO.Presistence.Migrations
                         principalSchema: "Portfolio",
                         principalTable: "Company",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Profile_ApplicationUser_UserId",
                         column: x => x.UserId,

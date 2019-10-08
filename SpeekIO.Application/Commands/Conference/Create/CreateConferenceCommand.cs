@@ -1,17 +1,23 @@
-﻿using SpeekIO.Domain.Entities.Portfolio;
-using SpeekIO.Domain.Enums.EntityEnums;
-using SpeekIO.Domain.Interfaces;
+﻿using MediatR;
+using SpeekIO.Domain.ViewModels.Response;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpeekIO.Domain.Entities.CommunicationEntities
+namespace SpeekIO.Application.Commands.Conference.Create
 {
-    public class ConferenceSession : SessionBaseEntity, IEntity
+    public class CreateConferenceCommand : IRequest<ConferenceResponse>
     {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public bool EnableAudio { get; set; }
+        public bool EnableVideo { get; set; }
+
+        public string ResolutionWidth { get; set; }
+        public string ResolutionHeight { get; set; }
         // When conference is scheduled, then it has start time and duration of session
-        public DateTime? ScheduledStartTime { get; set; }
-        public DateTime? ScheduledEndTime { get; set; }
+        public DateTime ScheduledStartTime { get; set; }
+        public DateTime ScheduledEndTime { get; set; }
 
         // To specify if this is a broadcast session
         // mute all clients. Only Host is allowed to unmute and mute them
@@ -26,13 +32,7 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
         public bool AutoAcceptConference { get; set; }
         public bool AllowRecordingOfHost { get; set; }
         public bool AllowRecordingOfParticipants { get; set; }
+        public List<string> ParticipantEmails { get; set; }
 
-        public ConferenceSessionState State { get; set; }
-
-        public List<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
-        public List<Participant> Participants { get; set; } = new List<Participant>();
-
-        public Profile CreatedBy { get; set; }
-        public Company Company { get; set; }
     }
 }

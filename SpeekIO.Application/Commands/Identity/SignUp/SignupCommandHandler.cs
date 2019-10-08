@@ -58,9 +58,11 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 
                 _logger.LogInformation("Successfully created user");
 
-                await AssignRoles(request, user);
+                await AssignRoles(user);
 
-                await CreateProfile(request);
+                var profile = await CreateProfile(request, user);
+
+                await _userManager.UpdateAsync(user);
 
                 await SendActivationEmail(user);
 
@@ -83,15 +85,20 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
             }
         }
 
-        private async Task CreateProfile(SignupCommand request)
+        private async Task<Domain.Entities.Portfolio.Profile> CreateProfile(SignupCommand request, ApplicationUser user)
         {
             var company = _mapper.Map<Company>(request);
             var profile = _mapper.Map<Domain.Entities.Portfolio.Profile>(request);
+            profile.Id = user.Id;
+            profile.User = user;
+            profile.Company = company;
 
             company.Profiles.Add(profile);
             _context.Companies.Add(company);
 
             await _context.SaveChangesAsync();
+
+            return profile;
         }
 
         private async Task SendActivationEmail(ApplicationUser user)
@@ -103,7 +110,7 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
             await _emailService.SendEmailAsync(emailModel);
         }
 
-        private async Task AssignRoles(SignupCommand request, ApplicationUser user)
+        private async Task AssignRoles(ApplicationUser user)
         {
             var roles = new List<string>();
 
