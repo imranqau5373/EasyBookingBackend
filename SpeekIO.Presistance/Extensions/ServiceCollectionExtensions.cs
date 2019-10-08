@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using SpeekIO.Domain.Entities.Identity;
 
 namespace SpeekIO.Presistence.Extensions
 {

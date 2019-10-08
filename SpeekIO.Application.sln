@@ -31,9 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F6CB4697
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Infrastructure", "SpeekIO.Infrastructure\SpeekIO.Infrastructure.csproj", "{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Application.Tests", "SpeekIO.Application.Tests\SpeekIO.Application.Tests.csproj", "{76C8D9D9-A273-44D1-90DB-18D73FD683B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Application.Tests", "SpeekIO.Application.Tests\SpeekIO.Application.Tests.csproj", "{76C8D9D9-A273-44D1-90DB-18D73FD683B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.Domain.Tests", "SpeekIO.Domain.Tests\SpeekIO.Domain.Tests.csproj", "{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeekIO.Domain.Tests", "SpeekIO.Domain.Tests\SpeekIO.Domain.Tests.csproj", "{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeekIO.EmailService", "SpeekIO.EmailService\SpeekIO.EmailService.csproj", "{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{9CCE1139-C29B-45B5-ACCD-85A56A1FEE25} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
 		{76C8D9D9-A273-44D1-90DB-18D73FD683B1} = {F6CB4697-E05C-48F9-A952-0AE92A5A00F5}
 		{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0} = {F6CB4697-E05C-48F9-A952-0AE92A5A00F5}
+		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {570F7D72-737E-4820-A432-E970857EA619}

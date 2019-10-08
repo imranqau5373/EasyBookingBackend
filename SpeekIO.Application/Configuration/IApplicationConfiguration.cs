@@ -11,5 +11,8 @@ namespace SpeekIO.Application.Configuration
     {
         int RetryCount { get; }
         int Backoff { get; }
+        string AuthKey { get; }
+        string Issuer { get; }
+        int TokenExpiry { get; }
     }
 }

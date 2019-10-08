@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
+using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Presistence.Configurations;
 using System;
 using System.Collections.Generic;
@@ -12,7 +15,7 @@ namespace SpeekIO.Presistence.Context
     /// <summary>
     /// SpeekIO Database Context
     /// </summary>
-    public class SpeekIOContext : DbContext, ISpeekIODbContext
+    public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
     {
         public SpeekIOContext()
         {
@@ -21,6 +24,8 @@ namespace SpeekIO.Presistence.Context
         {
         }
         // Entities Set
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
         public DbSet<ConferenceSession> ConferenceSessions { get; set; }
         public DbSet<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
         public DbSet<Connection> Connections { get; set; }
@@ -34,8 +39,16 @@ namespace SpeekIO.Presistence.Context
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            string communicationSchemaName = "Communication";
+            base.OnModelCreating(modelBuilder);
 
+            string portfolioSchemaName = "Portfolio";
+            modelBuilder.ApplyConfiguration(new CompaniesConfiguration(portfolioSchemaName));
+            modelBuilder.ApplyConfiguration(new ProfileConfiguration(portfolioSchemaName));
+
+            string üserDataSchemaName = "User";
+            modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
+
+            string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));
