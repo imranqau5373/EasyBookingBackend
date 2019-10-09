@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Commands.Conference.Connect;
+using SpeekIO.Application.Commands.Conference.ConnectionLog;
 using SpeekIO.Application.Commands.Conference.Create;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ namespace SpeekIO.API.Controllers
             this._logger = logger;
         }
 
-        // POST api/Identity/SignUp
+        // POST api/Conference/Create
         [Authorize]
         [HttpPut(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateConferenceCommand createConferenceCommand)
@@ -32,6 +34,40 @@ namespace SpeekIO.API.Controllers
             try
             {
                 var response = await _mediator.Send(createConferenceCommand);
+
+                return StatusCode(201, response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+        // POST api/Conference/Connect
+        [Authorize]
+        [HttpPost(nameof(Connect))]
+        public async Task<IActionResult> Connect([FromBody] ConnectConferenceCommand connectConferenceCommand)
+        {
+            try
+            {
+                var response = await _mediator.Send(connectConferenceCommand);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+        // POST api/Conference/ConnectionLog
+        [Authorize]
+        [HttpPut(nameof(ConnectionLog))]
+        public async Task<IActionResult> ConnectionLog([FromBody] ConnectionLogCommand connectionLogCommand)
+        {
+            try
+            {
+                var response = await _mediator.Send(connectionLogCommand);
 
                 return StatusCode(201, response);
             }

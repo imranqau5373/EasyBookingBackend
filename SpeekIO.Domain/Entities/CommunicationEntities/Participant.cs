@@ -12,6 +12,10 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
         public ParticipantType ParticipantType { get; set; }
         public ParticipantState State { get; set; }
         public virtual Profile Profile { get; set; }
+        public long? ProfileId { get; set; }
+
+        public ConferenceSession ConferenceSession { get; set; }
+        public long ConferenceSessionId { get; set; }
 
         // If a participant connects and then disconnects, then reconnects again then
         // participant will have a new connection. To maintain all connections we need
