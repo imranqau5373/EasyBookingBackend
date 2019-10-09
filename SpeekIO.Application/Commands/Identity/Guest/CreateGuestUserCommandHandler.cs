@@ -41,12 +41,12 @@ namespace SpeekIO.Application.Commands.Identity.Guest
             if (!string.IsNullOrWhiteSpace(request.Email))
             {
                 guestUser = await _userManager.FindByEmailAsync(request.Email);
-                if (null != guestUser)
+                if (null != guestUser && !await _userManager.IsInRoleAsync(guestUser, UserRoles.GuestUser.ToString()))
                     return new CreateGuestUserResponse()
                     {
                         Successful = false,
                         AlreadyExists = true,
-                        Message = "User Already Exists"
+                        Message = "User is registered with this email. SignIn Required"
                     };
             }
 
@@ -57,9 +57,10 @@ namespace SpeekIO.Application.Commands.Identity.Guest
                 if (!identityResult.Succeeded)
                     return CreateFailedResponse(identityResult);
                 await AssignRoles(guestUser);
+
+                await CreateProfile(guestUser);
             }
 
-            await CreateProfile(guestUser);
 
             var token = await _tokenGenerator.GenerateSignInTokenAsync(guestUser);
 

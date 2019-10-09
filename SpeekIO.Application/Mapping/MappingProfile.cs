@@ -1,4 +1,5 @@
-﻿using SpeekIO.Application.Commands.Conference.Create;
+﻿using SpeekIO.Application.Commands.Conference.ConnectionLog;
+using SpeekIO.Application.Commands.Conference.Create;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
 using SpeekIO.Application.Configuration;
@@ -57,6 +58,8 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.ScheduledOn, m => m.MapFrom(t => MapNullableTime(t.ScheduledStartTime)))
                 .ForMember(t => t.Duration, m => m.MapFrom(t => MapDuration(t.ScheduledStartTime, t.ScheduledEndTime)))
                 .ForMember(t => t.domain, m => m.MapFrom(t => CreateDomainUrl(t.Company)));
+
+            CreateMap<ConnectionLogCommand, Connection>();
         }
 
         private string CreateDomainUrl(Company company)

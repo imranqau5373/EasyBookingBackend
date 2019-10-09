@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands.Identity.AccountActivation;
+using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignIn;
 using SpeekIO.Application.Commands.Identity.SignUp;
 using System;
@@ -70,6 +71,22 @@ namespace SpeekIO.API.Controllers
             try
             {
                 var response = await _mediator.Send(signInCommand);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost(nameof(Guest))]
+        public async Task<IActionResult> Guest([FromBody] CreateGuestUserCommand createGuestCommand)
+        {
+            try
+            {
+                var response = await _mediator.Send(createGuestCommand);
 
                 return Ok(response);
             }
