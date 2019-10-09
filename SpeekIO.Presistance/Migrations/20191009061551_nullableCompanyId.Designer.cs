@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191009061551_nullableCompanyId")]
+    partial class nullableCompanyId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -446,7 +448,7 @@ namespace SpeekIO.Presistence.Migrations
                 {
                     b.Property<long>("Id");
 
-                    b.Property<long?>("CompanyId");
+                    b.Property<long>("CompanyId");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -578,7 +580,8 @@ namespace SpeekIO.Presistence.Migrations
                 {
                     b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
                         .WithMany("Profiles")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser", "User")
                         .WithMany()
