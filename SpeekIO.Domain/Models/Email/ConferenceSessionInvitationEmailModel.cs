@@ -36,7 +36,7 @@ namespace SpeekIO.Domain.Models.Email
                 payload["ScheduledBy"] = ScheduledBy;
                 payload["Duration"] = Duration;
 
-                var payloadInfo = new EmailRecipientPayloadInfo(new Recipient(string.Empty, email), payload);
+                var payloadInfo = new EmailRecipientPayloadInfo(new Recipient(string.Empty, email), Subject(), payload);
 
                 response.Add(payloadInfo);
             }
@@ -56,7 +56,12 @@ namespace SpeekIO.Domain.Models.Email
 
             var url = $"{domain}/api/Conference/Connect?connecttoken={connectionToken}";
 
-            return System.Web.HttpUtility.UrlEncode(url);
+            return url;
+        }
+
+        private string Subject()
+        {
+            return $"Invitation: {ConferenceTitle}";
         }
     }
 }
