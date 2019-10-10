@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands.Identity.AccountActivation;
+using SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepOne;
+using SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepTwo;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignIn;
 using SpeekIO.Application.Commands.Identity.SignUp;
@@ -87,6 +89,39 @@ namespace SpeekIO.API.Controllers
             try
             {
                 var response = await _mediator.Send(createGuestCommand);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost(nameof(ForgetPasswordStepOne))]
+        public async Task<IActionResult> ForgetPasswordStepOne([FromBody] ForgetPasswordStepOneCommand forgetPasswordCommand)
+        {
+            try
+            {
+                var response = await _mediator.Send(forgetPasswordCommand);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost(nameof(ForgetPasswordStepTwo))]
+        public async Task<IActionResult> ForgetPasswordStepTwo([FromBody] ForgetPasswordStepTwoCommand forgetPasswordCommand)
+        {
+            try
+            {
+                var response = await _mediator.Send(forgetPasswordCommand);
 
                 return Ok(response);
             }
