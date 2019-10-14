@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SpeekIO.Application.Configuration;
+using SpeekIO.Application.Interfaces.Identity;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response;
 using System;
@@ -18,16 +19,17 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
     {
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
-        private readonly IApplicationConfiguration _applicationConfiguration;
+        private readonly ITokenGenerator _tokenGenerator;
         private readonly ILogger<SignInCommandHandler> _logger;
 
-        public SignInCommandHandler(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
-            IApplicationConfiguration applicationConfiguration,
+        public SignInCommandHandler(ApplicationUserManager userManager,
+            ApplicationSignInManager signInManager,
+            ITokenGenerator tokenGenerator,
             ILogger<SignInCommandHandler> logger)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
-            this._applicationConfiguration = applicationConfiguration;
+            this._tokenGenerator = tokenGenerator;
             this._logger = logger;
         }
         public async Task<SignInResponse> Handle(SignInCommand request, CancellationToken cancellationToken)
@@ -42,6 +44,15 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
                 };
             }
 
+            if (!user.EmailConfirmed)
+            {
+                return new SignInResponse()
+                {
+                    Successful = false,
+                    Message = $"Email not confirmed"
+                };
+            }
+
             var signInResult = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, false);
 
             if (!signInResult.Succeeded)
@@ -53,7 +64,7 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
                 };
             }
 
-            var token = GenerateJwtToken(user);
+            var token = await _tokenGenerator.GenerateSignInTokenAsync(user);
             return new SignInResponse
             {
                 Successful = signInResult.Succeeded,
@@ -63,28 +74,5 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
             };
         }
 
-        private string GenerateJwtToken(ApplicationUser user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_applicationConfiguration.AuthKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(_applicationConfiguration.TokenExpiry);
-
-            var token = new JwtSecurityToken(
-                _applicationConfiguration.Issuer,
-                _applicationConfiguration.Issuer,
-                claims,
-                expires: expires,
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
     }
 }

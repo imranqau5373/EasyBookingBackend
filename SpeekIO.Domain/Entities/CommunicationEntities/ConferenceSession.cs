@@ -1,4 +1,5 @@
-﻿using SpeekIO.Domain.Enums.EntityEnums;
+﻿using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Enums.EntityEnums;
 using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
     public class ConferenceSession : SessionBaseEntity, IEntity
     {
         // When conference is scheduled, then it has start time and duration of session
-        public DateTime ScheduledStartTime { get; set; }
-        public DateTime ScheduledEndTime { get; set; }
+        public DateTime? ScheduledStartTime { get; set; }
+        public DateTime? ScheduledEndTime { get; set; }
 
         // To specify if this is a broadcast session
         // mute all clients. Only Host is allowed to unmute and mute them
@@ -29,6 +30,9 @@ namespace SpeekIO.Domain.Entities.CommunicationEntities
         public ConferenceSessionState State { get; set; }
 
         public List<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
+        public List<Participant> Participants { get; set; } = new List<Participant>();
 
+        public Profile CreatedBy { get; set; }
+        public Company Company { get; set; }
     }
 }

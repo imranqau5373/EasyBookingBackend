@@ -18,7 +18,7 @@ namespace SpeekIO.Domain.Entities.Portfolio
 
         public ApplicationUser User { get; set; }
 
-        public Company Company { get; set; }
-        public long CompanyId { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual long? CompanyId { get; set; }
     }
 }

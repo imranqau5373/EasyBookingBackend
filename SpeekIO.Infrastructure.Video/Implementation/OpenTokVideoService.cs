@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Logging;
 using OpenTokSDK;
 using Polly;
+using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Interfaces.Models;
+using SpeekIO.Domain.Models;
 using SpeekIO.Infrastructure.Video.Configuration;
-using SpeekIO.Infrastructure.Video.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -47,7 +48,7 @@ namespace SpeekIO.Infrastructure.Video.Implementation
             this.OpenTok = new OpenTok(apiKey, apiSecret);
         }
 
-        public VideoSession CreateNewSession()
+        public VideoSession CreateNewSession(CreateNewSessionModel model)
         {
             logger.LogInformation("Creating new session");
 
@@ -59,7 +60,8 @@ namespace SpeekIO.Infrastructure.Video.Implementation
             })
             .Execute(() =>
             {
-                session = this.OpenTok.CreateSession(mediaMode: MediaMode.ROUTED, archiveMode: ArchiveMode.MANUAL);
+                session = this.OpenTok.CreateSession(mediaMode: MediaMode.ROUTED, 
+                    archiveMode: model.AutoArchive ? ArchiveMode.ALWAYS : ArchiveMode.MANUAL);
             });
 
             logger.LogInformation("Session creation successful");
