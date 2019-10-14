@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands.Identity.AccountActivation;
@@ -30,7 +31,7 @@ namespace SpeekIO.API.Controllers
 
         // POST api/Identity/SignUp
         [AllowAnonymous]
-        [HttpPut(nameof(SignUp))]
+        [HttpPost(nameof(SignUp))]
         public async Task<IActionResult> SignUp([FromBody] SignupCommand signupCommand)
         {
             try
@@ -78,5 +79,6 @@ namespace SpeekIO.API.Controllers
                 return StatusCode(500, e);
             }
         }
+
     }
 }

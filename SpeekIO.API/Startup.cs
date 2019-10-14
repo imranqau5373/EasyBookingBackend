@@ -114,6 +114,10 @@ namespace SpeekIO.API
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyOrigin());
             app.UseMvc();
 
 

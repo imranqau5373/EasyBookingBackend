@@ -57,7 +57,9 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
             return new SignInResponse
             {
                 Successful = signInResult.Succeeded,
-                AuthenticationToken = token
+                AuthenticationToken = token,
+                UserName = user.UserName,
+                AdminRole = "1"
             };
         }
 

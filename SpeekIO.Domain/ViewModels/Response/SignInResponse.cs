@@ -7,5 +7,9 @@ namespace SpeekIO.Domain.ViewModels.Response
     public class SignInResponse : CommonResponse
     {
         public string AuthenticationToken { get; set; }
+
+        public string UserName { get; set; }
+
+        public string AdminRole { get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 {
     public class SignupCommand : IRequest<SignupResponse>
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string CompanyName { get; set; }
         public string CompanyPrivateUrl { get; set; }
         public string ContactName { get; set; }

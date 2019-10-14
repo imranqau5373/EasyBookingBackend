@@ -20,6 +20,8 @@ namespace SpeekIO.Application.Mapping
             CreateMap<SignupCommand, Domain.Entities.Portfolio.Profile>()
                 .ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
                 .ForMember(t => t.Name, m => m.MapFrom(t => t.ContactName))
+                .ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+                .ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
                 .ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
                 .ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
                 .ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.SubscribeNewsLetter));

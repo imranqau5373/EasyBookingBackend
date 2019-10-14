@@ -50,3 +50,4 @@
 bld/
 [Bb]in/
 [Oo]bj/
+/SpeekIO.API/web.config
