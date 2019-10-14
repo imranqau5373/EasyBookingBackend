@@ -1,8 +1,11 @@
-﻿using SmartFormat;
+﻿using Polly;
+using SmartFormat;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Intefaces.Email;
 using SpeekIO.Domain.Interfaces.Email;
 using SpeekIO.EmailService.Exceptions;
+using SpeekIO.EmailService.Interfaces;
+using SpeekIO.EmailService.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +16,13 @@ namespace SpeekIO.EmailService.Implementation
 {
     internal class EmailService : IEmailService
     {
-        public EmailService(ISpeekIODbContext context)
-        {
+        private readonly Func<string, IEmailProvider> _emailProvider;
+        private readonly IEmailConfiguration _emailConfiguration;
 
+        public EmailService(ISpeekIODbContext context, Func<string, IEmailProvider> emailProvider, IEmailConfiguration emailConfiguration)
+        {
+            _emailProvider = emailProvider;
+            _emailConfiguration = emailConfiguration;
         }
 
         public async Task SendEmailAsync(IEmailModel emailModel)
@@ -29,7 +36,7 @@ namespace SpeekIO.EmailService.Implementation
             {
                 var formattedContent = Smart.Format(htmlContent, item.Payload);
 
-                await SendEmailToRecipient(item.Recipient, formattedContent);
+                await SendEmailToRecipient(item.Recipient, item.Subject, formattedContent);
             }
 
         }
@@ -45,10 +52,27 @@ namespace SpeekIO.EmailService.Implementation
             return htmlContent;
         }
 
-        private async Task SendEmailToRecipient(IRecipient recipient, string formattedContent)
+        private async Task<bool> SendEmailToRecipient(IRecipient recipient, string subject, string formattedContent)
         {
-            // SendEmail through any provider like mailgun
-            await Task.Delay(0);
+            // SendEmail through any provider like mandrill
+
+            //TODO: apply fallback policy with multiple providers
+            try
+            {
+                return await _emailProvider(_emailConfiguration.DefaultProvider).Send(new EmailModel
+                {
+                    Recipient = recipient,
+                    Content = formattedContent,
+                    Subject = subject
+                });
+            }
+            catch (EmailProviderLimitReached)
+            {
+                // fallback
+                throw;
+            }
+            // Currently we are using default provider. If daily limit of provider reaches then apply secondary policy to 
+
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SpeekIO.Application.Interfaces;
 using SpeekIO.Infrastructure.Video.Configuration;
 using SpeekIO.Infrastructure.Video.Implementation;
-using SpeekIO.Infrastructure.Video.Interfaces;
 using SpeekIO.Infrastructure.Video.Mapping;
 using System;
 using System.Collections.Generic;

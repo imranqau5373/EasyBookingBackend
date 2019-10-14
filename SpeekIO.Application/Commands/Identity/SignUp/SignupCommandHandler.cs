@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
@@ -24,19 +25,22 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
         private readonly IMapper _mapper;
         private readonly ISpeekIODbContext _context;
         private readonly IEmailService _emailService;
+        private readonly IApplicationConfiguration _applicationConfiguration;
         private readonly ILogger<SignupCommandHandler> _logger;
 
         public SignupCommandHandler(ApplicationUserManager userManager,
             IMapper mapper,
             ISpeekIODbContext context,
             IEmailService emailService,
+            IApplicationConfiguration applicationConfiguration,
             ILogger<SignupCommandHandler> logger)
         {
-            this._userManager = userManager;
-            this._mapper = mapper;
-            this._context = context;
-            this._emailService = emailService;
-            this._logger = logger;
+            _userManager = userManager;
+            _mapper = mapper;
+            _context = context;
+            _emailService = emailService;
+            _applicationConfiguration = applicationConfiguration;
+            _logger = logger;
         }
 
         public async Task<SignupResponse> Handle(SignupCommand request, CancellationToken cancellationToken)
@@ -58,9 +62,11 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 
                 _logger.LogInformation("Successfully created user");
 
-                await AssignRoles(request, user);
+                await AssignRoles(user);
 
-                await CreateProfile(request);
+                var profile = await CreateProfile(request, user);
+
+                await _userManager.UpdateAsync(user);
 
                 await SendActivationEmail(user);
 
@@ -83,27 +89,32 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
             }
         }
 
-        private async Task CreateProfile(SignupCommand request)
+        private async Task<Domain.Entities.Portfolio.Profile> CreateProfile(SignupCommand request, ApplicationUser user)
         {
             var company = _mapper.Map<Company>(request);
             var profile = _mapper.Map<Domain.Entities.Portfolio.Profile>(request);
+            profile.Id = user.Id;
+            profile.User = user;
+            profile.Company = company;
 
             company.Profiles.Add(profile);
             _context.Companies.Add(company);
 
             await _context.SaveChangesAsync();
+
+            return profile;
         }
 
         private async Task SendActivationEmail(ApplicationUser user)
         {
-            var activationUrl = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var activationUrl = $"https://{_applicationConfiguration.Domain}/Account/Activate?email={user.Email}&token={await _userManager.GenerateEmailConfirmationTokenAsync(user)}";
             IRecipient recipient = new Recipient(user.UserName, user.Email);
             IEmailModel emailModel = new AccountActivationEmailModel(activationUrl, recipient);
 
             await _emailService.SendEmailAsync(emailModel);
         }
 
-        private async Task AssignRoles(SignupCommand request, ApplicationUser user)
+        private async Task AssignRoles(ApplicationUser user)
         {
             var roles = new List<string>();
 

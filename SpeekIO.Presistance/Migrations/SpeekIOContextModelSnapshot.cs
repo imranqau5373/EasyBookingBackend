@@ -114,6 +114,10 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<bool>("AutoAcceptConference");
 
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CreatedById");
+
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
@@ -134,9 +138,9 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<string>("ResolutionWidth");
 
-                    b.Property<DateTime>("ScheduledEndTime");
+                    b.Property<DateTime?>("ScheduledEndTime");
 
-                    b.Property<DateTime>("ScheduledStartTime");
+                    b.Property<DateTime?>("ScheduledStartTime");
 
                     b.Property<string>("SessionIdentifier");
 
@@ -145,6 +149,10 @@ namespace SpeekIO.Presistence.Migrations
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("Id");
 
@@ -217,6 +225,8 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("ConferenceSessionId");
+
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<DateTime?>("JoinedOn");
@@ -226,6 +236,8 @@ namespace SpeekIO.Presistence.Migrations
                     b.Property<DateTime>("ModifiedOn");
 
                     b.Property<int>("ParticipantType");
+
+                    b.Property<long?>("ProfileId");
 
                     b.Property<DateTime?>("RequestedToJoinOn");
 
@@ -237,7 +249,11 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConferenceSessionId");
+
                     b.HasIndex("Id");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Participant","Communication");
                 });
@@ -428,11 +444,9 @@ namespace SpeekIO.Presistence.Migrations
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<long>("Id");
 
-                    b.Property<long>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -506,6 +520,17 @@ namespace SpeekIO.Presistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSession", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Profile", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+                });
+
             modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSessionEvent", b =>
                 {
                     b.HasOne("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSession", "ConferenceSession")
@@ -518,6 +543,18 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasOne("SpeekIO.Domain.Entities.CommunicationEntities.Participant", "Participant")
                         .WithMany("Connections")
                         .HasForeignKey("ParticipantId");
+                });
+
+            modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.Participant", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSession", "ConferenceSession")
+                        .WithMany("Participants")
+                        .HasForeignKey("ConferenceSessionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.RecordSession", b =>
@@ -542,8 +579,7 @@ namespace SpeekIO.Presistence.Migrations
                 {
                     b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
                         .WithMany("Profiles")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser", "User")
                         .WithMany()

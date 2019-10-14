@@ -27,9 +27,14 @@ namespace SpeekIO.Domain.Models.Email
             payload.Add("Name", _recipient.FullName);
             payload.Add("ActivationUrl", _activationUrl);
 
-            list.Add(new EmailRecipientPayloadInfo(_recipient, payload));
+            list.Add(new EmailRecipientPayloadInfo(_recipient, Subject(), payload));
 
             return list;
+        }
+
+        private string Subject()
+        {
+            return "Activate your SpeekIO Account";
         }
     }
 }
