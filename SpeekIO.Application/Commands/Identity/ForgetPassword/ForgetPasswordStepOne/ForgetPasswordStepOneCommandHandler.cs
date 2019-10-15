@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Net;
 
 namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepOne
 {
@@ -32,7 +33,7 @@ namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordSte
 
         public async Task<ForgetPasswordStepOneResponse> Handle(ForgetPasswordStepOneCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await _userManager.FindByEmailAsync(request.ForgetEmail);
             if (null == user)
             {
                 var response = CommonResponse.CreateFailedResponse<ForgetPasswordStepOneResponse>("Üser Not found with this email");
@@ -60,8 +61,8 @@ namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordSte
             var profile = _context.Profiles.SingleOrDefault(t => t.Id == user.Id);
             var name = profile?.Name ?? string.Empty;
 
-            var resetPasswordUrl = $"https://{_applicationConfiguration.Domain}/Account/ResetPassword?email={user.Email}&token={await _userManager.GeneratePasswordResetTokenAsync(user)}";
-            IEmailModel emailModel = new ForgetPasswordEmailModel(name, user.Email, resetPasswordUrl);
+            var resetPasswordUrl = $"http://{_applicationConfiguration.Domain}/auth/resetpassword?email={user.Email}&token={WebUtility.UrlEncode(await _userManager.GeneratePasswordResetTokenAsync(user))}";
+			IEmailModel emailModel = new ForgetPasswordEmailModel(name, user.Email, resetPasswordUrl);
             await _emailService.SendEmailAsync(emailModel);
 
         }

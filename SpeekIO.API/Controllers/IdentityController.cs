@@ -13,7 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace SpeekIO.API.Controllers
 {
@@ -121,8 +123,9 @@ namespace SpeekIO.API.Controllers
         public async Task<IActionResult> ForgetPasswordStepTwo([FromBody] ForgetPasswordStepTwoCommand forgetPasswordCommand)
         {
             try
-            {
-                var response = await _mediator.Send(forgetPasswordCommand);
+			{
+				//forgetPasswordCommand.ResetToken = WebUtility.UrlEncode(forgetPasswordCommand.ResetToken);
+				var response = await _mediator.Send(forgetPasswordCommand);
 
                 return Ok(response);
             }
@@ -131,5 +134,5 @@ namespace SpeekIO.API.Controllers
                 return StatusCode(500, e);
             }
         }
-    }
+	}
 }

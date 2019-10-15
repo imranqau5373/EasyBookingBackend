@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
@@ -13,6 +14,7 @@ using SpeekIO.Domain.Models.Email;
 using SpeekIO.Domain.ViewModels.Response;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,12 +57,21 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 
                 user = _mapper.Map<ApplicationUser>(request);
                 user.LockoutEnabled = true;
+				user.EmailConfirmed = true;
 
-                var identityResult = await _userManager.CreateAsync(user, request.Password);
+				//company url validation. same url is already exist or not.
+
+				var company = await _context.Companies.Where(x => x.Url == request.CompanyPrivateUrl).FirstOrDefaultAsync();
+				if (company != null)
+					return CreateFailedOther("Company private url already exist.");
+
+				var identityResult = await _userManager.CreateAsync(user, request.Password);
                 if (!identityResult.Succeeded || 0 >= user.Id)
                     return CreateFailedResponse(identityResult);
 
-                _logger.LogInformation("Successfully created user");
+
+
+				_logger.LogInformation("Successfully created user");
 
                 await AssignRoles(user);
 
@@ -147,5 +158,17 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
                 Data = identityResult
             };
         }
-    }
+
+		private SignupResponse CreateFailedOther(string message)
+		{
+			_logger.LogError("Error occured while creating user.");
+					_logger.LogError($"Error occured while creating user. { message}");
+
+			return new SignupResponse
+			{
+				Successful = false,
+				Message = message
+			};
+		}
+	}
 }

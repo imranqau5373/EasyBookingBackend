@@ -8,6 +8,6 @@ namespace SpeekIO.Application.Queries.Dashboard.Job
 {
     public class JobQuery : IRequest<JobResponse>
     {
-        int pageSize { get; set; }
+        public int pageSize { get; set; }
     }
 }

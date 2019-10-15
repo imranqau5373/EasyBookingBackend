@@ -10,7 +10,7 @@ namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordSte
     {
         public ForgetPasswordStepOneCommandValidator()
         {
-            RuleFor(t => t.Email).EmailAddress().WithMessage("Email address is not in a valid format");
+            RuleFor(t => t.ForgetEmail).EmailAddress().WithMessage("Email address is not in a valid format");
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Queries.Dashboard.Job;
 
 namespace SpeekIO.API.Controllers
 {
@@ -29,30 +30,32 @@ namespace SpeekIO.API.Controllers
 
 
         [HttpGet]
-        public string Index()
-        {
-            try
-            {
-                return "test it is working.";
-            }
-            catch (Exception e)
-            {
-                return string.Empty;
-            }
-        }
-
-        //public async Task<IActionResult> Index(DashboardCommand)
+        //public string Index()
         //{
         //    try
         //    {
-        //       var response = await _mediator.Send();
-
-        //        return Ok(response);
+        //        return "test it is working.";
         //    }
         //    catch (Exception e)
         //    {
-        //        return StatusCode(500, e);
+        //        return string.Empty;
         //    }
         //}
+        [HttpGet(nameof(Index))]
+        public async Task<IActionResult> Index([FromQuery] int pageSize)
+        {
+            try
+            {
+                JobQuery objJobQuery = new JobQuery();
+                objJobQuery.pageSize = pageSize;
+                var response = await _mediator.Send(objJobQuery);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
     }
 }

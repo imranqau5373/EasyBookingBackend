@@ -8,6 +8,6 @@ namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordSte
 {
     public class ForgetPasswordStepOneCommand : IRequest<ForgetPasswordStepOneResponse>
     {
-        public string Email { get; set; }
+        public string ForgetEmail { get; set; }
     }
 }
