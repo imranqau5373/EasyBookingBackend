@@ -2,10 +2,13 @@
 using SpeekIO.Application.Commands.Conference.Create;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
+using SpeekIO.Application.Commands.Umbraco;
+using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
 using System;
@@ -62,7 +65,11 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.domain, m => m.MapFrom(t => CreateDomainUrl(t.Company)));
 
             CreateMap<ConnectionLogCommand, Connection>();
-        }
+
+			//Umbraco related Mappings
+			CreateMap<EmailSubscribeCommand, SubscribeEmail>();
+			CreateMap<ContactUsCommand, ContactUs>();
+		}
 
         private string CreateDomainUrl(Company company)
         {

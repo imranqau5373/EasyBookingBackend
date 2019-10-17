@@ -27,27 +27,12 @@ namespace SpeekIO.API.Controllers
             this._mediator = mediator;
             this._logger = logger;
         }
-
-
-        [HttpGet]
-        //public string Index()
-        //{
-        //    try
-        //    {
-        //        return "test it is working.";
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return string.Empty;
-        //    }
-        //}
         [HttpGet(nameof(Index))]
-        public async Task<IActionResult> Index([FromQuery] int pageSize)
+        public async Task<IActionResult> Index()
         {
             try
             {
                 JobQuery objJobQuery = new JobQuery();
-                objJobQuery.pageSize = pageSize;
                 var response = await _mediator.Send(objJobQuery);
 
                 return Ok(response);

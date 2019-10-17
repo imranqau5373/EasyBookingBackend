@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using SpeekIO.Application.Commands.Identity.SignOut;
 
 namespace SpeekIO.API.Controllers
 {
@@ -85,7 +86,23 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-        [AllowAnonymous]
+		[HttpGet(nameof(SignOut))]
+		public async Task<IActionResult> SignOut()
+		{
+			try
+			{
+				SignOutCommand objSignOutCommand = new SignOutCommand();
+				var response = await _mediator.Send(objSignOutCommand);
+
+				return Ok(response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[AllowAnonymous]
         [HttpPost(nameof(Guest))]
         public async Task<IActionResult> Guest([FromBody] CreateGuestUserCommand createGuestCommand)
         {

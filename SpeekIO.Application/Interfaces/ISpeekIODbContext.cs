@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.UmbracoEntities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,11 @@ namespace SpeekIO.Application.Interfaces
         DbSet<RecordSession> RecordSessions { get; set; }
         DbSet<SessionArchive> SessionArchives { get; set; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+		//Umbraco related Entities
+		DbSet<SubscribeEmail> SubscribeEmails { get; set; }
+
+		DbSet<ContactUs> ContactUs { get; set; }
+
+		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

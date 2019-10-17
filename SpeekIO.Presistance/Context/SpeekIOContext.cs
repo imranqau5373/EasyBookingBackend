@@ -5,7 +5,9 @@ using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
+using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,9 +19,6 @@ namespace SpeekIO.Presistence.Context
     /// </summary>
     public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
     {
-        public SpeekIOContext()
-        {
-        }
         public SpeekIOContext(DbContextOptions options) : base(options)
         {
         }
@@ -32,12 +31,15 @@ namespace SpeekIO.Presistence.Context
         public DbSet<Participant> Participants { get; set; }
         public DbSet<RecordSession> RecordSessions { get; set; }
         public DbSet<SessionArchive> SessionArchives { get; set; }
+		//Umbraco related Entities
+		public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
-        /// <summary>
-        /// Apply Configurations to the model here
-        /// </summary>
-        /// <param name="modelBuilder"></param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public DbSet<ContactUs> ContactUs { get; set; }
+		/// <summary>
+		/// Apply Configurations to the model here
+		/// </summary>
+		/// <param name="modelBuilder"></param>
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -48,7 +50,12 @@ namespace SpeekIO.Presistence.Context
             string üserDataSchemaName = "User";
             modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
 
-            string communicationSchemaName = "Communication";
+
+			string umbracoSchemaName = "Umbraco";
+			modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
+			modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
+
+			string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));

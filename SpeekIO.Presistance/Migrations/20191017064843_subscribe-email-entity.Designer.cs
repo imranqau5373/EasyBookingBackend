@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191017064843_subscribe-email-entity")]
+    partial class subscribeemailentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -479,34 +481,7 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("Profile","Portfolio");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.UmbracoEntities.ContactUs", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CompanyName");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Message");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Phone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("ContactUs","Umbraco");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.UmbracoEntities.SubscribeEmail", b =>
+            modelBuilder.Entity("SpeekIO.Domain.Entities.UmbracoEntities.SubscribeEamil", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -524,7 +499,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("SubscribeEmail","Umbraco");
+                    b.ToTable("SubscribeEamil","Umbraco");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
