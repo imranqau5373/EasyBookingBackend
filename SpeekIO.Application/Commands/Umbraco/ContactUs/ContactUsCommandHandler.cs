@@ -47,9 +47,9 @@ namespace SpeekIO.Application.Commands.Umbraco.ContactUs
 
 		private async Task SendContactUsMessage(Domain.Entities.UmbracoEntities.ContactUs contactUs)
 		{
-			var contactUsMessage = contactUs.Message;
+
 			IRecipient recipient = new Recipient(contactUs.Email, "imranqau5373@gmail.com");
-			IEmailModel emailModel = new ContactUsEmailModel(contactUs.Name, contactUs.Email, contactUs.Message);
+			IEmailModel emailModel = new ContactUsEmailModel(contactUs.Name,contactUs.Email, contactUs.Message,recipient);
 
 			await _emailService.SendEmailAsync(emailModel);
 		}

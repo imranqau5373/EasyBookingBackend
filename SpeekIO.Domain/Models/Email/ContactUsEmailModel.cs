@@ -12,12 +12,14 @@ namespace SpeekIO.Domain.Models.Email
 		private readonly string _name;
 		private readonly string _email;
 		private readonly string _message;
+		private readonly IRecipient _recipient;
 
-		public ContactUsEmailModel(string name, string email, string message)
+		public ContactUsEmailModel(string name, string email, string message, IRecipient recipient)
 		{
 			_name = name;
 			_email = email;
 			_message = message;
+			_recipient = recipient;
 		}
 
 		public string TemplateName => "ContactUs";
@@ -29,8 +31,8 @@ namespace SpeekIO.Domain.Models.Email
 			var payload = new Dictionary<string, object>();
 			payload.Add("MessageSendEmail", _email);
 			payload.Add("Message", _message);
-
-			list.Add(new EmailRecipientPayloadInfo(new Recipient(_email, _message), Subject(), payload));
+			payload.Add("Name", _name);
+			list.Add(new EmailRecipientPayloadInfo(new Recipient(_name, "imranqau5373@gmail.com"), Subject(), payload));
 
 			return list;
 		}
