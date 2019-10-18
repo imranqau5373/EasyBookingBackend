@@ -32,7 +32,7 @@ namespace SpeekIO.Domain.Models.Email
 			payload.Add("MessageSendEmail", _email);
 			payload.Add("Message", _message);
 			payload.Add("Name", _name);
-			list.Add(new EmailRecipientPayloadInfo(new Recipient(_name, "imranqau5373@gmail.com"), Subject(), payload));
+			list.Add(new EmailRecipientPayloadInfo(new Recipient(_name, _recipient.Email), Subject(), payload));
 
 			return list;
 		}

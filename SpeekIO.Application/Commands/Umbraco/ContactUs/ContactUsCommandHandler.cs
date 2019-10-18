@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using SpeekIO.Application.Configuration;
 
 namespace SpeekIO.Application.Commands.Umbraco.ContactUs
 {
@@ -18,11 +20,13 @@ namespace SpeekIO.Application.Commands.Umbraco.ContactUs
 		private ISpeekIODbContext _context;
 		private readonly AutoMapper.IMapper _mapper;
 		private IEmailService _emailService;
-		public ContactUsCommandHandler(AutoMapper.IMapper mapper, ISpeekIODbContext context,IEmailService emailService)
+		private readonly IApplicationConfiguration _applicationConfiguration;
+		public ContactUsCommandHandler(AutoMapper.IMapper mapper, ISpeekIODbContext context,IEmailService emailService, IApplicationConfiguration applicationConfiguration)
 		{
 			_mapper = mapper;
 			_context = context;
 			_emailService = emailService;
+			_applicationConfiguration = applicationConfiguration;
 		}
 		public async Task<ContactUsResponse> Handle(ContactUsCommand request, CancellationToken cancellationToken)
 		{
@@ -48,7 +52,7 @@ namespace SpeekIO.Application.Commands.Umbraco.ContactUs
 		private async Task SendContactUsMessage(Domain.Entities.UmbracoEntities.ContactUs contactUs)
 		{
 
-			IRecipient recipient = new Recipient(contactUs.Email, "imranqau5373@gmail.com");
+			IRecipient recipient = new Recipient(contactUs.Email, _applicationConfiguration.AdminEmail);
 			IEmailModel emailModel = new ContactUsEmailModel(contactUs.Name,contactUs.Email, contactUs.Message,recipient);
 
 			await _emailService.SendEmailAsync(emailModel);

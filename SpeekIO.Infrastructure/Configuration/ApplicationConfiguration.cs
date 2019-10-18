@@ -26,5 +26,8 @@ namespace SpeekIO.Infrastructure.Configuration
         public int TokenExpiry => configuration.GetSection("Identity")?.GetValue<int>("TokenExpiry") ?? 0;
 
         public string Domain => configuration.GetValue<string>("Domain") ?? "localhost:4200";
-    }
+
+
+		public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
+	}
 }
