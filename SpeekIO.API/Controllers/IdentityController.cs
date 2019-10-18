@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using SpeekIO.Application.Commands.Identity.SignOut;
+using SpeekIO.Application.Queries.Identity.SearchCompanyUrl;
 
 namespace SpeekIO.API.Controllers
 {
@@ -93,6 +94,23 @@ namespace SpeekIO.API.Controllers
 			{
 				SignOutCommand objSignOutCommand = new SignOutCommand();
 				var response = await _mediator.Send(objSignOutCommand);
+
+				return Ok(response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+		[AllowAnonymous]
+		[HttpGet(nameof(SearchCompanyUrl))]
+		public async Task<IActionResult> SearchCompanyUrl(string strCompanyUrl)
+		{
+			try
+			{
+				SearchCompanyUrlQuery objCompany = new SearchCompanyUrlQuery();
+				objCompany.strCompanyUrl = strCompanyUrl;
+				var response = await _mediator.Send(objCompany);
 
 				return Ok(response);
 			}

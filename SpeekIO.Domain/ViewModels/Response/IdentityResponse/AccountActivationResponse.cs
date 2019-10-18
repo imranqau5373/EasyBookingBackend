@@ -6,5 +6,6 @@ namespace SpeekIO.Domain.ViewModels.Response
 {
     public class AccountActivationResponse : CommonResponse
     {
+
     }
 }
