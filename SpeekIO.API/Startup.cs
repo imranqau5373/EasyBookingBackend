@@ -111,7 +111,7 @@ namespace SpeekIO.API
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseCors(builder => builder
