@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Commands.CandidateTest.VideoArchive.StartArchive;
+using SpeekIO.Application.Commands.CandidateTest.VideoArchive.StopArchive;
+using SpeekIO.Application.Commands.CandidateTest.VideoArchive.ViewArchive;
 using SpeekIO.Application.Queries.CandidateTest.VideoQuestion;
 
 namespace SpeekIO.API.Controllers
@@ -35,6 +38,54 @@ namespace SpeekIO.API.Controllers
 			{
 				VideoQuestionQuery objVideoQuestion = new VideoQuestionQuery();
 				var response = await _mediator.Send(objVideoQuestion);
+
+				return Ok(response);
+
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[HttpPost(nameof(StartArchive))]
+		public async Task<IActionResult> StartArchive([FromBody] StartArchiveCommand startArchiveCommand)
+		{
+			try
+			{
+				var response = await _mediator.Send(startArchiveCommand);
+
+				return Ok(response);
+
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[HttpPost(nameof(StopArchive))]
+		public async Task<IActionResult> StopArchive([FromBody] StopArchiveCommand stopArchiveCommand)
+		{
+			try
+			{
+				var response = await _mediator.Send(stopArchiveCommand);
+
+				return Ok(response);
+
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[HttpPost(nameof(ViewArchive))]
+		public async Task<IActionResult> ViewArchive([FromBody] ViewArchiveCommand viewArchiveCommand)
+		{
+			try
+			{
+				var response = await _mediator.Send(viewArchiveCommand);
 
 				return Ok(response);
 

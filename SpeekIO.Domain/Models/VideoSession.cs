@@ -9,5 +9,7 @@ namespace SpeekIO.Domain.Interfaces.Models
     {
         public string Id { get; set; }
         public VideoRole Role { get; set; }
+
+		public string ArchiveId { get; set; }
     }
 }

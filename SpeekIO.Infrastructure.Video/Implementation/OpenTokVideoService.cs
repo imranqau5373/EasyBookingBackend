@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using OpenTokSDK;
 using Polly;
 using SpeekIO.Application.Interfaces;
+using SpeekIO.Common.HttpClient;
 using SpeekIO.Domain.Interfaces.Models;
 using SpeekIO.Domain.Models;
 using SpeekIO.Infrastructure.Video.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace SpeekIO.Infrastructure.Video.Implementation
 {
@@ -16,13 +20,14 @@ namespace SpeekIO.Infrastructure.Video.Implementation
         private readonly IVideoConfiguration configuration;
         private readonly IMapper mapper;
         private readonly ILogger<OpenTokVideoService> logger;
+		private readonly ISpeekIOHttpClient _httpClient;
 
-        private readonly int apiKey;
+		private readonly int apiKey;
         private readonly string apiSecret;
 
         public OpenTok OpenTok { get; private set; }
 
-        public OpenTokVideoService(IVideoConfiguration configuration, IMapper mapper, ILogger<OpenTokVideoService> logger)
+        public OpenTokVideoService(IVideoConfiguration configuration, IMapper mapper, ILogger<OpenTokVideoService> logger,ISpeekIOHttpClient httpClient)
         {
             this.configuration = configuration;
             this.mapper = mapper;
@@ -30,7 +35,7 @@ namespace SpeekIO.Infrastructure.Video.Implementation
 
             apiKey = int.Parse(configuration.ApiKey);
             apiSecret = configuration.ApiSecret;
-
+			this._httpClient = httpClient;
             Intialize();
         }
 
@@ -45,8 +50,13 @@ namespace SpeekIO.Infrastructure.Video.Implementation
                 throw new Exception(message);
 
             }
-            this.OpenTok = new OpenTok(apiKey, apiSecret);
-        }
+
+		
+			this.OpenTok = new OpenTok(apiKey, apiSecret);
+			//this.OpenTok.Debug = true;
+		
+			System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+		}
 
         public VideoSession CreateNewSession(CreateNewSessionModel model)
         {
@@ -84,7 +94,7 @@ namespace SpeekIO.Infrastructure.Video.Implementation
             })
             .Execute(() =>
             {
-                token = this.OpenTok.GenerateToken(session.Id, role: mapper.Map<Role>(session.Role));
+                token = this.OpenTok.GenerateToken(session.Id);
             });
 
             logger.LogInformation("Token creation successful");
@@ -104,16 +114,17 @@ namespace SpeekIO.Infrastructure.Video.Implementation
                 logger.LogError("Failed to start archiving, retrying");
                 return TimeSpan.FromSeconds(configuration.Backoff);
             })
-            .Execute(() =>
+            .Execute(async () =>
             {
-                archive = this.OpenTok.StartArchive(
-                    session.Id,
-                    name: archiveName,
-                    hasAudio: audio,
-                    hasVideo: video,
-                    outputMode: OutputMode.COMPOSED
-                );
-            });
+				archive = this.OpenTok.StartArchive(
+					session.Id,
+					name: archiveName,
+					hasAudio: audio,
+					hasVideo: video,
+					outputMode: OutputMode.COMPOSED
+			);
+
+			});
             logger.LogInformation("Archiving started");
 
             return mapper.Map<VideoArchive>(archive);
@@ -121,7 +132,18 @@ namespace SpeekIO.Infrastructure.Video.Implementation
 
         public VideoArchive StopArchiving(VideoSession session)
         {
-            Archive archive = this.OpenTok.StopArchive(session.Id);
+			Archive archive = null;
+			Policy.Handle<Exception>().WaitAndRetry(configuration.RetryCount, (turn, duration) =>
+			{
+				logger.LogError("Failed to stop archiving, retrying");
+				return TimeSpan.FromSeconds(configuration.Backoff);
+			})
+			.Execute(async () =>
+			{
+				archive = this.OpenTok.StopArchive(session.ArchiveId);
+
+			});
+			logger.LogInformation("Archiving stopped");
             return mapper.Map<VideoArchive>(archive);
         }
 
@@ -134,5 +156,27 @@ namespace SpeekIO.Infrastructure.Video.Implementation
 
             return (mapper.Map<List<VideoArchive>>(archives), hasNext);
         }
-    }
+
+		public VideoArchive GetArchive(VideoSession session)
+		{
+			logger.LogInformation("Initiating Archive");
+
+			Archive archive = null;
+			Policy.Handle<Exception>().WaitAndRetry(configuration.RetryCount, (turn, duration) =>
+			{
+				logger.LogError("Failed to start archiving, retrying");
+				return TimeSpan.FromSeconds(configuration.Backoff);
+			})
+			.Execute(async () =>
+			{
+				archive = this.OpenTok.GetArchive(session.ArchiveId);
+
+			});
+			logger.LogInformation("Archiving started");
+
+			return mapper.Map<VideoArchive>(archive);
+		}
+
+
+	}
 }

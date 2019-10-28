@@ -22,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SpeekIO.Application.Configuration;
 using SpeekIO.API.Filters;
+using System.Net;
 
 namespace SpeekIO.API
 {
@@ -96,7 +97,7 @@ namespace SpeekIO.API
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-        }
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -122,11 +123,11 @@ namespace SpeekIO.API
 
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpeekIO API V1");
-            });
-        }
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpeekIO API V1");
+			});
+		}
 
         private static List<Assembly> GetAssembliesForMediatR()
         {

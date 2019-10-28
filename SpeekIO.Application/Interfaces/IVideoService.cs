@@ -1,6 +1,7 @@
 ﻿using SpeekIO.Domain.Interfaces.Models;
 using SpeekIO.Domain.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SpeekIO.Application.Interfaces
 {
@@ -14,7 +15,9 @@ namespace SpeekIO.Application.Interfaces
 
         VideoArchive StopArchiving(VideoSession session);
 
-        (List<VideoArchive>, bool) GetArchives(int pageNumber = 1, int pageSize = 10);
+		VideoArchive GetArchive(VideoSession session);
+
+		(List<VideoArchive>, bool) GetArchives(int pageNumber = 1, int pageSize = 10);
 
     }
 }
