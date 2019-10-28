@@ -4,9 +4,11 @@ using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
+using SpeekIO.Presistence.Configurations.JobConfigurations;
 using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
@@ -35,11 +37,14 @@ namespace SpeekIO.Presistence.Context
 		public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
 		public DbSet<ContactUs> ContactUs { get; set; }
-		/// <summary>
-		/// Apply Configurations to the model here
-		/// </summary>
-		/// <param name="modelBuilder"></param>
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<EmploymentType> EmploymentType { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
+        public DbSet<Qualification> Qualification { get; set; }
+        /// <summary>
+        /// Apply Configurations to the model here
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -62,6 +67,11 @@ namespace SpeekIO.Presistence.Context
             modelBuilder.ApplyConfiguration(new ParticipantConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new RecordSessionConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new SessionArchiveConfiguration(communicationSchemaName));
+
+            string jobSchemaName = "Job";
+            //modelBuilder.ApplyConfiguration(new EmploymentTypeConfiguration(jobSchemaName));
+            modelBuilder.ApplyConfiguration(new JobCategoryConfiguration(jobSchemaName));
+            modelBuilder.ApplyConfiguration(new QualificationConfiguration(jobSchemaName));
         }
     }
 }

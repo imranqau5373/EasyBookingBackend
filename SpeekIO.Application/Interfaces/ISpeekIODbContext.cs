@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities.CommunicationEntities;
+using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using System;
@@ -25,7 +26,10 @@ namespace SpeekIO.Application.Interfaces
 		DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
 		DbSet<ContactUs> ContactUs { get; set; }
+        DbSet<EmploymentType> EmploymentType { get; set; }
+        DbSet<JobCategory> JobCategory { get; set; }
+        DbSet<Qualification> Qualification { get; set; }
 
-		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

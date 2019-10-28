@@ -7,10 +7,12 @@ using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -69,7 +71,10 @@ namespace SpeekIO.Application.Mapping
 			//Umbraco related Mappings
 			CreateMap<EmailSubscribeCommand, SubscribeEmail>();
 			CreateMap<ContactUsCommand, ContactUs>();
-		}
+            CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
+            CreateMap<GetJobCategory, JobCategory>().ReverseMap();
+            CreateMap<GetQualification, Qualification>().ReverseMap();
+        }
 
         private string CreateDomainUrl(Company company)
         {
