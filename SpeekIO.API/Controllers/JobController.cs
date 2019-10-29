@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Queries.Job;
 using SpeekIO.Application.Queries.Job.GetEmploymentTypes;
 using SpeekIO.Application.Queries.Job.GetJobCategoryList;
+using SpeekIO.Application.Queries.Job.GetLanguageList;
 using SpeekIO.Application.Queries.Job.GetQualificationList;
 using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
@@ -36,7 +37,7 @@ namespace SpeekIO.API.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpPost(nameof(GetEmploymentTypeList))]
+        [HttpGet(nameof(GetEmploymentTypeList))]
         public async Task<GetAllEmploymentTypeListViewModel> GetEmploymentTypeList()
         {
             try
@@ -55,7 +56,7 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-        [HttpPost(nameof(GetJobCategoryList))]
+        [HttpGet(nameof(GetJobCategoryList))]
         public async Task<GetJobCategoryListResponse> GetJobCategoryList()
         {
             try
@@ -74,7 +75,7 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-        [HttpPost(nameof(GetQualificationList))]
+        [HttpGet(nameof(GetQualificationList))]
         public async Task<GetQualificationListResponse> GetQualificationList()
         {
             try
@@ -90,6 +91,37 @@ namespace SpeekIO.API.Controllers
                     Successful = false,
                     Message = "Something went wrong. Please try again"
                 };
+            }
+        }
+
+
+        [HttpGet(nameof(GetJobDropDownsList))]
+        public async Task<ActionResult> GetJobDropDownsList()
+        {
+            try
+            {
+                var employmentTypeList = await _mediator.Send(new GetAllEmploymentTypesQuery());
+                var categoryList = await _mediator.Send(new GetJobCategoryListQuery());
+                var qualificationList = await _mediator.Send(new GetQualificationListQuery());
+                var languageList = await _mediator.Send(new GetLanguageListQuery());
+
+                return new JsonResult(new
+                {
+                    employmentTypeList,
+                    categoryList,
+                    qualificationList,
+                    languageList,
+                    Successful = true
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new JsonResult(new
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again"
+                });
             }
         }
 

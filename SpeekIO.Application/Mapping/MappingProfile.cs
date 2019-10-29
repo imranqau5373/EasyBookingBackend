@@ -8,6 +8,7 @@ using SpeekIO.Application.Configuration;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
+using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
@@ -74,6 +75,7 @@ namespace SpeekIO.Application.Mapping
             CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
             CreateMap<GetJobCategory, JobCategory>().ReverseMap();
             CreateMap<GetQualification, Qualification>().ReverseMap();
+            CreateMap<GetLanguageModel, Language>().ReverseMap();
         }
 
         private string CreateDomainUrl(Company company)

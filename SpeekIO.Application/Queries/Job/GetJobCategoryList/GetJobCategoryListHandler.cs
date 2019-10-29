@@ -15,7 +15,6 @@ namespace SpeekIO.Application.Queries.Job.GetJobCategoryList
 {
     public class GetJobCategoryListHandler : IRequestHandler<GetJobCategoryListQuery, GetJobCategoryListResponse>
     {
-        private readonly ILogger<GetJobCategoryListHandler> _logger;
         private readonly ISpeekIODbContext _context;
         private readonly IMapper _mapper;
         public GetJobCategoryListHandler(
@@ -23,7 +22,6 @@ namespace SpeekIO.Application.Queries.Job.GetJobCategoryList
             ISpeekIODbContext context,
             IMapper mapper)
         {
-            _logger = logger;
             _context = context;
             _mapper = mapper;
         }

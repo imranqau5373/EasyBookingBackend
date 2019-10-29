@@ -5,6 +5,7 @@ using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
+using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
@@ -40,6 +41,7 @@ namespace SpeekIO.Presistence.Context
         public DbSet<EmploymentType> EmploymentType { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<Qualification> Qualification { get; set; }
+        public DbSet<Language> Language { get; set; }
         /// <summary>
         /// Apply Configurations to the model here
         /// </summary>
