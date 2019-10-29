@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191028115955_Video-Question-update")]
+    partial class VideoQuestionupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,7 +110,7 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("ArchiveId");
+                    b.Property<string>("ArchiveId");
 
                     b.Property<long>("CreatedAt");
 
@@ -139,10 +141,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.Property<string>("Url");
 
                     b.Property<int>("UserId");
-
-                    b.Property<DateTime>("VideoEndTime");
-
-                    b.Property<DateTime>("VideoStartTime");
 
                     b.HasKey("Id");
 

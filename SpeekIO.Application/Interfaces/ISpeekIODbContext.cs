@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SpeekIO.Domain.Entities.CandidateTestEntities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
@@ -23,6 +24,11 @@ namespace SpeekIO.Application.Interfaces
 
 		//Umbraco related Entities
 		DbSet<SubscribeEmail> SubscribeEmails { get; set; }
+
+		//Candidate Test Entities
+
+		DbSet<VideoQuestion> VideoQuestions { get; set; }
+
 
 		DbSet<ContactUs> ContactUs { get; set; }
 

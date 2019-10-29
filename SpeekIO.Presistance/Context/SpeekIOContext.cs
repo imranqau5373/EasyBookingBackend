@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
+using SpeekIO.Domain.Entities.CandidateTestEntities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
+using SpeekIO.Presistence.Configurations.CandidateTestMappings;
 using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,10 @@ namespace SpeekIO.Presistence.Context
 		//Umbraco related Entities
 		public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
+
+		//Candidate Test Entities
+		public DbSet<VideoQuestion> VideoQuestions { get; set; }
+
 		public DbSet<ContactUs> ContactUs { get; set; }
 		/// <summary>
 		/// Apply Configurations to the model here
@@ -54,6 +60,11 @@ namespace SpeekIO.Presistence.Context
 			string umbracoSchemaName = "Umbraco";
 			modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
 			modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
+
+
+
+			string candidateTestSchemaName = "CandidateTest";
+			modelBuilder.ApplyConfiguration(new VideoQuestionConfiguration(candidateTestSchemaName));
 
 			string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
