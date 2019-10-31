@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191029120951_updatedColumnJobStatus")]
+    partial class updatedColumnJobStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,55 +102,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.CandidateTestEntities.VideoQuestion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("ArchiveId");
-
-                    b.Property<long>("CreatedAt");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<long>("Duration");
-
-                    b.Property<bool>("HasAudio");
-
-                    b.Property<bool>("HasVideo");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("PartnerId");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Reason");
-
-                    b.Property<string>("Resolution");
-
-                    b.Property<string>("SessionId");
-
-                    b.Property<long>("Size");
-
-                    b.Property<string>("Url");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<DateTime>("VideoEndTime");
-
-                    b.Property<DateTime>("VideoStartTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("VideoQuestion","CandidateTest");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSession", b =>

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities.CandidateTestEntities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
+using SpeekIO.Domain.Entities.Job;
+using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using System;
@@ -29,9 +31,14 @@ namespace SpeekIO.Application.Interfaces
 
 		DbSet<VideoQuestion> VideoQuestions { get; set; }
 
-
 		DbSet<ContactUs> ContactUs { get; set; }
-
-		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        //
+        DbSet<EmploymentType> EmploymentType { get; set; }
+        DbSet<JobCategory> JobCategory { get; set; }
+        DbSet<Qualification> Qualification { get; set; }
+        DbSet<Language> Language { get; set; }
+        DbSet<Job> Job { get; set; }
+        DbSet<JobStatus> JobStatus { get; set; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

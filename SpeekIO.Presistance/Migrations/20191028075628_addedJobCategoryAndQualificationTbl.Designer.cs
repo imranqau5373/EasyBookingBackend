@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191028075628_addedJobCategoryAndQualificationTbl")]
+    partial class addedJobCategoryAndQualificationTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,55 +102,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.CandidateTestEntities.VideoQuestion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("ArchiveId");
-
-                    b.Property<long>("CreatedAt");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<long>("Duration");
-
-                    b.Property<bool>("HasAudio");
-
-                    b.Property<bool>("HasVideo");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("PartnerId");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Reason");
-
-                    b.Property<string>("Resolution");
-
-                    b.Property<string>("SessionId");
-
-                    b.Property<long>("Size");
-
-                    b.Property<string>("Url");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<DateTime>("VideoEndTime");
-
-                    b.Property<DateTime>("VideoStartTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("VideoQuestion","CandidateTest");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.CommunicationEntities.ConferenceSession", b =>
@@ -487,53 +440,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("EmploymentType");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Job", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<long?>("EmploymentTypeId");
-
-                    b.Property<long?>("JobCategoryId");
-
-                    b.Property<long>("JobStatusId");
-
-                    b.Property<long>("LanguageId");
-
-                    b.Property<int?>("MaxWorkHours");
-
-                    b.Property<int?>("MinWorkHours");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<long?>("QualificationId");
-
-                    b.Property<string>("Reference");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmploymentTypeId");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("JobCategoryId");
-
-                    b.HasIndex("JobStatusId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.HasIndex("QualificationId");
-
-                    b.ToTable("Job","Job");
-                });
-
             modelBuilder.Entity("SpeekIO.Domain.Entities.Job.JobCategory", b =>
                 {
                     b.Property<long>("Id")
@@ -555,25 +461,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("JobCategory","Job");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.JobStatus", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("JobStatus");
-                });
-
             modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Qualification", b =>
                 {
                     b.Property<long>("Id")
@@ -593,23 +480,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("Qualification","Job");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Other.Language", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Language");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Company", b =>
@@ -818,31 +688,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasOne("SpeekIO.Domain.Entities.CommunicationEntities.RecordSession")
                         .WithMany("Archives")
                         .HasForeignKey("RecordSessionId");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Job", b =>
-                {
-                    b.HasOne("SpeekIO.Domain.Entities.Job.EmploymentType", "EmploymentType")
-                        .WithMany("Job")
-                        .HasForeignKey("EmploymentTypeId");
-
-                    b.HasOne("SpeekIO.Domain.Entities.Job.JobCategory", "JobCategory")
-                        .WithMany("Job")
-                        .HasForeignKey("JobCategoryId");
-
-                    b.HasOne("SpeekIO.Domain.Entities.Job.JobStatus", "JobStatus")
-                        .WithMany("Job")
-                        .HasForeignKey("JobStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SpeekIO.Domain.Entities.Other.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SpeekIO.Domain.Entities.Job.Qualification", "Qualification")
-                        .WithMany("Job")
-                        .HasForeignKey("QualificationId");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
