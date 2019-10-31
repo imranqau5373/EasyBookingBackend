@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Commands.JobManager.AddJob;
+using SpeekIO.Application.Commands.JobManager.UpdateJob;
 using SpeekIO.Application.Queries.Job;
 using SpeekIO.Application.Queries.Job.GetEmploymentTypes;
 using SpeekIO.Application.Queries.Job.GetJobCategoryList;
 using SpeekIO.Application.Queries.Job.GetLanguageList;
 using SpeekIO.Application.Queries.Job.GetQualificationList;
+using SpeekIO.Application.Queries.JobManager.GetJob;
 using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
 
 namespace SpeekIO.API.Controllers
 {
     [Route("api/[controller]")]
     [AllowAnonymous]
     [ApiController]
-    public class JobController : ControllerBase
+    public class JobController : SpeekIOController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<JobController> _logger;
@@ -34,10 +38,24 @@ namespace SpeekIO.API.Controllers
         [HttpPost(nameof(GetJobById))]
         public async Task<GetJobResponse> GetJobById(GetJobQuery getJobCommand)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _mediator.Send(getJobCommand);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new GetJobResponse()
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again."
+                };
+            }
         }
 
         [HttpGet(nameof(GetEmploymentTypeList))]
+        [ResponseCache(Duration = 21600)]
         public async Task<GetAllEmploymentTypeListViewModel> GetEmploymentTypeList()
         {
             try
@@ -57,6 +75,7 @@ namespace SpeekIO.API.Controllers
         }
 
         [HttpGet(nameof(GetJobCategoryList))]
+        [ResponseCache(Duration = 21600)]
         public async Task<GetJobCategoryListResponse> GetJobCategoryList()
         {
             try
@@ -76,6 +95,7 @@ namespace SpeekIO.API.Controllers
         }
 
         [HttpGet(nameof(GetQualificationList))]
+        [ResponseCache(Duration = 21600)]
         public async Task<GetQualificationListResponse> GetQualificationList()
         {
             try
@@ -96,6 +116,7 @@ namespace SpeekIO.API.Controllers
 
 
         [HttpGet(nameof(GetJobDropDownsList))]
+        [ResponseCache(Duration = 21600)]
         public async Task<ActionResult> GetJobDropDownsList()
         {
             try
@@ -122,6 +143,47 @@ namespace SpeekIO.API.Controllers
                     Successful = false,
                     Message = "Something went wrong. Please try again"
                 });
+            }
+        }
+
+
+        [HttpPost]
+        [Route("SaveJob")]
+        public async Task<AddJobResponse> SaveJob(AddJobCommand model)
+        {
+            try
+            {
+                var job = await _mediator.Send(model);
+                return job;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new AddJobResponse()
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again"
+                };
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateJob")]
+        public async Task<AddJobResponse> UpdateJob([FromBody]UpdateJobCommand command)
+        {
+            try
+            {
+                var job = await _mediator.Send(command);
+                return job;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new AddJobResponse()
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again"
+                };
             }
         }
 

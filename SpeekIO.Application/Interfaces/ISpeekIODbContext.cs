@@ -31,6 +31,8 @@ namespace SpeekIO.Application.Interfaces
         DbSet<JobCategory> JobCategory { get; set; }
         DbSet<Qualification> Qualification { get; set; }
         DbSet<Language> Language { get; set; }
+        DbSet<Job> Job { get; set; }
+        DbSet<JobStatus> JobStatus { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

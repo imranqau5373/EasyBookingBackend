@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SpeekIO.Domain.Entities.Job
 {
-    public class EmploymentType : BaseEntity, IEntity
+    public class JobStatus : BaseEntity, IEntity
     {
-        public EmploymentType()
+        public JobStatus()
         {
             Job = new HashSet<Job>();
         }

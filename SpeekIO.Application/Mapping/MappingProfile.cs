@@ -2,6 +2,8 @@
 using SpeekIO.Application.Commands.Conference.Create;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
+using SpeekIO.Application.Commands.JobManager.AddJob;
+using SpeekIO.Application.Commands.JobManager.UpdateJob;
 using SpeekIO.Application.Commands.Umbraco;
 using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
@@ -13,7 +15,9 @@ using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
+using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -69,13 +73,26 @@ namespace SpeekIO.Application.Mapping
 
             CreateMap<ConnectionLogCommand, Connection>();
 
-			//Umbraco related Mappings
-			CreateMap<EmailSubscribeCommand, SubscribeEmail>();
-			CreateMap<ContactUsCommand, ContactUs>();
+            //Umbraco related Mappings
+            CreateMap<EmailSubscribeCommand, SubscribeEmail>();
+            CreateMap<ContactUsCommand, ContactUs>();
             CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
             CreateMap<GetJobCategory, JobCategory>().ReverseMap();
             CreateMap<GetQualification, Qualification>().ReverseMap();
             CreateMap<GetLanguageModel, Language>().ReverseMap();
+            CreateMap<AddJobCommand, Job>()
+                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
+                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
+                .ReverseMap();
+            CreateMap<AddJobResponse, Job>().ReverseMap();
+            CreateMap<GetJobResponse, Job>()
+                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
+                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
+                .ReverseMap();
+            CreateMap<UpdateJobCommand, Job>()
+                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
+                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
+                .ReverseMap();
         }
 
         private string CreateDomainUrl(Company company)

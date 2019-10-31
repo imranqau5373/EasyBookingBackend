@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpeekIO.Domain.ViewModels.Response.GetJobResponse
+namespace SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse
 {
-    public class GetJobResponse
+    public class AddJobResponse : CommonResponse
     {
         public int Id { get; set; }
     }

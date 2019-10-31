@@ -34,14 +34,16 @@ namespace SpeekIO.Presistence.Context
         public DbSet<Participant> Participants { get; set; }
         public DbSet<RecordSession> RecordSessions { get; set; }
         public DbSet<SessionArchive> SessionArchives { get; set; }
-		//Umbraco related Entities
-		public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
+        //Umbraco related Entities
+        public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
-		public DbSet<ContactUs> ContactUs { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<EmploymentType> EmploymentType { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<Qualification> Qualification { get; set; }
         public DbSet<Language> Language { get; set; }
+        public DbSet<Job> Job { get; set; }
+        public DbSet<JobStatus> JobStatus { get; set; }
         /// <summary>
         /// Apply Configurations to the model here
         /// </summary>
@@ -58,11 +60,11 @@ namespace SpeekIO.Presistence.Context
             modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
 
 
-			string umbracoSchemaName = "Umbraco";
-			modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
-			modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
+            string umbracoSchemaName = "Umbraco";
+            modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
+            modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
 
-			string communicationSchemaName = "Communication";
+            string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
             modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));
@@ -74,6 +76,7 @@ namespace SpeekIO.Presistence.Context
             //modelBuilder.ApplyConfiguration(new EmploymentTypeConfiguration(jobSchemaName));
             modelBuilder.ApplyConfiguration(new JobCategoryConfiguration(jobSchemaName));
             modelBuilder.ApplyConfiguration(new QualificationConfiguration(jobSchemaName));
+            modelBuilder.ApplyConfiguration(new JobConfiguration(jobSchemaName));
         }
     }
 }

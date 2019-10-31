@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpeekIO.Application.Queries.Job
+namespace SpeekIO.Application.Queries.JobManager.GetJob
 {
     public class GetJobQuery : IRequest<GetJobResponse>
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

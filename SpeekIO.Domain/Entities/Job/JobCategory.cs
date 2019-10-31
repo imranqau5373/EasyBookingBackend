@@ -7,7 +7,12 @@ namespace SpeekIO.Domain.Entities.Job
 {
     public class JobCategory : BaseEntity, IEntity
     {
+        public JobCategory()
+        {
+            Job = new HashSet<Job>();
+        }
         public string Name { get; set; }
         public string Description { get; set; }
+        public ICollection<Job> Job { get; set; }
     }
 }

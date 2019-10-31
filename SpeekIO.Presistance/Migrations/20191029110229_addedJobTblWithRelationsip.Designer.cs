@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191029110229_addedJobTblWithRelationsip")]
+    partial class addedJobTblWithRelationsip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -452,7 +454,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long?>("JobCategoryId");
 
-                    b.Property<long>("JobStatusId");
+                    b.Property<long?>("JobStatusId");
 
                     b.Property<long>("LanguageId");
 
@@ -467,6 +469,8 @@ namespace SpeekIO.Presistence.Migrations
                     b.Property<long?>("QualificationId");
 
                     b.Property<string>("Reference");
+
+                    b.Property<long>("StatusId");
 
                     b.HasKey("Id");
 
@@ -783,8 +787,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.HasOne("SpeekIO.Domain.Entities.Job.JobStatus", "JobStatus")
                         .WithMany("Job")
-                        .HasForeignKey("JobStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("JobStatusId");
 
                     b.HasOne("SpeekIO.Domain.Entities.Other.Language", "Language")
                         .WithMany()
