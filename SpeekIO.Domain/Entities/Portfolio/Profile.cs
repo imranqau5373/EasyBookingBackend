@@ -15,7 +15,6 @@ namespace SpeekIO.Domain.Entities.Portfolio
         public string Phone { get; set; }
         public string Timezone { get; set; }
         public bool OptInNewsletter { get; set; }
-        public long UserId { get; set; }
         public ApplicationUser User { get; set; }
 
         public virtual Company Company { get; set; }
