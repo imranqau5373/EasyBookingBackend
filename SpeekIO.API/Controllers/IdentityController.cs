@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using System.Net;
 using SpeekIO.Application.Commands.Identity.SignOut;
 using SpeekIO.Application.Queries.Identity.SearchCompanyUrl;
+using SpeekIO.Application.Commands.Identity.GetProfile;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
 
 namespace SpeekIO.API.Controllers
 {
@@ -87,40 +89,40 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-		[HttpGet(nameof(SignOut))]
-		public async Task<IActionResult> SignOut()
-		{
-			try
-			{
-				SignOutCommand objSignOutCommand = new SignOutCommand();
-				var response = await _mediator.Send(objSignOutCommand);
+        [HttpGet(nameof(SignOut))]
+        public async Task<IActionResult> SignOut()
+        {
+            try
+            {
+                SignOutCommand objSignOutCommand = new SignOutCommand();
+                var response = await _mediator.Send(objSignOutCommand);
 
-				return Ok(response);
-			}
-			catch (Exception e)
-			{
-				return StatusCode(500, e);
-			}
-		}
-		[AllowAnonymous]
-		[HttpGet(nameof(SearchCompanyUrl))]
-		public async Task<IActionResult> SearchCompanyUrl(string strCompanyUrl)
-		{
-			try
-			{
-				SearchCompanyUrlQuery objCompany = new SearchCompanyUrlQuery();
-				objCompany.strCompanyUrl = strCompanyUrl;
-				var response = await _mediator.Send(objCompany);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+        [AllowAnonymous]
+        [HttpGet(nameof(SearchCompanyUrl))]
+        public async Task<IActionResult> SearchCompanyUrl(string strCompanyUrl)
+        {
+            try
+            {
+                SearchCompanyUrlQuery objCompany = new SearchCompanyUrlQuery();
+                objCompany.strCompanyUrl = strCompanyUrl;
+                var response = await _mediator.Send(objCompany);
 
-				return Ok(response);
-			}
-			catch (Exception e)
-			{
-				return StatusCode(500, e);
-			}
-		}
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
 
-		[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost(nameof(Guest))]
         public async Task<IActionResult> Guest([FromBody] CreateGuestUserCommand createGuestCommand)
         {
@@ -158,9 +160,9 @@ namespace SpeekIO.API.Controllers
         public async Task<IActionResult> ForgetPasswordStepTwo([FromBody] ForgetPasswordStepTwoCommand forgetPasswordCommand)
         {
             try
-			{
-				//forgetPasswordCommand.ResetToken = WebUtility.UrlEncode(forgetPasswordCommand.ResetToken);
-				var response = await _mediator.Send(forgetPasswordCommand);
+            {
+                //forgetPasswordCommand.ResetToken = WebUtility.UrlEncode(forgetPasswordCommand.ResetToken);
+                var response = await _mediator.Send(forgetPasswordCommand);
 
                 return Ok(response);
             }
@@ -169,5 +171,25 @@ namespace SpeekIO.API.Controllers
                 return StatusCode(500, e);
             }
         }
-	}
+
+        [HttpGet(nameof(GetProfile))]
+        public async Task<GetProfileResponse> GetProfile()
+        {
+            try
+            {
+                var response = await _mediator.Send(new GetProfileCommand());
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new GetProfileResponse()
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again."
+                };
+            }
+        }
+
+    }
 }

@@ -16,6 +16,7 @@ using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
 using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
 using System;
@@ -93,6 +94,7 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
                 .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
                 .ReverseMap();
+            CreateMap<GetProfileResponse, Profile>().ReverseMap();
         }
 
         private string CreateDomainUrl(Company company)
