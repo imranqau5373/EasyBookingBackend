@@ -8,10 +8,12 @@ using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.Question;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
 using SpeekIO.Presistence.Configurations.CandidateTestMappings;
 using SpeekIO.Presistence.Configurations.JobConfigurations;
+using SpeekIO.Presistence.Configurations.QuestionConfigurations;
 using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
@@ -38,6 +40,9 @@ namespace SpeekIO.Presistence.Context
         public DbSet<SessionArchive> SessionArchives { get; set; }
         //Umbraco related Entities
         public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
+
+		//Question related Entities
+		public DbSet<QuestionType> QuestionTypes { get; set; }
 
 
 		//Candidate Test Entities
@@ -70,6 +75,9 @@ namespace SpeekIO.Presistence.Context
             modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
             modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
 
+
+			string questionSchemaName = "Question";
+			modelBuilder.ApplyConfiguration(new QuestionTypeConfigurations(questionSchemaName));
 
 
 			string candidateTestSchemaName = "CandidateTest";

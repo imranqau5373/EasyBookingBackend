@@ -4,6 +4,7 @@ using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.Question;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,17 @@ namespace SpeekIO.Application.Interfaces
 
 		//Umbraco related Entities
 		DbSet<SubscribeEmail> SubscribeEmails { get; set; }
+		DbSet<ContactUs> ContactUs { get; set; }
+
+		//Question Related Entities
+
+		DbSet<QuestionType> QuestionTypes { get; set; }
 
 		//Candidate Test Entities
 
 		DbSet<VideoQuestion> VideoQuestions { get; set; }
 
-		DbSet<ContactUs> ContactUs { get; set; }
+	
         //
         DbSet<EmploymentType> EmploymentType { get; set; }
         DbSet<JobCategory> JobCategory { get; set; }
