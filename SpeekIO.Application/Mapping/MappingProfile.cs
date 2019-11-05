@@ -7,11 +7,13 @@ using SpeekIO.Application.Commands.JobManager.UpdateJob;
 using SpeekIO.Application.Commands.Umbraco;
 using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
+using SpeekIO.Application.Queries.Question.QuestionType;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Entities.Question;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
@@ -76,7 +78,13 @@ namespace SpeekIO.Application.Mapping
             //Umbraco related Mappings
             CreateMap<EmailSubscribeCommand, SubscribeEmail>();
             CreateMap<ContactUsCommand, ContactUs>();
-            CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
+
+
+			//Qustion Relatetd Mappings
+			CreateMap<QuestionTypeQuery, QuestionType>();
+
+
+			CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
             CreateMap<GetJobCategory, JobCategory>().ReverseMap();
             CreateMap<GetQualification, Qualification>().ReverseMap();
             CreateMap<GetLanguageModel, Language>().ReverseMap();
