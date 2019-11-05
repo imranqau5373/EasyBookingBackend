@@ -27,7 +27,8 @@ namespace SpeekIO.Infrastructure.Configuration
 
         public string Domain => configuration.GetValue<string>("Domain") ?? "localhost:4200";
 
+        public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
 
-		public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
-	}
+        public string ProfileImagePath => configuration.GetSection("OutputPaths")?.GetValue<string>("ProfileImagePath");
+    }
 }

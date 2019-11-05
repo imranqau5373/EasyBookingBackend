@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using SpeekIO.Application.Commands;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SpeekIO.Application.Commands.Identity.GetProfile
+namespace SpeekIO.Application.Queries.GetProfile
 {
-    public class GetProfileHandler : CommandHandlerBase<GetProfileCommand, GetProfileResponse>
+    public class GetProfileHandler : CommandHandlerBase<GetProfileQuery, GetProfileResponse>
     {
         private readonly ISpeekIODbContext _context;
         private readonly IMapper _mapper;
@@ -26,11 +26,11 @@ namespace SpeekIO.Application.Commands.Identity.GetProfile
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<GetProfileResponse> Handle(GetProfileCommand request, CancellationToken cancellationToken)
+        public override async Task<GetProfileResponse> Handle(GetProfileQuery request, CancellationToken cancellationToken)
         {
             var userId = User.Id;
-            var profile = await _context.Profiles.FirstOrDefaultAsync(t => t.User.Id == userId);
-            if(profile == null)
+            var profile = await _context.Profiles.Include(t => t.Company).FirstOrDefaultAsync(t => t.User.Id == userId);
+            if (profile == null)
             {
                 return new GetProfileResponse()
                 {
@@ -39,6 +39,7 @@ namespace SpeekIO.Application.Commands.Identity.GetProfile
                 };
             }
             var response = _mapper.Map<GetProfileResponse>(profile);
+            response.CompanyName = profile.Company != null ? profile.Company.Name : "";
             response.Successful = true;
             return response;
         }

@@ -30,7 +30,7 @@ namespace SpeekIO.Domain.ViewModels.Response
         public static T CreateSuccessResponse<T>(string message) where T : CommonResponse
         {
             var instance = Activator.CreateInstance<T>();
-            instance.Successful = false;
+            instance.Successful = true;
             instance.Message = message;
 
             return instance;

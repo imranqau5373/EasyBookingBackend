@@ -15,7 +15,8 @@ namespace SpeekIO.Application.Configuration
         string Issuer { get; }
         int TokenExpiry { get; }
         string Domain { get; }
-
 		string AdminEmail { get; }
-	}
+        string ProfileImagePath { get; }
+
+    }
 }

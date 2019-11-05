@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse
+namespace SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse
 {
     public class GetProfileResponse : CommonResponse
     {
