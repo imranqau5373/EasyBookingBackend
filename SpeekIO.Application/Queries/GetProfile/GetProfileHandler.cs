@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Commands;
+using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
@@ -17,14 +18,17 @@ namespace SpeekIO.Application.Queries.GetProfile
     {
         private readonly ISpeekIODbContext _context;
         private readonly IMapper _mapper;
+        private readonly IApplicationConfiguration _applicationConfiguration;
         public GetProfileHandler(
             ISpeekIODbContext context,
             IMapper mapper,
             ApplicationUserManager userManager,
-            IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            IApplicationConfiguration applicationConfiguration) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
+            _applicationConfiguration = applicationConfiguration;
         }
         public override async Task<GetProfileResponse> Handle(GetProfileQuery request, CancellationToken cancellationToken)
         {
@@ -39,6 +43,11 @@ namespace SpeekIO.Application.Queries.GetProfile
                 };
             }
             var response = _mapper.Map<GetProfileResponse>(profile);
+            //prepare complete azure blob storage url if profile picture exists, otherwise set default placeholder image
+            response.PictureUrl = !string.IsNullOrEmpty(response.PictureUrl) ?
+                _applicationConfiguration.BaseProfilePictureUrl + "/" + response.PictureUrl :
+                _applicationConfiguration.ProfilePicturePlaceholderUrl;
+
             response.CompanyName = profile.Company != null ? profile.Company.Name : "";
             response.Successful = true;
             return response;

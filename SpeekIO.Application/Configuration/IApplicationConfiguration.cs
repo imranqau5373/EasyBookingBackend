@@ -15,8 +15,12 @@ namespace SpeekIO.Application.Configuration
         string Issuer { get; }
         int TokenExpiry { get; }
         string Domain { get; }
-		string AdminEmail { get; }
-        string ProfileImagePath { get; }
-
+        string AdminEmail { get; }
+        string ProfilePicturePlaceholderUrl { get; }
+        string UserAccountsContainerName { get; }
+        string DefaultFileExtension { get; }
+        string StorageBlobUrl { get; }
+        string AzureUrlBinding { get; }
+        string BaseProfilePictureUrl { get; }
     }
 }

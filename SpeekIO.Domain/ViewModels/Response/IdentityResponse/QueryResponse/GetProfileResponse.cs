@@ -13,5 +13,6 @@ namespace SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

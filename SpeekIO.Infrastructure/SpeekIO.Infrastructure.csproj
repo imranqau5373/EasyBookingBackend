@@ -11,6 +11,7 @@
     <ProjectReference Include="..\SpeekIO.Infrastructure.SignalR\SpeekIO.Infrastructure.SignalR.csproj" />
     <ProjectReference Include="..\SpeekIO.Infrastructure.Video\SpeekIO.Infrastructure.Video.csproj" />
     <ProjectReference Include="..\SpeekIO.Presistance\SpeekIO.Presistence.csproj" />
+    <ProjectReference Include="..\SpeekIO.UploadService\SpeekIO.UploadService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
