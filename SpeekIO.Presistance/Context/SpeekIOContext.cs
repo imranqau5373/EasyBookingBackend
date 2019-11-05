@@ -6,6 +6,7 @@ using SpeekIO.Domain.Entities.CandidateTestEntities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
+using SpeekIO.Domain.Entities.Questionaire;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.Question;
@@ -18,6 +19,7 @@ using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SpeekIO.Presistence.Configurations.QuestionareConfiguration;
 
 namespace SpeekIO.Presistence.Context
 {
@@ -44,9 +46,14 @@ namespace SpeekIO.Presistence.Context
 		//Question related Entities
 		public DbSet<QuestionType> QuestionTypes { get; set; }
 
+        public DbSet<Question> Questions { get; set; }
 
-		//Candidate Test Entities
-		public DbSet<VideoQuestion> VideoQuestions { get; set; }
+        public DbSet<Questionaire> Questionares { get; set; }
+
+
+
+        //Candidate Test Entities
+        public DbSet<VideoQuestion> VideoQuestions { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<EmploymentType> EmploymentType { get; set; }
@@ -78,9 +85,13 @@ namespace SpeekIO.Presistence.Context
 
 			string questionSchemaName = "Question";
 			modelBuilder.ApplyConfiguration(new QuestionTypeConfigurations(questionSchemaName));
+            modelBuilder.ApplyConfiguration(new QuestionConfiguration(questionSchemaName));
+
+            string questionaireSchemaName = "Questionaire";
+            modelBuilder.ApplyConfiguration(new QuestionaireConfiguration(questionaireSchemaName));
 
 
-			string candidateTestSchemaName = "CandidateTest";
+            string candidateTestSchemaName = "CandidateTest";
 			modelBuilder.ApplyConfiguration(new VideoQuestionConfiguration(candidateTestSchemaName));
 
             string communicationSchemaName = "Communication";
@@ -96,6 +107,9 @@ namespace SpeekIO.Presistence.Context
             modelBuilder.ApplyConfiguration(new JobCategoryConfiguration(jobSchemaName));
             modelBuilder.ApplyConfiguration(new QualificationConfiguration(jobSchemaName));
             modelBuilder.ApplyConfiguration(new JobConfiguration(jobSchemaName));
+
+
+
         }
     }
 }

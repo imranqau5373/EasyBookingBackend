@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191105105509_abcdef")]
+    partial class abcdef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -595,6 +597,58 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("Qualification","Job");
                 });
 
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime?>("LastUpdated");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<int?>("QuestionareId");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionareId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Questionare", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime?>("LastUpdated");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questionares");
+                });
+
             modelBuilder.Entity("SpeekIO.Domain.Entities.Other.Language", b =>
                 {
                     b.Property<long>("Id")
@@ -672,35 +726,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.ToTable("Profile","Portfolio");
                 });
 
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Question.Question", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("LastUpdated");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<long>("QuestionaireId");
-
-                    b.Property<Guid?>("UpdatedBy");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("QuestionaireId");
-
-                    b.ToTable("Question","Question");
-                });
-
             modelBuilder.Entity("SpeekIO.Domain.Entities.Question.QuestionType", b =>
                 {
                     b.Property<long>("Id")
@@ -722,33 +747,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("QuestionType","Question");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Questionaire.Questionaire", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("LastUpdated");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid?>("UpdatedBy");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("Questionaire","Questionaire");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.UmbracoEntities.ContactUs", b =>
@@ -924,6 +922,13 @@ namespace SpeekIO.Presistence.Migrations
                         .HasForeignKey("QualificationId");
                 });
 
+            modelBuilder.Entity("SpeekIO.Domain.Entities.Job.Question", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Job.Questionare")
+                        .WithMany("Questions")
+                        .HasForeignKey("QuestionareId");
+                });
+
             modelBuilder.Entity("SpeekIO.Domain.Entities.Portfolio.Profile", b =>
                 {
                     b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
@@ -933,14 +938,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Question.Question", b =>
-                {
-                    b.HasOne("SpeekIO.Domain.Entities.Questionaire.Questionaire", "Questionaire")
-                        .WithMany("Questions")
-                        .HasForeignKey("QuestionaireId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
