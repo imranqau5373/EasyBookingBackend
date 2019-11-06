@@ -18,8 +18,12 @@ using System.Threading.Tasks;
 using System.Net;
 using SpeekIO.Application.Commands.Identity.SignOut;
 using SpeekIO.Application.Queries.Identity.SearchCompanyUrl;
-using SpeekIO.Application.Commands.Identity.GetProfile;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
+using SpeekIO.Application.Queries.GetProfile;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
+using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Application.Commands.Identity.UpdateProfile;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace SpeekIO.API.Controllers
 {
@@ -177,7 +181,7 @@ namespace SpeekIO.API.Controllers
         {
             try
             {
-                var response = await _mediator.Send(new GetProfileCommand());
+                var response = await _mediator.Send(new GetProfileQuery());
                 return response;
             }
             catch (Exception ex)
@@ -188,6 +192,43 @@ namespace SpeekIO.API.Controllers
                     Successful = false,
                     Message = "Something went wrong. Please try again."
                 };
+            }
+        }
+
+        [HttpPost(nameof(UpdateProfile))]
+        public async Task<CommonResponse> UpdateProfile(UpdateProfileCommand command)
+        {
+            try
+            {
+                var response = await _mediator.Send(command);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return CommonResponse.CreateFailedResponse<CommonResponse>("Something went wrong. Please try again.");
+            }
+        }
+
+        [HttpPost(nameof(ProfilePicTest))]
+        public async void ProfilePicTest([FromForm]IFormFile file)
+        {
+            try
+            {
+                var path = "D:\\Adnan";
+                if (file.Length > 0)
+                {
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                }
+                //  return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                //return CommonResponse.CreateFailedResponse<CommonResponse>("Something went wrong. Please try again.");
             }
         }
 

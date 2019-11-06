@@ -15,6 +15,7 @@ using SpeekIO.Infrastructure.Video.Configuration;
 using SpeekIO.Infrastructure.Video.Extensions;
 using SpeekIO.Presistence.Context;
 using SpeekIO.Presistence.Extensions;
+using SpeekIO.UploadService.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,7 +40,7 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             services.ConfigurePersistence(configuration);
             services.ConfigureVideoService(configuration);
             services.ConfigureEmailService(configuration);
-
+            services.ConfigureUploadService();
 
             services.AddIdentity<ApplicationUser, UserRole>()
                         .AddEntityFrameworkStores<SpeekIOContext>()

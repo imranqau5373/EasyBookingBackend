@@ -2,6 +2,7 @@
 using SpeekIO.Application.Commands.Conference.Create;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
+using SpeekIO.Application.Commands.Identity.UpdateProfile;
 using SpeekIO.Application.Commands.JobManager.AddJob;
 using SpeekIO.Application.Commands.JobManager.UpdateJob;
 using SpeekIO.Application.Commands.Umbraco;
@@ -16,7 +17,7 @@ using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
 using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
 using System;
@@ -95,6 +96,7 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
                 .ReverseMap();
             CreateMap<GetProfileResponse, Profile>().ReverseMap();
+            CreateMap<UpdateProfileCommand, Profile>().ReverseMap();
         }
 
         private string CreateDomainUrl(Company company)

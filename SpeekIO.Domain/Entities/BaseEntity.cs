@@ -1,4 +1,5 @@
-﻿using SpeekIO.Domain.Interfaces;
+﻿using SpeekIO.Domain.Entities.Portfolio;
+using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,8 @@ namespace SpeekIO.Domain.Entities
             CreatedOn = DateTime.UtcNow;
             ModifiedOn = DateTime.UtcNow;
         }
+        public long CreatedBy { get; set; }
+        public long ModifiedBy { get; set; }
+
     }
 }
