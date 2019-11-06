@@ -48,9 +48,7 @@ namespace SpeekIO.Presistence.Context
 
         public DbSet<Question> Questions { get; set; }
 
-        public DbSet<Questionaire> Questionares { get; set; }
-
-
+        public DbSet<Questionaire> Questionaires { get; set ; }
 
         //Candidate Test Entities
         public DbSet<VideoQuestion> VideoQuestions { get; set; }
@@ -62,6 +60,7 @@ namespace SpeekIO.Presistence.Context
         public DbSet<Language> Language { get; set; }
         public DbSet<Job> Job { get; set; }
         public DbSet<JobStatus> JobStatus { get; set; }
+
         /// <summary>
         /// Apply Configurations to the model here
         /// </summary>

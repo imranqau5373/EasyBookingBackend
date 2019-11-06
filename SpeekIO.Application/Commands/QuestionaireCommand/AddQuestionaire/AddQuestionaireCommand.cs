@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire
 {
-    public class AddQuestionaireCommand : IRequest<AddQuestionaireResponse>
+    public class DeleteQuestionaireCommand : IRequest<AddQuestionaireResponse>
     {
         public string Name { get; set; }
         public List<Question> Questions { get; set; }

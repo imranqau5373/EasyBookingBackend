@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 
 namespace SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire
 {
-   public class AddQuestionaireHandler
+   public class DeleteQuestionaireHandler
     {
         private readonly ISpeekIODbContext _context;
         private readonly IMapper _mapper;
-        public AddQuestionaireHandler(
+        public DeleteQuestionaireHandler(
             ISpeekIODbContext context,
             IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<AddJobResponse> Handle(AddQuestionaireCommand request, CancellationToken cancellationToken)
+        public async Task<AddJobResponse> Handle(DeleteQuestionaireCommand request, CancellationToken cancellationToken)
         {
             var questionaireModel = _mapper.Map<Questionaire>(request);
             var questionare = await _context.Questionaires.AddAsync(questionaireModel);
@@ -41,4 +41,3 @@ namespace SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire
         }
         }
     }
-}

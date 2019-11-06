@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\CandidateTest\VideoArchive\ListArchive\" />
-    <Folder Include="Commands\QuestionaireCommand\DeleteQuestionaire\" />
     <Folder Include="Commands\QuestionaireCommand\UpdateQuestionaire\" />
   </ItemGroup>
 
