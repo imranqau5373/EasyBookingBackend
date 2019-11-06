@@ -45,7 +45,7 @@ namespace SpeekIO.Application.Queries.GetProfile
             var response = _mapper.Map<GetProfileResponse>(profile);
             //prepare complete azure blob storage url if profile picture exists, otherwise set default placeholder image
             response.PictureUrl = !string.IsNullOrEmpty(response.PictureUrl) ?
-                _applicationConfiguration.BaseProfilePictureUrl + "/" + response.PictureUrl :
+                $"{_applicationConfiguration.BaseProfilePictureUrl}/{response.PictureUrl }" :
                 _applicationConfiguration.ProfilePicturePlaceholderUrl;
 
             response.CompanyName = profile.Company != null ? profile.Company.Name : "";
