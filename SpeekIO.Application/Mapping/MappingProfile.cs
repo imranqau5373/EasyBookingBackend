@@ -4,6 +4,7 @@ using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
 using SpeekIO.Application.Commands.JobManager.AddJob;
 using SpeekIO.Application.Commands.JobManager.UpdateJob;
+using SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire;
 using SpeekIO.Application.Commands.Umbraco;
 using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
@@ -14,6 +15,7 @@ using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Entities.Question;
+using SpeekIO.Domain.Entities.Questionaire;
 using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Domain.Models;
 using SpeekIO.Domain.Models.Email;
@@ -21,6 +23,8 @@ using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.Questionaire;
+using SpeekIO.Domain.ViewModels.Response.QuestionaireResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -103,6 +107,25 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
                 .ReverseMap();
             CreateMap<GetProfileResponse, Profile>().ReverseMap();
+
+            CreateMap<GetQuestionairesResponse, Questionaire>()
+                .ForMember(t => t.Questions, m => m.MapFrom(t => t.listQuestionaire))
+                .ReverseMap();
+
+            CreateMap<AddQuestionaireResponse,Questionaire>()
+                .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+                .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+                .ReverseMap();
+
+            CreateMap<AddQuestionaireCommand, Questionaire>()
+                .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+                .ForMember(t => t.Questions, m => m.MapFrom(t => t.Questions))
+                .ReverseMap();
+
+
+
+
+
         }
 
         private string CreateDomainUrl(Company company)

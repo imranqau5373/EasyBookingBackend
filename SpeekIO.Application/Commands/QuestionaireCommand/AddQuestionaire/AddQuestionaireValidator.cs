@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 namespace SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire
 {
-    public class AddQuestionaireValidator : BaseValidator<DeleteQuestionaireCommand>
+    public class AddQuestionaireValidator : BaseValidator<AddQuestionaireCommand>
     {
         public AddQuestionaireValidator()
         {

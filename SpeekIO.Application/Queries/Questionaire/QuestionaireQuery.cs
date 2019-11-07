@@ -7,9 +7,10 @@ using System.Text;
 
 namespace SpeekIO.Application.Queries.Questionaire
 {
-	public class QuestionaireQuery : IRequest<QuestionaireResponse>
+	public class QuestionairesQuery : IRequest<GetQuestionairesResponse>
 	{
-
+        
+        
 
 	}
 }

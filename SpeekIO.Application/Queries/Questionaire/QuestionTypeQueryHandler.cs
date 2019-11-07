@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SpeekIO.Application.Queries.Questionaire
 {
-	public class QuestionaireQueryHandler : IRequestHandler<QuestionaireQuery, QuestionaireResponse>
+	public class QuestionaireQueryHandler : IRequestHandler<QuestionairesQuery, GetQuestionairesResponse>
 	{
 
 		private readonly ILogger<QuestionaireQueryHandler> _logger;
@@ -25,18 +25,18 @@ namespace SpeekIO.Application.Queries.Questionaire
 			this._context = context;
 		}
 
-		public async Task<QuestionaireResponse> Handle(QuestionaireQuery request, CancellationToken cancellationToken)
+		public async Task<GetQuestionairesResponse> Handle(QuestionairesQuery request, CancellationToken cancellationToken)
 		{
 			var questionaires = await _context.Questionaires.ToListAsync();
 			if (questionaires == null)
 			{
-				return new QuestionaireResponse()
+				return new GetQuestionairesResponse()
 				{
 					Successful = false,
 					Message = "Question types not found."
 				};
 			}
-			return new QuestionaireResponse()
+			return new GetQuestionairesResponse()
 			{
 				Successful = true,
 				Message = "Question types are found successfully.",

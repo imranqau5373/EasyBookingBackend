@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SpeekIO.Domain.ViewModels.Response.QuestionaireResponse
 {
-	public class QuestionaireResponse : CommonResponse
+	public class GetQuestionairesResponse : CommonResponse
 	{
-		public List<Questionaire> listQuestionaire { get; set; }
+        public List<Questionaire> listQuestionaire { get; set; }
 
 	}
 }

@@ -11,6 +11,7 @@ using SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire;
 using SpeekIO.Application.Queries.Question.QuestionType;
 using SpeekIO.Application.Queries.Questionaire;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.Questionaire;
 using SpeekIO.Domain.ViewModels.Response.QuestionaireResponse;
 namespace SpeekIO.API.Controllers
 {
@@ -37,9 +38,9 @@ namespace SpeekIO.API.Controllers
 		{
 			try
 			{
-				var questionaireQuery = new QuestionaireQuery();
-				var response = await _mediator.Send(questionaireQuery);
+                QuestionairesQuery questionaireQuery = new QuestionairesQuery();
 
+                var response = await _mediator.Send(questionaireQuery);
 				return StatusCode(201, response);
 			}
 			catch (Exception e)
@@ -48,7 +49,7 @@ namespace SpeekIO.API.Controllers
 			}
 		}
         [HttpPost(nameof(SaveQuestionaire))]
-        public async Task<AddQuestionaireResponse> SaveQuestionaire(DeleteQuestionaireCommand model)
+        public async Task<AddQuestionaireResponse> SaveQuestionaire(AddQuestionaireCommand model)
         {
             try
             {
