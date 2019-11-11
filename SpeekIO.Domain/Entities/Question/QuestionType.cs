@@ -9,6 +9,8 @@ namespace SpeekIO.Domain.Entities.Question
 	{
 		public string QuestionTypeName { get; set; }
 
+		public string QuestionTemplateName { get; set; }
+
 		public string Type { get; set; }
 
 		public bool isActive { get; set; }
