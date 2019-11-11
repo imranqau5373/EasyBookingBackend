@@ -27,7 +27,19 @@ namespace SpeekIO.Infrastructure.Configuration
 
         public string Domain => configuration.GetValue<string>("Domain") ?? "localhost:4200";
 
+        public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
 
-		public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
-	}
+        public string ProfilePicturePlaceholderUrl => configuration.GetSection("DefaultSettings")?.GetValue<string>("ProfilePicturePlaceholderUrl");
+
+        public string UserAccountsContainerName => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("UserAccountsContainerName");
+
+        public string DefaultFileExtension => configuration.GetSection("DefaultSettings").GetValue<string>("DefaultFileExtension");
+
+        public string StorageBlobUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl");
+        public string AzureUrlBinding => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding");
+        public string BaseProfilePictureUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding")
+            + configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl")
+            + "/" + configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("UserAccountsContainerName");
+
+    }
 }

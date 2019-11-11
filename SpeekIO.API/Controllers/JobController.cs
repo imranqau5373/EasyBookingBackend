@@ -15,9 +15,11 @@ using SpeekIO.Application.Queries.Job.GetJobCategoryList;
 using SpeekIO.Application.Queries.Job.GetLanguageList;
 using SpeekIO.Application.Queries.Job.GetQualificationList;
 using SpeekIO.Application.Queries.JobManager.GetJob;
+using SpeekIO.Application.Queries.JobManager.GetJobList;
 using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.QueryResponse;
 
 namespace SpeekIO.API.Controllers
 {
@@ -180,6 +182,25 @@ namespace SpeekIO.API.Controllers
             {
                 _logger.LogError(ex.Message, ex.StackTrace);
                 return new AddJobResponse()
+                {
+                    Successful = false,
+                    Message = "Something went wrong. Please try again"
+                };
+            }
+        }
+
+        [HttpPost(nameof(GetJobs))]
+        public async Task<GetJobListResponse> GetJobs(GetJobListQuery query)
+        {
+            try
+            {
+                var jobs = await _mediator.Send(query);
+                return jobs;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new GetJobListResponse()
                 {
                     Successful = false,
                     Message = "Something went wrong. Please try again"

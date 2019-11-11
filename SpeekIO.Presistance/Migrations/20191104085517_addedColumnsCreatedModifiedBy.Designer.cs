@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191104085517_addedColumnsCreatedModifiedBy")]
+    partial class addedColumnsCreatedModifiedBy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -715,10 +717,6 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<string>("Phone");
 
-                    b.Property<string>("PictureThumbnailUrl");
-
-                    b.Property<string>("PictureUrl");
-
                     b.Property<string>("Timezone");
 
                     b.Property<long?>("UserId");
@@ -732,31 +730,6 @@ namespace SpeekIO.Presistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Profile","Portfolio");
-                });
-
-            modelBuilder.Entity("SpeekIO.Domain.Entities.Question.QuestionType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("QuestionTemplateName");
-
-                    b.Property<string>("QuestionTypeName");
-
-                    b.Property<string>("Type");
-
-                    b.Property<bool>("isActive");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("QuestionType","Question");
                 });
 
             modelBuilder.Entity("SpeekIO.Domain.Entities.UmbracoEntities.ContactUs", b =>

@@ -11,5 +11,7 @@ namespace SpeekIO.Domain.ViewModels.Response
         public string UserName { get; set; }
 
         public string AdminRole { get; set; }
+
+        public string PictureUrl { get; set; }
     }
 }

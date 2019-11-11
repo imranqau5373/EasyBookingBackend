@@ -72,5 +72,10 @@ namespace SpeekIO.Common.Extensions
             }
             return input;
         }
+
+        public static byte[] GetByteArrayFromBase64(this string input)
+        {
+            return Convert.FromBase64String(input.Split(',')[1]);
+        }
     }
 }

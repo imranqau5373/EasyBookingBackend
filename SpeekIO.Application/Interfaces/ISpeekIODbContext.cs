@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities.CandidateTestEntities;
 using SpeekIO.Domain.Entities.CommunicationEntities;
+using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Job;
 using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
@@ -46,5 +47,6 @@ namespace SpeekIO.Application.Interfaces
         DbSet<Job> Job { get; set; }
         DbSet<JobStatus> JobStatus { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default);
     }
 }

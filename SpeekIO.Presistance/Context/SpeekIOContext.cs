@@ -17,7 +17,10 @@ using SpeekIO.Presistence.Configurations.QuestionConfigurations;
 using SpeekIO.Presistence.Configurations.UmbracoMappings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SpeekIO.Presistence.Context
 {
@@ -45,8 +48,8 @@ namespace SpeekIO.Presistence.Context
 		public DbSet<QuestionType> QuestionTypes { get; set; }
 
 
-		//Candidate Test Entities
-		public DbSet<VideoQuestion> VideoQuestions { get; set; }
+        //Candidate Test Entities
+        public DbSet<VideoQuestion> VideoQuestions { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<EmploymentType> EmploymentType { get; set; }
@@ -80,8 +83,8 @@ namespace SpeekIO.Presistence.Context
 			modelBuilder.ApplyConfiguration(new QuestionTypeConfigurations(questionSchemaName));
 
 
-			string candidateTestSchemaName = "CandidateTest";
-			modelBuilder.ApplyConfiguration(new VideoQuestionConfiguration(candidateTestSchemaName));
+            string candidateTestSchemaName = "CandidateTest";
+            modelBuilder.ApplyConfiguration(new VideoQuestionConfiguration(candidateTestSchemaName));
 
             string communicationSchemaName = "Communication";
             modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
@@ -97,5 +100,20 @@ namespace SpeekIO.Presistence.Context
             modelBuilder.ApplyConfiguration(new QualificationConfiguration(jobSchemaName));
             modelBuilder.ApplyConfiguration(new JobConfiguration(jobSchemaName));
         }
+
+        public async Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default)
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((BaseEntity)entity.Entity).CreatedBy = currentUser.Id;
+                }
+                ((BaseEntity)entity.Entity).ModifiedBy = currentUser.Id;
+            }
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
     }
 }
