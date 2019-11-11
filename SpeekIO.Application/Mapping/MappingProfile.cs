@@ -20,6 +20,7 @@ using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.QueryResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -97,6 +98,11 @@ namespace SpeekIO.Application.Mapping
                 .ReverseMap();
             CreateMap<GetProfileResponse, Profile>().ReverseMap();
             CreateMap<UpdateProfileCommand, Profile>().ReverseMap();
+            CreateMap<Job, GetJobListModel>()
+                .ForMember(t => t.StatusId, m => m.MapFrom(t => t.JobStatusId))
+                .ForMember(t => t.StatusName, m => m.MapFrom(t => t.JobStatus.Name))
+                .ReverseMap();
+
         }
 
         private string CreateDomainUrl(Company company)
