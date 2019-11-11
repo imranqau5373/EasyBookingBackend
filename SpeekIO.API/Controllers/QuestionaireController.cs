@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire;
 using SpeekIO.Application.Queries.Question.QuestionType;
 using SpeekIO.Application.Queries.Questionaire;
+using SpeekIO.Domain.ViewModels.Response;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.Questionaire;
 using SpeekIO.Domain.ViewModels.Response.QuestionaireResponse;
@@ -33,7 +34,7 @@ namespace SpeekIO.API.Controllers
 
 
 
-		[HttpGet(nameof(GetQuestionaires))]
+		[HttpGet()]
 		public async Task<IActionResult> GetQuestionaires()
 		{
 			try
@@ -48,7 +49,7 @@ namespace SpeekIO.API.Controllers
 				return StatusCode(500, e);
 			}
 		}
-        [HttpPost(nameof(SaveQuestionaire))]
+        [HttpPost()]
         public async Task<AddQuestionaireResponse> SaveQuestionaire(AddQuestionaireCommand model)
         {
             try
@@ -67,9 +68,27 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-       
 
+        [HttpDelete("{id}")]
+        public async Task<CommonResponse> DeleteQuestionaire(int id)
+        {
+            try
+            {
+                DeleteQuestionaireCommand command = new DeleteQuestionaireCommand() { Id = id };
 
+                var response = await _mediator.Send(command);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return new AddQuestionaireResponse
+                {
+                    Message = e.Message,
+                    Successful = false,
+                    Id = -1
+                };
+            }
+        }
 
     }
 }

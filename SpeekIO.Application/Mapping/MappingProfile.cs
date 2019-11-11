@@ -116,11 +116,11 @@ namespace SpeekIO.Application.Mapping
                 .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
                 .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
                 .ReverseMap();
-
             CreateMap<AddQuestionaireCommand, Questionaire>()
-                .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
-                .ForMember(t => t.Questions, m => m.MapFrom(t => t.Questions))
-                .ReverseMap();
+                     .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+                     .ForMember(t => t.Questions, m => m.MapFrom(t => t.Questions))
+                     .ReverseMap();
+
 
 
 
