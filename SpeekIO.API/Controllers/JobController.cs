@@ -24,7 +24,7 @@ using SpeekIO.Domain.ViewModels.Response.JobsResponse.QueryResponse;
 namespace SpeekIO.API.Controllers
 {
     [Route("api/[controller]")]
-    [AllowAnonymous]
+    [Authorize]
     [ApiController]
     public class JobController : SpeekIOController
     {
