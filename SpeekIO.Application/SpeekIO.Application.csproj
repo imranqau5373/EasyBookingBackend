@@ -28,8 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\CandidateTest\VideoArchive\ListArchive\" />
-    <Folder Include="Commands\QuestionaireCommand\UpdateQuestionaire\" />
+    <Folder Include="CommandAndQuery\CandidateTest\Command\VideoArchive\ListArchive\" />
+    <Folder Include="CommandAndQuery\Questionaire\Command\UpdateQuestionaire\" />
+    <Folder Include="CommandAndQuery\Conference\Query\" />
   </ItemGroup>
 
 </Project>
