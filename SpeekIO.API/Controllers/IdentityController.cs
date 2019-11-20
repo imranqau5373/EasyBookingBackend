@@ -177,7 +177,7 @@ namespace SpeekIO.API.Controllers
         }
 
         [HttpGet(nameof(GetProfile))]
-        public async Task<GetProfileResponse> GetProfile()
+        public async Task<CommonResponse> GetProfile()
         {
             try
             {
@@ -187,11 +187,7 @@ namespace SpeekIO.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message, ex.StackTrace);
-                return new GetProfileResponse()
-                {
-                    Successful = false,
-                    Message = "Something went wrong. Please try again."
-                };
+                return CommonResponse.CreateFailedResponse<CommonResponse>("Something went wrong. Please try again.");
             }
         }
 
