@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191107121420_abs")]
+    partial class abs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,9 +114,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long>("CreatedAt");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<long>("Duration");
 
@@ -122,9 +122,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<bool>("HasVideo");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -171,7 +169,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long?>("CreatedById");
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -183,9 +181,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<bool>("IsPublic");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<bool>("RecordAutomatically");
 
@@ -222,17 +218,13 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long?>("ConferenceSessionId");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<int>("EventType");
 
                     b.Property<string>("Message");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.HasKey("Id");
 
@@ -251,17 +243,13 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<string>("ConnectionId");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("IpAddress");
 
                     b.Property<bool>("IsWebRtcSupported");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<long?>("ParticipantId");
 
@@ -290,17 +278,13 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long>("ConferenceSessionId");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<DateTime?>("JoinedOn");
 
                     b.Property<DateTime?>("LeftOn");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<int>("ParticipantType");
 
@@ -331,9 +315,7 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -341,9 +323,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<bool>("EnableVideo");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<long?>("ParticipantId");
 
@@ -376,15 +356,11 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long>("CreatedAt");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<long>("Duration");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -500,15 +476,11 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -523,7 +495,7 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -539,7 +511,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<int?>("MinWorkHours");
 
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -570,15 +542,11 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -595,15 +563,11 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -618,15 +582,11 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -643,13 +603,9 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
+                    b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -664,13 +620,9 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
+                    b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -691,9 +643,7 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<long?>("CompanyId");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Email");
 
@@ -701,19 +651,13 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
                     b.Property<bool>("OptInNewsletter");
 
                     b.Property<string>("Phone");
-
-                    b.Property<string>("PictureThumbnailUrl");
-
-                    b.Property<string>("PictureUrl");
 
                     b.Property<string>("Timezone");
 
@@ -757,11 +701,9 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<DateTime>("ModifiedOn");
-
-                    b.Property<string>("QuestionTemplateName");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("QuestionTypeName");
 
@@ -803,17 +745,13 @@ namespace SpeekIO.Presistence.Migrations
 
                     b.Property<string>("CompanyName");
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Email");
 
                     b.Property<string>("Message");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
@@ -832,15 +770,11 @@ namespace SpeekIO.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("EmailAddress");
 
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedOn");
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<bool>("isSubscribed");
 
