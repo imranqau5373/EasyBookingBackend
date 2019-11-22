@@ -24,6 +24,7 @@ using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.JobsResponse.QueryResponse;
 using SpeekIO.Domain.ViewModels.Response.JobsResponse.Questionaire;
 using SpeekIO.Domain.ViewModels.Response.QuestionaireResponse;
 using System;
@@ -121,11 +122,6 @@ namespace SpeekIO.Application.Mapping
                      .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
                      .ForMember(t => t.Questions, m => m.MapFrom(t => t.Questions))
                      .ReverseMap();
-
-
-
-
-
 
             CreateMap<UpdateProfileCommand, Profile>().ReverseMap();
             CreateMap<Job, GetJobListModel>()

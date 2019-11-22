@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.CommandResponse;
+using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;

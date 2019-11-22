@@ -55,8 +55,6 @@ namespace SpeekIO.Presistence.Context
         public DbSet<VideoQuestion> VideoQuestions { get; set; }
         public DbSet<Questionaire> Questionaires { get; set ; }
 
-        //Candidate Test Entities
-        public DbSet<VideoQuestion> VideoQuestions { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<EmploymentType> EmploymentType { get; set; }
