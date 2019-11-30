@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpeekIO.Application\EasyBooking.Application.csproj" />
+    <ProjectReference Include="..\SpeekIO.Common\EasyBooking.Common.csproj" />
+    <ProjectReference Include="..\SpeekIO.EmailService\EasyBooking.EmailService.csproj" />
+    <ProjectReference Include="..\SpeekIO.Infrastructure.SignalR\EasyBooking.Infrastructure.SignalR.csproj" />
+    <ProjectReference Include="..\SpeekIO.Infrastructure.Video\EasyBooking.Infrastructure.Video.csproj" />
+    <ProjectReference Include="..\SpeekIO.Presistance\EasyBooking.Presistence.csproj" />
+    <ProjectReference Include="..\SpeekIO.UploadService\EasyBooking.UploadService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

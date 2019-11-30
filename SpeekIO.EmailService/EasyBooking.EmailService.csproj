@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="EmailTemplates\AccountActivation.html" />
+    <None Remove="EmailTemplates\ConferenceSessionInvitation.html" />
+    <None Remove="EmailTemplates\ForgetPassword.html" />
+    <None Remove="EmailTemplates\ContactUs.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mandrill" Version="3.1.0" />
+    <PackageReference Include="Polly" Version="7.1.1" />
+    <PackageReference Include="SmartFormat.NET" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="EmailTemplates\AccountActivation.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="EmailTemplates\ConferenceSessionInvitation.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates\ForgetPassword.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates\ContactUs.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpeekIO.Application\EasyBooking.Application.csproj" />
+  </ItemGroup>
+
+</Project>
