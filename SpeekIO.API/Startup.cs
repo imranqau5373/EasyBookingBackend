@@ -77,7 +77,7 @@ namespace SpeekIO.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "SpeekIO API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "EasyBooking API", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
@@ -125,7 +125,7 @@ namespace SpeekIO.API
             app.UseSwagger();
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpeekIO API V1");
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "EasyBooking API V1");
 			});
 		}
 
@@ -136,7 +136,7 @@ namespace SpeekIO.API
             listOfAssemblies.Add(mainAsm);
 
             foreach (var refAsmName in mainAsm.GetReferencedAssemblies()
-                .Where(t => t.Name.StartsWith("SpeekIO.", StringComparison.OrdinalIgnoreCase)))
+                .Where(t => t.Name.StartsWith("EasyBooking.", StringComparison.OrdinalIgnoreCase)))
             {
                 listOfAssemblies.Add(Assembly.Load(refAsmName));
             }

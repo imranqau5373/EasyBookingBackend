@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://service.local.easy.com",
+      "applicationUrl": "http://localhost:55378",
       "sslPort": 0
     },
     "iisExpress": {
@@ -22,7 +22,7 @@
       }
     },
     "SpeekIO.API": {
-      "commandName": "IIS",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger/index.html",
       "environmentVariables": {
