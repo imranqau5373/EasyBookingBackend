@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SpeekIO.Application.Queries.Dashboard.Job
 {
-    public class JobQuery : IRequest<JobResponse>
+    public class JobQuery : IRequest<CommonResponse>
     {
 
     }

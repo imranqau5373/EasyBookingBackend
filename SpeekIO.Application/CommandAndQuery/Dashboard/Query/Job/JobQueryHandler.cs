@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpeekIO.Application.Queries.Dashboard.Job
 {
-    public class JobQueryHandler : IRequestHandler<JobQuery, JobResponse>
+    public class JobQueryHandler : IRequestHandler<JobQuery, CommonResponse>
     {
         private readonly ILogger<JobQueryHandler> _logger;
         private readonly ISpeekIODbContext _context;
@@ -23,12 +23,12 @@ namespace SpeekIO.Application.Queries.Dashboard.Job
             _context = context;
         }
 
-        public async Task<JobResponse> Handle(JobQuery request, CancellationToken cancellationToken)
+        public async Task<CommonResponse> Handle(JobQuery request, CancellationToken cancellationToken)
         {
             var company = await GetCompany() ;
-            return new JobResponse()
+            return new CommonResponse()
             {
-                pageSize = 10
+                Successful = true
             };
         }
 

@@ -1,35 +1,22 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using EasyBooking.Domain.Entities;
+using EasyBooking.Domain.Entities.Bookings;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
-using SpeekIO.Domain.Entities.CandidateTestEntities;
-using SpeekIO.Domain.Entities.CommunicationEntities;
 using SpeekIO.Domain.Entities.Identity;
-using SpeekIO.Domain.Entities.Job;
-using SpeekIO.Domain.Entities.Questionaire;
-using SpeekIO.Domain.Entities.Other;
 using SpeekIO.Domain.Entities.Portfolio;
-using SpeekIO.Domain.Entities.Question;
-using SpeekIO.Domain.Entities.UmbracoEntities;
 using SpeekIO.Presistence.Configurations;
-using SpeekIO.Presistence.Configurations.CandidateTestMappings;
-using SpeekIO.Presistence.Configurations.JobConfigurations;
-using SpeekIO.Presistence.Configurations.QuestionConfigurations;
-using SpeekIO.Presistence.Configurations.UmbracoMappings;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using SpeekIO.Presistence.Configurations.QuestionareConfiguration;
 
 namespace SpeekIO.Presistence.Context
 {
-    /// <summary>
-    /// SpeekIO Database Context
-    /// </summary>
-    public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
+	/// <summary>
+	/// SpeekIO Database Context
+	/// </summary>
+	public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
     {
         public SpeekIOContext(DbContextOptions options) : base(options)
         {
@@ -37,38 +24,20 @@ namespace SpeekIO.Presistence.Context
         // Entities Set
         public DbSet<Company> Companies { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<ConferenceSession> ConferenceSessions { get; set; }
-        public DbSet<ConferenceSessionEvent> ConferenceSessionEvents { get; set; }
-        public DbSet<Connection> Connections { get; set; }
-        public DbSet<Participant> Participants { get; set; }
-        public DbSet<RecordSession> RecordSessions { get; set; }
-        public DbSet<SessionArchive> SessionArchives { get; set; }
-        //Umbraco related Entities
-        public DbSet<SubscribeEmail> SubscribeEmails { get; set; }
 
-		//Question related Entities
-		public DbSet<QuestionType> QuestionTypes { get; set; }
+		public DbSet<Sports> Sports { get; set; }
 
-        public DbSet<Question> Questions { get; set; }
+		public DbSet<Courts> Courts { get; set; }
 
-        //Candidate Test Entities
-        public DbSet<VideoQuestion> VideoQuestions { get; set; }
-        public DbSet<Questionaire> Questionaires { get; set ; }
+		public DbSet<CourtBookings> CourtsDurations { get; set; }
 
+		public DbSet<CourtsDurations> CourtsBookings { get; set; }
 
-        public DbSet<ContactUs> ContactUs { get; set; }
-        public DbSet<EmploymentType> EmploymentType { get; set; }
-        public DbSet<JobCategory> JobCategory { get; set; }
-        public DbSet<Qualification> Qualification { get; set; }
-        public DbSet<Language> Language { get; set; }
-        public DbSet<Job> Job { get; set; }
-        public DbSet<JobStatus> JobStatus { get; set; }
-
-        /// <summary>
-        /// Apply Configurations to the model here
-        /// </summary>
-        /// <param name="modelBuilder"></param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		/// <summary>
+		/// Apply Configurations to the model here
+		/// </summary>
+		/// <param name="modelBuilder"></param>
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -79,36 +48,6 @@ namespace SpeekIO.Presistence.Context
             string üserDataSchemaName = "User";
             modelBuilder.ApplyConfiguration(new IdentityConfiguration(üserDataSchemaName));
 
-
-            string umbracoSchemaName = "Umbraco";
-            modelBuilder.ApplyConfiguration(new SubscribeEamilConfiguration(umbracoSchemaName));
-            modelBuilder.ApplyConfiguration(new ContactUsConfigurations(umbracoSchemaName));
-
-
-			string questionSchemaName = "Question";
-			modelBuilder.ApplyConfiguration(new QuestionTypeConfigurations(questionSchemaName));
-            modelBuilder.ApplyConfiguration(new QuestionConfiguration(questionSchemaName));
-
-            string questionaireSchemaName = "Questionaire";
-            modelBuilder.ApplyConfiguration(new QuestionaireConfiguration(questionaireSchemaName));
-
-
-            string candidateTestSchemaName = "CandidateTest";
-            modelBuilder.ApplyConfiguration(new VideoQuestionConfiguration(candidateTestSchemaName));
-
-            string communicationSchemaName = "Communication";
-            modelBuilder.ApplyConfiguration(new ConferenceSessionConfiguration(communicationSchemaName));
-            modelBuilder.ApplyConfiguration(new ConferenceSessionEventConfiguration(communicationSchemaName));
-            modelBuilder.ApplyConfiguration(new ConnectionConfiguration(communicationSchemaName));
-            modelBuilder.ApplyConfiguration(new ParticipantConfiguration(communicationSchemaName));
-            modelBuilder.ApplyConfiguration(new RecordSessionConfiguration(communicationSchemaName));
-            modelBuilder.ApplyConfiguration(new SessionArchiveConfiguration(communicationSchemaName));
-
-            string jobSchemaName = "Job";
-            //modelBuilder.ApplyConfiguration(new EmploymentTypeConfiguration(jobSchemaName));
-            modelBuilder.ApplyConfiguration(new JobCategoryConfiguration(jobSchemaName));
-            modelBuilder.ApplyConfiguration(new QualificationConfiguration(jobSchemaName));
-            modelBuilder.ApplyConfiguration(new JobConfiguration(jobSchemaName));
         }
 
         public async Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default)

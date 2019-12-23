@@ -15,7 +15,7 @@ namespace SpeekIO.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class HomeController : SpeekIOController
+    public class HomeController : EasyBookingController
     {
 
         private readonly IMediator _mediator;

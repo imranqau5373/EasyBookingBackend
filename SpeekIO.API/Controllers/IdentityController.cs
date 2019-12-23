@@ -30,7 +30,7 @@ namespace SpeekIO.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class IdentityController : SpeekIOController
+    public class IdentityController : EasyBookingController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<IdentityController> _logger;

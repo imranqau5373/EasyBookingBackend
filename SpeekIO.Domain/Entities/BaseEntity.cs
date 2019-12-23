@@ -1,4 +1,5 @@
-﻿using SpeekIO.Domain.Entities.Portfolio;
+﻿using EasyBooking.Domain.Interfaces.Entity;
+using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;

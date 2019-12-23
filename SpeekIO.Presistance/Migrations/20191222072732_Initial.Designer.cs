@@ -3,77 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeekIO.Presistence.Context;
 
 namespace EasyBooking.Presistence.Migrations
 {
     [DbContext(typeof(SpeekIOContext))]
-    partial class SpeekIOContextModelSnapshot : ModelSnapshot
+    [Migration("20191222072732_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtBookings", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime?>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CourtsDurations");
-                });
-
-            modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtsDurations", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long?>("CompanyId");
-
-                    b.Property<DateTime?>("CourtDuration");
-
-                    b.Property<DateTime?>("CourtEndTime");
-
-                    b.Property<long?>("CourtId");
-
-                    b.Property<DateTime?>("CourtStartTime");
-
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime?>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<long>("ModifiedBy");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CourtsBookings");
-                });
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Courts", b =>
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpeekIO.API.Controllers
 {
-    public class SpeekIOController : ControllerBase
+    public class EasyBookingController : ControllerBase
     {
     }
 }

@@ -24,13 +24,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CommandAndQuery\CandidateTest\Command\VideoArchive\ListArchive\" />
-    <Folder Include="CommandAndQuery\Questionaire\Command\UpdateQuestionaire\" />
-    <Folder Include="CommandAndQuery\Conference\Query\" />
+    <ProjectReference Include="..\SpeekIO.Domain\EasyBooking.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpeekIO.Domain\EasyBooking.Domain.csproj" />
+    <Folder Include="CommandAndQuery\CourtsModule\Command\" />
+    <Folder Include="CommandAndQuery\CourtsModule\Query\" />
+    <Folder Include="CommandAndQuery\Sports Module\Command\DeleteSports\" />
+    <Folder Include="CommandAndQuery\Sports Module\Command\UpdateSports\Dto\" />
+    <Folder Include="CommandAndQuery\Sports Module\Query\GetSports\Dto\" />
   </ItemGroup>
 
 </Project>

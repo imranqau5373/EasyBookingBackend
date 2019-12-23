@@ -1,32 +1,14 @@
-﻿using SpeekIO.Application.Commands.Conference.ConnectionLog;
-using SpeekIO.Application.Commands.Conference.Create;
+﻿
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+using EasyBooking.Domain.Entities;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
-using SpeekIO.Application.Commands.Identity.UpdateProfile;
-using SpeekIO.Application.Commands.JobManager.AddJob;
-using SpeekIO.Application.Commands.JobManager.UpdateJob;
-using SpeekIO.Application.Commands.QuestionaireCommand.AddQuestionaire;
-using SpeekIO.Application.Commands.Umbraco;
-using SpeekIO.Application.Commands.Umbraco.ContactUs;
 using SpeekIO.Application.Configuration;
-using SpeekIO.Application.Queries.Question.QuestionType;
-using SpeekIO.Domain.Entities.CommunicationEntities;
+
 using SpeekIO.Domain.Entities.Identity;
-using SpeekIO.Domain.Entities.Job;
-using SpeekIO.Domain.Entities.Other;
+
 using SpeekIO.Domain.Entities.Portfolio;
-using SpeekIO.Domain.Entities.Question;
-using SpeekIO.Domain.Entities.Questionaire;
-using SpeekIO.Domain.Entities.UmbracoEntities;
-using SpeekIO.Domain.Models;
-using SpeekIO.Domain.Models.Email;
-using SpeekIO.Domain.ViewModels.Response.GetJobResponse;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
-using SpeekIO.Domain.ViewModels.Response.JobsResponse;
-using SpeekIO.Domain.ViewModels.Response.JobsResponse.CommandResponse;
-using SpeekIO.Domain.ViewModels.Response.JobsResponse.QueryResponse;
-using SpeekIO.Domain.ViewModels.Response.JobsResponse.Questionaire;
-using SpeekIO.Domain.ViewModels.Response.QuestionaireResponse;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -68,70 +50,40 @@ namespace SpeekIO.Application.Mapping
             CreateMap<ApplicationUser, Domain.Entities.Portfolio.Profile>()
                 .ForMember(t => t.User, m => m.MapFrom(t => t));
 
-            CreateMap<CreateConferenceCommand, ConferenceSession>().ReverseMap();
+			#region Sports Mapping
 
-            CreateMap<CreateConferenceCommand, CreateNewSessionModel>()
-                .ForMember(t => t.AutoArchive, m => m.MapFrom(t => t.RecordAutomatically));
+			//Create Sports Mapping
 
-            CreateMap<ConferenceSession, ConferenceSessionInvitationEmailModel>()
-                .ForMember(t => t.ConferenceId, m => m.MapFrom(t => t.Id))
-                .ForMember(t => t.ConferenceTitle, m => m.MapFrom(t => t.Title))
-                .ForMember(t => t.ScheduledOn, m => m.MapFrom(t => MapNullableTime(t.ScheduledStartTime)))
-                .ForMember(t => t.Duration, m => m.MapFrom(t => MapDuration(t.ScheduledStartTime, t.ScheduledEndTime)))
-                .ForMember(t => t.domain, m => m.MapFrom(t => CreateDomainUrl(t.Company)));
-
-            CreateMap<ConnectionLogCommand, Connection>();
-
-            //Umbraco related Mappings
-            CreateMap<EmailSubscribeCommand, SubscribeEmail>();
-            CreateMap<ContactUsCommand, ContactUs>();
+			CreateMap<AddSportsCommand, Sports>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 
 
-			//Qustion Relatetd Mappings
-			CreateMap<QuestionTypeQuery, QuestionType>();
+			CreateMap<Sports, AddSportsResponse>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+
+			//Update Sports Mappings.
+
+			// Delete Sports Mappings.
+
+			// Get Sports Mappings.
+
+			// Get All Sports Mappings.
 
 
-			CreateMap<GetAllEmploymentTypesResponse, EmploymentType>().ReverseMap();
-            CreateMap<GetJobCategory, JobCategory>().ReverseMap();
-            CreateMap<GetQualification, Qualification>().ReverseMap();
-            CreateMap<GetLanguageModel, Language>().ReverseMap();
-            CreateMap<AddJobCommand, Job>()
-                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
-                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
-                .ReverseMap();
-            CreateMap<AddJobResponse, Job>().ReverseMap();
-            CreateMap<GetJobResponse, Job>()
-                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
-                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
-                .ReverseMap();
-            CreateMap<UpdateJobCommand, Job>()
-                .ForMember(t => t.JobStatusId, m => m.MapFrom(t => t.StatusId))
-                .ForMember(t => t.JobCategoryId, m => m.MapFrom(t => t.CategoryId))
-                .ReverseMap();
-            CreateMap<GetProfileResponse, Profile>().ReverseMap();
 
-            CreateMap<GetQuestionairesResponse, Questionaire>()
-                .ForMember(t => t.Questions, m => m.MapFrom(t => t.listQuestionaire))
-                .ReverseMap();
 
-            CreateMap<AddQuestionaireResponse,Questionaire>()
-                .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
-                .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
-                .ReverseMap();
-            CreateMap<AddQuestionaireCommand, Questionaire>()
-                     .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
-                     .ForMember(t => t.Questions, m => m.MapFrom(t => t.Questions))
-                     .ReverseMap();
 
-            CreateMap<UpdateProfileCommand, Profile>().ReverseMap();
-            CreateMap<Job, GetJobListModel>()
-                .ForMember(t => t.StatusId, m => m.MapFrom(t => t.JobStatusId))
-                .ForMember(t => t.StatusName, m => m.MapFrom(t => t.JobStatus.Name))
-                .ReverseMap();
+			#endregion
 
-        }
 
-        private string CreateDomainUrl(Company company)
+
+		}
+
+		private string CreateDomainUrl(Company company)
         {
             if (null == company)
                 return $"https://{_applicationConfiguration.Domain}";

@@ -11,8 +11,6 @@ using SpeekIO.Domain.Enums.IdentityEnums;
 using SpeekIO.EmailService.Extensions;
 using SpeekIO.Infrastructure.Configuration;
 using SpeekIO.Infrastructure.Mapping;
-using SpeekIO.Infrastructure.Video.Configuration;
-using SpeekIO.Infrastructure.Video.Extensions;
 using SpeekIO.Presistence.Context;
 using SpeekIO.Presistence.Extensions;
 using SpeekIO.UploadService.Extensions;
@@ -32,13 +30,11 @@ namespace SpeekIO.Infrastructure.ApplicationModule
         {
             // register all dependencies here
             services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>();
-            services.AddSingleton<IVideoConfiguration, VideoConfiguration>();
 
             // register other services here
             services.ConfigureCommonServices(configuration);
             services.ConfigureCore(configuration);
             services.ConfigurePersistence(configuration);
-            services.ConfigureVideoService(configuration);
             services.ConfigureEmailService(configuration);
             services.ConfigureUploadService();
 
@@ -64,13 +60,11 @@ namespace SpeekIO.Infrastructure.ApplicationModule
 
             // configure automapper
             var applicationProfile = Application.Modules.ApplicationModule.GetMappingProfile(services);
-            var videoProfile = Video.Extensions.ServiceCollectionExtensions.GetMappingProfile();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
                 mc.AddProfile(applicationProfile);
-                mc.AddProfile(videoProfile);
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

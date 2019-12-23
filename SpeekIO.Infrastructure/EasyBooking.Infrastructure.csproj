@@ -9,8 +9,6 @@
     <ProjectReference Include="..\SpeekIO.Application\EasyBooking.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Common\EasyBooking.Common.csproj" />
     <ProjectReference Include="..\SpeekIO.EmailService\EasyBooking.EmailService.csproj" />
-    <ProjectReference Include="..\SpeekIO.Infrastructure.SignalR\EasyBooking.Infrastructure.SignalR.csproj" />
-    <ProjectReference Include="..\SpeekIO.Infrastructure.Video\EasyBooking.Infrastructure.Video.csproj" />
     <ProjectReference Include="..\SpeekIO.Presistance\EasyBooking.Presistence.csproj" />
     <ProjectReference Include="..\SpeekIO.UploadService\EasyBooking.UploadService.csproj" />
   </ItemGroup>
