@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Interfaces;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports
 
 		private readonly ILogger<GetSportsQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
-		private readonly ISpeekIODbContext _context;
+		private readonly SpeekIOContext _context;
 
-		public GetSportsQueryHandler(ILogger<GetSportsQueryHandler> logger, AutoMapper.IMapper mapper, ISpeekIODbContext context)
+		public GetSportsQueryHandler(ILogger<GetSportsQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
 		{
 			this._logger = logger;
 			this._mapper = mapper;

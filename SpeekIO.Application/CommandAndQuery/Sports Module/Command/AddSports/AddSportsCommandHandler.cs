@@ -2,6 +2,7 @@
 using EasyBooking.Domain.Entities;
 using MediatR;
 using SpeekIO.Application.Interfaces;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,10 +15,10 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSport
 	{
 
 
-		private readonly ISpeekIODbContext _context;
+		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public AddSportsCommandHandler(
-			ISpeekIODbContext context, IMapper mapper)
+			SpeekIOContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
