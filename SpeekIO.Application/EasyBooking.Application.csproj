@@ -11,6 +11,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
   </ItemGroup>
 
@@ -25,14 +26,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SpeekIO.Domain\EasyBooking.Domain.csproj" />
+    <ProjectReference Include="..\SpeekIO.Presistance\EasyBooking.Presistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="CommandAndQuery\CourtsModule\Command\" />
     <Folder Include="CommandAndQuery\CourtsModule\Query\" />
     <Folder Include="CommandAndQuery\Sports Module\Command\DeleteSports\" />
-    <Folder Include="CommandAndQuery\Sports Module\Command\UpdateSports\Dto\" />
-    <Folder Include="CommandAndQuery\Sports Module\Query\GetSports\Dto\" />
   </ItemGroup>
 
 </Project>

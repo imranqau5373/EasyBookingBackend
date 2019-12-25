@@ -43,7 +43,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 				return new SportsListResponse()
 				{
 					Successful = true,
-					Message = "Categories are found successfully.",
+					Message = "Sports are found successfully.",
 					Items = sportsList,
 					TotalCount = totalRecord,
 				};

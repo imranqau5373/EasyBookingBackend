@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using SpeekIO.Application.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using SpeekIO.Domain.Entities.Identity;
 
 namespace SpeekIO.Presistence.Extensions
 {
@@ -19,7 +16,7 @@ namespace SpeekIO.Presistence.Extensions
             services.AddDbContext<SpeekIOContext>(builder =>
                                                   builder.UseSqlServer(defaultConnectionString));
 
-            services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
+            //services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
 
             // migrate database changes
             var context = services.BuildServiceProvider().GetService<SpeekIOContext>();

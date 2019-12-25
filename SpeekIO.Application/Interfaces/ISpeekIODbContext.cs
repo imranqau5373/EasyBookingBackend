@@ -23,5 +23,5 @@ namespace SpeekIO.Application.Interfaces
 		DbSet<CourtsDurations> CourtsBookings { get; set; }
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default);
-    }
+	}
 }

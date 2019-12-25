@@ -2,7 +2,6 @@
 using EasyBooking.Domain.Entities.Bookings;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
@@ -16,7 +15,7 @@ namespace SpeekIO.Presistence.Context
 	/// <summary>
 	/// SpeekIO Database Context
 	/// </summary>
-	public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>, ISpeekIODbContext
+	public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>
     {
         public SpeekIOContext(DbContextOptions options) : base(options)
         {
@@ -50,19 +49,24 @@ namespace SpeekIO.Presistence.Context
 
         }
 
-        public async Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default)
-        {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
-            foreach (var entity in entities)
-            {
-                if (entity.State == EntityState.Added)
-                {
-                    ((BaseEntity)entity.Entity).CreatedBy = currentUser.Id;
-                }
-                ((BaseEntity)entity.Entity).ModifiedBy = currentUser.Id;
-            }
-            return await base.SaveChangesAsync(cancellationToken);
-        }
 
-    }
+		public async Task<int> SaveChangesAsync(ApplicationUser currentUser, CancellationToken cancellationToken = default)
+		{
+			var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+			foreach (var entity in entities)
+			{
+				if (entity.State == EntityState.Added)
+				{
+					((BaseEntity)entity.Entity).CreatedBy = currentUser.Id;
+				}
+				if (entity.State == EntityState.Modified)
+				{
+					((BaseEntity)entity.Entity).CreatedBy = currentUser.Id;
+				}
+				((BaseEntity)entity.Entity).ModifiedBy = currentUser.Id;
+			}
+			return await base.SaveChangesAsync(cancellationToken);
+		}
+
+	}
 }

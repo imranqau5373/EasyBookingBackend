@@ -7,6 +7,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSport
 {
 	public class AddSportsResponse : CommonResponse
 	{
+		public long Id { get; set; }
 		public string Name { get; set; }
 
 		public string Description { get; set; }

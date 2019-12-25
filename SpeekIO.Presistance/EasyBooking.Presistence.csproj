@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpeekIO.Application\EasyBooking.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Domain\EasyBooking.Domain.csproj" />
   </ItemGroup>
 

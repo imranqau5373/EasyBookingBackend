@@ -1,0 +1,61 @@
+﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using SpeekIO.Application.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports
+{
+	public class GetSportsQueryHandler : IRequestHandler<GetSportsQuery, GetSportsResponse>
+	{
+
+		private readonly ILogger<GetSportsQueryHandler> _logger;
+		private readonly AutoMapper.IMapper _mapper;
+		private readonly ISpeekIODbContext _context;
+
+		public GetSportsQueryHandler(ILogger<GetSportsQueryHandler> logger, AutoMapper.IMapper mapper, ISpeekIODbContext context)
+		{
+			this._logger = logger;
+			this._mapper = mapper;
+			this._context = context;
+		}
+
+		public async Task<GetSportsResponse> Handle(GetSportsQuery request, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var sportsObject = await _context.Sports.Where(x => x.Id == request.SportsId).FirstOrDefaultAsync();
+				if (sportsObject == null)
+				{
+					return new GetSportsResponse()
+					{
+						Successful = false,
+						Message = "Sports are not found."
+					};
+				}
+				else
+				{
+					var response = _mapper.Map<GetSportsResponse>(sportsObject);
+					response.Successful = true;
+					response.Message = "Sports found successfully.";
+					return response;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				return new GetSportsResponse()
+				{
+					Successful = false,
+					Message = "Something went wrong while getting sports. " + ex.Message
+				};
+			}
+		}
+	}
+}

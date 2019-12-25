@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.API.Controllers;
-using SpeekIO.Domain.ViewModels.Response;
+using System;
+using System.Threading.Tasks;
 
 namespace EasyBooking.API.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
     [ApiController]
     public class SportsController : EasyBookingController
 	{
@@ -29,6 +27,20 @@ namespace EasyBooking.API.Controllers
 
 		#region Categories
 
+		//[HttpPost(nameof(GetSportsList))]
+		//public async Task<IActionResult> GetSportsList([FromBody]GetSportsListQuery model)
+		//{
+		//	try
+		//	{
+		//		var response = await _mediator.Send(model);
+		//		return StatusCode(200, response);
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		return StatusCode(500, e);
+		//	}
+		//}
+
 		[HttpPost(nameof(GetSportsList))]
 		public async Task<IActionResult> GetSportsList([FromBody]GetSportsListQuery model)
 		{
@@ -43,21 +55,21 @@ namespace EasyBooking.API.Controllers
 			}
 		}
 
-		//[HttpGet(nameof(GetSports))]
-		//public async Task<IActionResult> GetSports(int id)
-		//{
-		//	try
-		//	{
-		//		GetCategoryQuery categoryQuery = new GetCategoryQuery() { CategoryId = id };
-		//		var response = await _mediator.Send(categoryQuery);
+		[HttpGet(nameof(GetSports))]
+		public async Task<IActionResult> GetSports(int id)
+		{
+			try
+			{
+				GetSportsQuery sportsQuery = new GetSportsQuery() { SportsId = id };
+				var response = await _mediator.Send(sportsQuery);
 
-		//		return StatusCode(201, response);
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		return StatusCode(500, e);
-		//	}
-		//}
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
 
 		//[HttpPost(nameof(DeleteSports))]
 		//public async Task<CommonResponse> DeleteSports(DeleteCategoryCommand model)

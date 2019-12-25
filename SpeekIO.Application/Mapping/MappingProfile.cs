@@ -1,5 +1,6 @@
 ﻿
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Domain.Entities;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
@@ -67,9 +68,16 @@ namespace SpeekIO.Application.Mapping
 
 			//Update Sports Mappings.
 
+
+
 			// Delete Sports Mappings.
 
 			// Get Sports Mappings.
+
+			CreateMap<Sports, GetSportsResponse>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 
 			// Get All Sports Mappings.
 
