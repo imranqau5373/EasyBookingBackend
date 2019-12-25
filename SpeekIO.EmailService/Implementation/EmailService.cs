@@ -6,6 +6,7 @@ using SpeekIO.Domain.Interfaces.Email;
 using SpeekIO.EmailService.Exceptions;
 using SpeekIO.EmailService.Interfaces;
 using SpeekIO.EmailService.Models;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,7 @@ namespace SpeekIO.EmailService.Implementation
         private readonly Func<string, IEmailProvider> _emailProvider;
         private readonly IEmailConfiguration _emailConfiguration;
 
-        public EmailService(ISpeekIODbContext context, Func<string, IEmailProvider> emailProvider, IEmailConfiguration emailConfiguration)
+        public EmailService(SpeekIOContext context, Func<string, IEmailProvider> emailProvider, IEmailConfiguration emailConfiguration)
         {
             _emailProvider = emailProvider;
             _emailConfiguration = emailConfiguration;

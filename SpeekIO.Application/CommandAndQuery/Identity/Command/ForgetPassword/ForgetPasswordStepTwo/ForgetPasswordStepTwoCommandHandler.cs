@@ -3,6 +3,7 @@ using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,11 +15,11 @@ namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordSte
     public class ForgetPasswordStepTwoCommandHandler : IRequestHandler<ForgetPasswordStepTwoCommand, ForgetPasswordStepTwoResponse>
     {
         private readonly ApplicationUserManager _userManager;
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IEmailService _emailService;
         private readonly IApplicationConfiguration _applicationConfiguration;
 
-        public ForgetPasswordStepTwoCommandHandler(ApplicationUserManager applicationUserManager, ISpeekIODbContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
+        public ForgetPasswordStepTwoCommandHandler(ApplicationUserManager applicationUserManager, SpeekIOContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
         {
             _userManager = applicationUserManager;
             _context = context;

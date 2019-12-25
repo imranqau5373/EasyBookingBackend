@@ -7,6 +7,7 @@ using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Enums.IdentityEnums;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,13 +21,13 @@ namespace SpeekIO.Application.Commands.Identity.Guest
         private readonly AutoMapper.IMapper _mapper;
         private readonly ApplicationUserManager _userManager;
         private readonly ITokenGenerator _tokenGenerator;
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly ILogger<CreateGuestUserCommandHandler> _logger;
 
         public CreateGuestUserCommandHandler(AutoMapper.IMapper mapper,
             ApplicationUserManager userManager,
             ITokenGenerator tokenGenerator,
-            ISpeekIODbContext context,
+			SpeekIOContext context,
             ILogger<CreateGuestUserCommandHandler> logger)
         {
             _mapper = mapper;

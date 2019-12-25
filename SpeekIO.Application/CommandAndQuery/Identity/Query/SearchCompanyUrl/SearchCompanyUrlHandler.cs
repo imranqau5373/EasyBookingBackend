@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace SpeekIO.Application.Queries.Identity.SearchCompanyUrl
 	{
 
 		private readonly ILogger<SearchCompanyUrlHandler> _logger;
-		private readonly ISpeekIODbContext _context;
+		private readonly SpeekIOContext _context;
 
-		public SearchCompanyUrlHandler(ILogger<SearchCompanyUrlHandler> logger, ISpeekIODbContext context)
+		public SearchCompanyUrlHandler(ILogger<SearchCompanyUrlHandler> logger, SpeekIOContext context)
 		{
 			this._logger = logger;
 			_context = context;

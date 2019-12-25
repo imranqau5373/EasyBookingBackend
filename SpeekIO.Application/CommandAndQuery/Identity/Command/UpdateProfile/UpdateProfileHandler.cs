@@ -9,6 +9,7 @@ using SpeekIO.Common.Helpers;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Models.UploadService;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,12 +20,12 @@ namespace SpeekIO.Application.Commands.Identity.UpdateProfile
 {
     public class UpdateProfileHandler : CommandHandlerBase<UpdateProfileCommand, CommonResponse>
     {
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         private readonly IApplicationConfiguration _applicationConfiguration;
         private readonly IUploadService _uploadService;
         public UpdateProfileHandler(
-            ISpeekIODbContext context,
+			SpeekIOContext context,
             ApplicationUserManager userManager,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,

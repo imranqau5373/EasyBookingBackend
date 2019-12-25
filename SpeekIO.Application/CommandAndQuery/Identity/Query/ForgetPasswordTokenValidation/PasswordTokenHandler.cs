@@ -4,6 +4,7 @@ using SpeekIO.Application.Configuration;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,10 +15,10 @@ namespace SpeekIO.Application.Queries.Identity.ForgetPasswordTokenValidation
 {
 	public class PasswordTokenHandler : IRequestHandler<PasswordTokenQuery, PasswordTokenValidationResponse>
 	{
-		private readonly ISpeekIODbContext _context;
+		private readonly SpeekIOContext _context;
 		private readonly IApplicationConfiguration _applicationConfiguration;
 
-		public PasswordTokenHandler(ISpeekIODbContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
+		public PasswordTokenHandler(SpeekIOContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
 		{
 			_context = context;
 			_applicationConfiguration = applicationConfiguration;

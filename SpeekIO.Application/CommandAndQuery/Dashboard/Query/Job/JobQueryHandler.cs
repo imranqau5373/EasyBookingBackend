@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace SpeekIO.Application.Queries.Dashboard.Job
     public class JobQueryHandler : IRequestHandler<JobQuery, CommonResponse>
     {
         private readonly ILogger<JobQueryHandler> _logger;
-        private readonly ISpeekIODbContext _context;
-        public JobQueryHandler(ILogger<JobQueryHandler> logger, ISpeekIODbContext context)
+        private readonly SpeekIOContext _context;
+        public JobQueryHandler(ILogger<JobQueryHandler> logger, SpeekIOContext context)
         {
             this._logger = logger;
             _context = context;

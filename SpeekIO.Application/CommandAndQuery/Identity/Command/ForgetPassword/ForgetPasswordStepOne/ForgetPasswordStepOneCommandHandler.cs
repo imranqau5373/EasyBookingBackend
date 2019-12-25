@@ -13,17 +13,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
+using SpeekIO.Presistence.Context;
 
 namespace SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepOne
 {
     public class ForgetPasswordStepOneCommandHandler : IRequestHandler<ForgetPasswordStepOneCommand, ForgetPasswordStepOneResponse>
     {
         private readonly ApplicationUserManager _userManager;
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IEmailService _emailService;
         private readonly IApplicationConfiguration _applicationConfiguration;
 
-        public ForgetPasswordStepOneCommandHandler(ApplicationUserManager applicationUserManager, ISpeekIODbContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
+        public ForgetPasswordStepOneCommandHandler(ApplicationUserManager applicationUserManager, SpeekIOContext context, IEmailService emailService, IApplicationConfiguration applicationConfiguration)
         {
             _userManager = applicationUserManager;
             _context = context;

@@ -7,6 +7,7 @@ using SpeekIO.Application.Interfaces;
 using SpeekIO.Application.Interfaces.Identity;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,13 +24,13 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
         private readonly ApplicationSignInManager _signInManager;
         private readonly ITokenGenerator _tokenGenerator;
         private readonly ILogger<SignInCommandHandler> _logger;
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IApplicationConfiguration _applicationConfiguration;
         public SignInCommandHandler(ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
             ITokenGenerator tokenGenerator,
             ILogger<SignInCommandHandler> logger,
-            ISpeekIODbContext context,
+			SpeekIOContext context,
             IApplicationConfiguration applicationConfiguration)
         {
             this._userManager = userManager;

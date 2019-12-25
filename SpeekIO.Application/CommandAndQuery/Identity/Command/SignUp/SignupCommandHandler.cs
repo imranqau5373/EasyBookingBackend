@@ -12,6 +12,7 @@ using SpeekIO.Domain.Intefaces.Email;
 using SpeekIO.Domain.Interfaces.Email;
 using SpeekIO.Domain.Models.Email;
 using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,14 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
     {
         private readonly ApplicationUserManager _userManager;
         private readonly IMapper _mapper;
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IEmailService _emailService;
         private readonly IApplicationConfiguration _applicationConfiguration;
         private readonly ILogger<SignupCommandHandler> _logger;
 
         public SignupCommandHandler(ApplicationUserManager userManager,
             IMapper mapper,
-            ISpeekIODbContext context,
+			SpeekIOContext context,
             IEmailService emailService,
             IApplicationConfiguration applicationConfiguration,
             ILogger<SignupCommandHandler> logger)

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,10 +16,10 @@ namespace SpeekIO.Application.Commands.Identity.GetProfile
 {
     public class GetProfileHandler : CommandHandlerBase<GetProfileCommand, GetProfileResponse>
     {
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public GetProfileHandler(
-            ISpeekIODbContext context,
+			SpeekIOContext context,
             IMapper mapper,
             ApplicationUserManager userManager,
             IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
