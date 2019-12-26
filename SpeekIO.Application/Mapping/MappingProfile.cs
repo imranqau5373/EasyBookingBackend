@@ -3,6 +3,7 @@ using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts.Dto
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.Dto.DeleteCourts;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Domain.Entities;
@@ -120,6 +121,11 @@ namespace SpeekIO.Application.Mapping
 			 .ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
 			 .ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
 			 .ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
+
+			CreateMap<Courts, GetCourtsListDto>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description));
 
 			#endregion
 
