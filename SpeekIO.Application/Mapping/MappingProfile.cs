@@ -1,4 +1,8 @@
 ﻿
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.Dto.DeleteCourts;
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Domain.Entities;
@@ -84,6 +88,38 @@ namespace SpeekIO.Application.Mapping
 
 
 
+
+			#endregion
+
+			#region Courts Mappings
+
+			//Create Courts Mapping
+			CreateMap<AddCourtsCommand, Courts>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
+			CreateMap<Courts, AddCourtsResponse>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
+			//Update Courts Mapping
+			CreateMap<UpdateCourtsCommand, Courts>()
+			  .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+			  .ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+			  .ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+			  .ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
+			//Delete Courts Command
+			CreateMap<DeleteCourtsCommand, Courts>()
+			  .ForMember(t => t.Id, m => m.MapFrom(t => t.Id));
+			//Get Courts Query
+			CreateMap<Courts, GetCourtsResponse>()
+			 .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+			 .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+			 .ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+			 .ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+			 .ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
 
 			#endregion
 
