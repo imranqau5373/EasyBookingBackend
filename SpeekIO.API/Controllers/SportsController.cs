@@ -15,31 +15,17 @@ namespace EasyBooking.API.Controllers
     public class SportsController : EasyBookingController
 	{
 
-		private readonly IMediator _mediator;
-		private readonly ILogger<SportsController> _logger;
+	private readonly IMediator _mediator;
+	private readonly ILogger<SportsController> _logger;
 
 
-		public SportsController(IMediator mediator, ILogger<SportsController> logger)
-		{
-			this._mediator = mediator;
-			this._logger = logger;
-		}
+	public SportsController(IMediator mediator, ILogger<SportsController> logger)
+	{
+		this._mediator = mediator;
+		this._logger = logger;
+	}
 
-		#region Categories
-
-		//[HttpPost(nameof(GetSportsList))]
-		//public async Task<IActionResult> GetSportsList([FromBody]GetSportsListQuery model)
-		//{
-		//	try
-		//	{
-		//		var response = await _mediator.Send(model);
-		//		return StatusCode(200, response);
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		return StatusCode(500, e);
-		//	}
-		//}
+		#region Sports CRUD
 
 		[HttpPost(nameof(GetSportsList))]
 		public async Task<IActionResult> GetSportsList([FromBody]GetSportsListQuery model)
