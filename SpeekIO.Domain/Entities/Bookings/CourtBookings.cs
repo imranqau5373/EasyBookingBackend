@@ -1,4 +1,5 @@
 ﻿using SpeekIO.Domain.Entities;
+using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,15 @@ namespace EasyBooking.Domain.Entities.Bookings
 		public string Name { get; set; }
 
 		public string Description { get; set; }
-	
-	
+		public long? CourtId { get; set; }
+		public long? UserId { get; set; }
+		public DateTime? BookingStartTime { get; set; }
+		public DateTime? BookingEndTime { get; set; }
+		public bool IsBooked { get; set; }
+		public bool IsEmailed { get; set; }
+		public virtual Courts Courts { get; set; }
+		public virtual Profile Profile { get; set; }
+
+
 	}
 }

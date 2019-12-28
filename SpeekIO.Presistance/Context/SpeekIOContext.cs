@@ -28,9 +28,9 @@ namespace SpeekIO.Presistence.Context
 
 		public DbSet<Courts> Courts { get; set; }
 
-		public DbSet<CourtBookings> CourtsDurations { get; set; }
+		public DbSet<CourtBookings> CourtsBookings { get; set; }
 
-		public DbSet<CourtsDurations> CourtsBookings { get; set; }
+		public DbSet<CourtsDurations> CourtsDurations { get; set; }
 
 		/// <summary>
 		/// Apply Configurations to the model here

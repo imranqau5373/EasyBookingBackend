@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList
 {
-	public class GetSportsListQueryHandler : IRequestHandler<GetSportsListQuery, SportsListResponse>
+	public class GetSportsListQueryHandler : IRequestHandler<GetSportsListQuery, GetSportsListResponse>
 	{
 		private readonly ILogger<GetSportsListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
@@ -26,12 +26,12 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 			this._mapper = mapper;
 			this._context = context;
 		}
-		public async Task<SportsListResponse> Handle(GetSportsListQuery request, CancellationToken cancellationToken)
+		public async Task<GetSportsListResponse> Handle(GetSportsListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var result = _context.Sports.Include(x => x.Courts)
-					.Select(x => new SportsListDto
+					.Select(x => new GetSportsListDto
 					{
 						Id = x.Id,
 						Name = x.Name,
@@ -41,7 +41,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 
 				var totalRecord = result.Count();
 				var sportsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
-				return new SportsListResponse()
+				return new GetSportsListResponse()
 				{
 					Successful = true,
 					Message = "Sports are found successfully.",
@@ -51,7 +51,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 			}
 			catch (Exception ex)
 			{
-				return new SportsListResponse()
+				return new GetSportsListResponse()
 				{
 					Successful = false,
 					Message = "Something went wrong while getting categories. " + ex.Message,

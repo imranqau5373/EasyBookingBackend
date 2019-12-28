@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto
 {
-	public class GetSportsListQuery : PagingQuery, IRequest<SportsListResponse>
+	public class GetSportsListQuery : PagingQuery, IRequest<GetSportsListResponse>
 	{
 
 	}

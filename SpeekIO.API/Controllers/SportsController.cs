@@ -1,10 +1,12 @@
 ﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.API.Controllers;
+using SpeekIO.Domain.ViewModels.Response;
 using System;
 using System.Threading.Tasks;
 
@@ -58,7 +60,7 @@ namespace EasyBooking.API.Controllers
 		}
 
 		//[HttpPost(nameof(DeleteSports))]
-		//public async Task<CommonResponse> DeleteSports(DeleteCategoryCommand model)
+		//public async Task<CommonResponse> DeleteSports(DeleteSportsCommand model)
 		//{
 		//	try
 		//	{
@@ -86,20 +88,20 @@ namespace EasyBooking.API.Controllers
 			}
 		}
 
-		//[HttpPost(nameof(UpdateSports))]
-		//public async Task<IActionResult> UpdateSports(AddCategoryCommand category)
-		//{
-		//	try
-		//	{
-		//		var response = await _mediator.Send(category);
+		[HttpPost(nameof(UpdateSports))]
+		public async Task<IActionResult> UpdateSports(UpdateSportsCommand sports)
+		{
+			try
+			{
+				var response = await _mediator.Send(sports);
 
-		//		return StatusCode(201, response);
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		return StatusCode(500, e);
-		//	}
-		//}
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
 
 		#endregion
 
