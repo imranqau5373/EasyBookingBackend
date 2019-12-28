@@ -1,6 +1,7 @@
 ﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsCompany.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,8 @@ namespace EasyBooking.API.Controllers
 		{
 			try
 			{
+				model.PageNumber = 1;
+				model.PageSize = 100;
 				var response = await _mediator.Send(model);
 				return StatusCode(200, response);
 			}
@@ -49,6 +52,23 @@ namespace EasyBooking.API.Controllers
 			try
 			{
 				GetSportsQuery sportsQuery = new GetSportsQuery() { SportsId = id };
+				var response = await _mediator.Send(sportsQuery);
+
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+
+		[HttpGet(nameof(GetSportsCompanies))]
+		public async Task<IActionResult> GetSportsCompanies()
+		{
+			try
+			{
+				GetSportsCompanyQuery sportsQuery = new GetSportsCompanyQuery();
 				var response = await _mediator.Send(sportsQuery);
 
 				return StatusCode(201, response);
