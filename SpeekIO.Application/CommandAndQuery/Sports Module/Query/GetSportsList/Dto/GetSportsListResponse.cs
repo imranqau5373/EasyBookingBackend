@@ -5,10 +5,10 @@ using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto
 {
-	public class SportsListResponse : CommonResponse
+	public class GetSportsListResponse : CommonResponse
 	{
 
-		public List<SportsListDto> Items { get; set; }
+		public List<GetSportsListDto> Items { get; set; }
 		public int TotalCount { get; set; }
 	}
 }

@@ -1,14 +1,29 @@
 ﻿
+using EasyBooking.Application.CommandAndQuery.CompanyModule.Command.AddCompany.Dto;
+using EasyBooking.Application.CommandAndQuery.CompanyModule.Command.UpdateCompany.Dto;
+using EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany.Dto;
+using EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompanyList.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.AddCourtsBooking.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.UpdateCourtsBooking.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBooking.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.AddCourtsDuration.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.UpdateCourtsDuration.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.GetCourtsDuration.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.Dto.DeleteCourts;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList.Dto;
+using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.AddProfile.Dto;
+///using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.UpdateProfile.Dto;
+using EasyBooking.Application.CommandAndQuery.ProfileModule.Query.GetProfile.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Domain.Entities;
+using EasyBooking.Domain.Entities.Bookings;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignUp;
+using SpeekIO.Application.Commands.Identity.UpdateProfile;
 using SpeekIO.Application.Configuration;
 
 using SpeekIO.Domain.Entities.Identity;
@@ -91,7 +106,6 @@ namespace SpeekIO.Application.Mapping
 
 
 			#endregion
-
 			#region Courts Mappings
 
 			//Create Courts Mapping
@@ -121,16 +135,199 @@ namespace SpeekIO.Application.Mapping
 			 .ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
 			 .ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
 			 .ForMember(t => t.SportsId, m => m.MapFrom(t => t.SportsId));
-
+			//Get Courts list query
 			CreateMap<Courts, GetCourtsListDto>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description));
 
 			#endregion
+			#region Company Mappings
+			//Create Company Mapping
+			CreateMap<AddCompanyCommand, Company>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
+			CreateMap<Company, AddCompanyResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
+			//Update Company Mapping
+			CreateMap<UpdateCompanyCommand, Company>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+			  	.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
+			//Get Company Query
+			CreateMap<Company, GetCompanyResponse>()
+			    .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+			    .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
+			//Get Company List Mappings
+			CreateMap<Company, GetCompanyListDto>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
 
+			#endregion
+			#region Profile Mappings
+			//Create Profile Mapping
+			CreateMap<AddProfileCommand, Profile>()
+				.ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+				.ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
+				.ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
+				.ForMember(t => t.PictureUrl, m => m.MapFrom(t => t.PictureUrl))
+				.ForMember(t => t.PictureThumbnailUrl, m => m.MapFrom(t => t.PictureThumbnailUrl))
+				.ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
 
+			CreateMap<Profile, AddProfileResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+				.ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
+				.ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
+				.ForMember(t => t.PictureUrl, m => m.MapFrom(t => t.PictureUrl))
+				.ForMember(t => t.PictureThumbnailUrl, m => m.MapFrom(t => t.PictureThumbnailUrl))
+				.ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
+			//Update Profile Mapping
+			CreateMap<UpdateProfileCommand, Profile>()
+				//.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
+				//.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+				.ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
+				.ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
+				.ForMember(t => t.PictureUrl, m => m.MapFrom(t => t.ProfilePicture));
+				//.ForMember(t => t.PictureThumbnailUrl, m => m.MapFrom(t => t.PictureThumbnailUrl))
+				//.ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
+				//.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				//.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
+			//Get Profile Query
+			CreateMap<Profile, GetProfileResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+				.ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
+				.ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
+				.ForMember(t => t.PictureUrl, m => m.MapFrom(t => t.PictureUrl))
+				.ForMember(t => t.PictureThumbnailUrl, m => m.MapFrom(t => t.PictureThumbnailUrl))
+				.ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
+			//Get Profile List Mappings
+			CreateMap<Profile, GetProfileListDto>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Email, m => m.MapFrom(t => t.Email))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.FirstName, m => m.MapFrom(t => t.FirstName))
+				.ForMember(t => t.LastName, m => m.MapFrom(t => t.LastName))
+				.ForMember(t => t.Phone, m => m.MapFrom(t => t.Phone))
+				.ForMember(t => t.PictureUrl, m => m.MapFrom(t => t.PictureUrl))
+				.ForMember(t => t.PictureThumbnailUrl, m => m.MapFrom(t => t.PictureThumbnailUrl))
+				.ForMember(t => t.Timezone, m => m.MapFrom(t => t.Timezone))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
+				.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
 
+			#endregion
+			#region Booking Mappings
+			//Create CourtsBooking Mapping
+			CreateMap<AddCourtsBookingCommand, CourtBookings>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
+				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
+				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
+				.ForMember(t => t.IsBooked, m => m.MapFrom(t => t.IsBooked))
+				.ForMember(t => t.IsEmailed, m => m.MapFrom(t => t.IsEmailed));
+
+			CreateMap<CourtBookings, AddCourtsBookingResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
+				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
+				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
+				.ForMember(t => t.IsBooked, m => m.MapFrom(t => t.IsBooked))
+				.ForMember(t => t.IsEmailed, m => m.MapFrom(t => t.IsEmailed));
+			//Update CourtBookings Mapping
+			CreateMap<UpdateCourtsBookingCommand, CourtBookings>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
+				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
+				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
+				.ForMember(t => t.IsBooked, m => m.MapFrom(t => t.IsBooked))
+				.ForMember(t => t.IsEmailed, m => m.MapFrom(t => t.IsEmailed));
+			//Get CourtBookings Query
+			CreateMap<CourtBookings, GetCourtsBookingResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
+				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
+				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
+				.ForMember(t => t.IsBooked, m => m.MapFrom(t => t.IsBooked))
+				.ForMember(t => t.IsEmailed, m => m.MapFrom(t => t.IsEmailed));
+
+			#endregion
+			#region Duration Mappings
+			//Create Courts Durations Mapping
+			CreateMap<AddCourtsDurationCommand, CourtsDurations>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
+				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
+				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+
+			CreateMap<CourtsDurations, AddCourtsDurationResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
+				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
+				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+			//Update CourtBookings Mapping
+			CreateMap<UpdateCourtsDurationCommand, CourtsDurations>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
+				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
+				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+			//Get CourtBookings Query
+			CreateMap<CourtsDurations, GetCourtsDurationResponse>()
+				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
+				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
+				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+			//Get CourtBookings List Query
+			#endregion
 		}
 
 		private string CreateDomainUrl(Company company)

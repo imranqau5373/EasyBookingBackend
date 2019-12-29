@@ -20,7 +20,9 @@ namespace SpeekIO.API.Controllers
 
         private readonly IMediator _mediator;
         private readonly ILogger<HomeController> _logger;
-
+        // Identical schemaIds detected for types 
+        //EasyBooking.Application.CommandAndQuery.ProfileModule.Command.UpdateProfile.Dto.UpdateProfileCommand
+        //and SpeekIO.Application.Commands.Identity.UpdateProfile.UpdateProfileCommand. See config settings 
 
         public HomeController(IMediator mediator, ILogger<HomeController> logger)
         {

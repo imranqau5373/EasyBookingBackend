@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto
 {
-	public class SportsListDto
+	public class GetSportsListDto
 	{
 
 		public long Id { get; set; }

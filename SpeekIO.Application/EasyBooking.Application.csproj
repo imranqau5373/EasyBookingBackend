@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommandAndQuery\CourtsBookingModule\Query\GetCourtBooking\**" />
+    <Compile Remove="CommandAndQuery\ProfileModule\Command\UpdateProfile\**" />
+    <EmbeddedResource Remove="CommandAndQuery\CourtsBookingModule\Query\GetCourtBooking\**" />
+    <EmbeddedResource Remove="CommandAndQuery\ProfileModule\Command\UpdateProfile\**" />
+    <EntityDeploy Remove="CommandAndQuery\CourtsBookingModule\Query\GetCourtBooking\**" />
+    <EntityDeploy Remove="CommandAndQuery\ProfileModule\Command\UpdateProfile\**" />
+    <None Remove="CommandAndQuery\CourtsBookingModule\Query\GetCourtBooking\**" />
+    <None Remove="CommandAndQuery\ProfileModule\Command\UpdateProfile\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" />
@@ -30,8 +41,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CommandAndQuery\CourtsBookingModule\Command\DeleteCourtsBooking\Dto\" />
+    <Folder Include="CommandAndQuery\CourtsBookingModule\Command\UpdateCourtsBooking\Dto\" />
+    <Folder Include="CommandAndQuery\CourtsDurationModule\Command\AddCourtsDuration\" />
+    <Folder Include="CommandAndQuery\CourtsDurationModule\Command\DeleteCourtsDuration\" />
+    <Folder Include="CommandAndQuery\CourtsDurationModule\Command\UpdateCourtsDuration\" />
+    <Folder Include="CommandAndQuery\CourtsDurationModule\Query\" />
     <Folder Include="CommandAndQuery\CourtsModule\Command\" />
     <Folder Include="CommandAndQuery\CourtsModule\Query\" />
+    <Folder Include="CommandAndQuery\ProfileModule\Command\AddProfile\" />
+    <Folder Include="CommandAndQuery\ProfileModule\Command\DeleteProfile\" />
+    <Folder Include="CommandAndQuery\ProfileModule\Query\GetProfile\" />
+    <Folder Include="CommandAndQuery\ProfileModule\Query\GetProfileList\" />
     <Folder Include="CommandAndQuery\Sports Module\Command\DeleteSports\" />
   </ItemGroup>
 

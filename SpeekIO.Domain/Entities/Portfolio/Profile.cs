@@ -1,4 +1,5 @@
-﻿using SpeekIO.Domain.Entities.Identity;
+﻿using EasyBooking.Domain.Entities.Bookings;
+using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,10 @@ namespace SpeekIO.Domain.Entities.Portfolio
 {
     public class Profile : BaseEntity, IEntity
     {
+        public Profile()
+        {
+            CourtBookings = new HashSet<CourtBookings>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Name { get; set; }
@@ -20,6 +25,8 @@ namespace SpeekIO.Domain.Entities.Portfolio
         public ApplicationUser User { get; set; }
 
         public virtual Company Company { get; set; }
+
+        public ICollection<CourtBookings> CourtBookings { get; set; }
         public virtual long? CompanyId { get; set; }
     }
 }
