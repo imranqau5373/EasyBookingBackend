@@ -17,5 +17,6 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
         public string CreatedBy { get; set; }
 
         public bool? IsDeletedCourt { get; set; }
+        //should include the list for relevant Sports and Courts ?
     }
 }
