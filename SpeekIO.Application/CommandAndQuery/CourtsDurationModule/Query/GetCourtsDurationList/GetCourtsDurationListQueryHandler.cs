@@ -39,6 +39,9 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						Id = x.Id,
 						Name = x.Name,
 						Description = x.Description,
+						CourtId = x.CourtsId,
+						CourtName = x.Courts.Name,
+						CompanyName = x.Courts.Company.Name,
 						CourtStartTime = x.CourtStartTime,
 						CourtEndTime = x.CourtEndTime,
 						SlotDuration = x.SlotDuration

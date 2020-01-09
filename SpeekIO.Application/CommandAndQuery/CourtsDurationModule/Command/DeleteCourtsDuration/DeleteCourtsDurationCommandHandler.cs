@@ -5,6 +5,7 @@ using EasyBooking.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,10 +16,10 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.D
 {
     public class DeleteCourtsDurationCommandHandler : IRequestHandler<DeleteCourtsDurationCommand, DeleteCourtsDurationResponse>
     {
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public DeleteCourtsDurationCommandHandler(
-            ISpeekIODbContext context,
+            SpeekIOContext context,
             IMapper mapper)
         {
             _context = context;
