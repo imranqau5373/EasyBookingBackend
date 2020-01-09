@@ -7,7 +7,5 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsC
 {
 	public class GetSportsCompanyQuery : IRequest<GetSportsCompanyResponse>
 	{
-
-
 	}
 }

@@ -12,7 +12,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
         public string Description { get; set; }
         public DateTime? LastUpdated { get; set; }
         public string CreatedBy { get; set; }
-
+        public long? SportsId { get; set; }
         public bool? IsDeletedCourt { get; set; }
     }
 }

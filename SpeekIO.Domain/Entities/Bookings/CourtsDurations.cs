@@ -12,15 +12,14 @@ namespace EasyBooking.Domain.Entities.Bookings
 
 		public string Description { get; set; }
 	
-		public long? CourtId { get; set; }
+		public long? CourtsId { get; set; }
 
-		public long? CompanyId { get; set; }
+		public int SlotDuration { get; set; }
 		
 		public DateTime? CourtStartTime { get; set; }
 
 		public DateTime? CourtEndTime { get; set; }
 
-		public DateTime? CourtDuration { get; set; }
 		public virtual Courts Courts { get; set; }
 
 	}

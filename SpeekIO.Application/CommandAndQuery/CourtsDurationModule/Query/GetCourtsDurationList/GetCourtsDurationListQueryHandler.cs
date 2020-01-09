@@ -41,16 +41,16 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						Description = x.Description,
 						CourtStartTime = x.CourtStartTime,
 						CourtEndTime = x.CourtEndTime,
-						CourtDuration = x.CourtDuration
-					});
+						SlotDuration = x.SlotDuration
+					}).ToList();
 
 				var totalRecord = result.Count();
-				var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsDurationListResponse()
 				{
 					Successful = true,
 					Message = "Courts Durations are found successfully.",
-					Items = comapanyList,
+					Items = result,
 					TotalCount = totalRecord,
 				};
 			}

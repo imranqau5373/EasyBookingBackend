@@ -1,4 +1,5 @@
 ﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -31,7 +32,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports
 		{
 			try
 			{
-				var sportsObject = await _context.Sports.Where(x => x.Id == request.SportsId).FirstOrDefaultAsync();
+				var  sportsObject = await _context.Sports.Where(x => x.Id == request.SportsId).FirstOrDefaultAsync();
 				if (sportsObject == null)
 				{
 					return new GetSportsResponse()

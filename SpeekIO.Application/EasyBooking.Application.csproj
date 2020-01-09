@@ -48,12 +48,13 @@
     <Folder Include="CommandAndQuery\CourtsDurationModule\Command\UpdateCourtsDuration\" />
     <Folder Include="CommandAndQuery\CourtsDurationModule\Query\" />
     <Folder Include="CommandAndQuery\CourtsModule\Command\" />
-    <Folder Include="CommandAndQuery\CourtsModule\Query\" />
+    <Folder Include="CommandAndQuery\CourtsModule\Query\GetCourtsBySportCompany\Dto\" />
     <Folder Include="CommandAndQuery\ProfileModule\Command\AddProfile\" />
     <Folder Include="CommandAndQuery\ProfileModule\Command\DeleteProfile\" />
     <Folder Include="CommandAndQuery\ProfileModule\Query\GetProfile\" />
     <Folder Include="CommandAndQuery\ProfileModule\Query\GetProfileList\" />
     <Folder Include="CommandAndQuery\Sports Module\Command\DeleteSports\" />
+    <Folder Include="CommandAndQuery\Sports Module\Query\GetSprotsByCompany\Dto\" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ namespace EasyBooking.Domain.Entities.Bookings
 		public string Name { get; set; }
 
 		public string Description { get; set; }
-		public long? CourtId { get; set; }
+		public long? CourtsId { get; set; }
 		public long? UserId { get; set; }
 		public DateTime? BookingStartTime { get; set; }
 		public DateTime? BookingEndTime { get; set; }

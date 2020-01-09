@@ -25,11 +25,21 @@ namespace EasyBooking.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("BookingEndTime");
+
+                    b.Property<DateTime?>("BookingStartTime");
+
+                    b.Property<long?>("CourtsId");
+
                     b.Property<long>("CreatedBy");
 
                     b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
+
+                    b.Property<bool>("IsBooked");
+
+                    b.Property<bool>("IsEmailed");
 
                     b.Property<long>("ModifiedBy");
 
@@ -37,9 +47,17 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<long?>("ProfileId");
+
+                    b.Property<long?>("UserId");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CourtsDurations");
+                    b.HasIndex("CourtsId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("CourtsBookings");
                 });
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtsDurations", b =>
@@ -48,15 +66,11 @@ namespace EasyBooking.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("CompanyId");
-
-                    b.Property<DateTime?>("CourtDuration");
-
                     b.Property<DateTime?>("CourtEndTime");
 
-                    b.Property<long?>("CourtId");
-
                     b.Property<DateTime?>("CourtStartTime");
+
+                    b.Property<long?>("CourtsId");
 
                     b.Property<long>("CreatedBy");
 
@@ -70,9 +84,13 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("SlotDuration");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CourtsBookings");
+                    b.HasIndex("CourtsId");
+
+                    b.ToTable("CourtsDurations");
                 });
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Courts", b =>
@@ -99,6 +117,10 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("SportsId");
+
                     b.ToTable("Courts");
                 });
 
@@ -123,6 +145,8 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Sports");
                 });
@@ -359,6 +383,42 @@ namespace EasyBooking.Presistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Profile","Portfolio");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtBookings", b =>
+                {
+                    b.HasOne("EasyBooking.Domain.Entities.Courts", "Courts")
+                        .WithMany("CourtBookings")
+                        .HasForeignKey("CourtsId");
+
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Profile", "Profile")
+                        .WithMany("CourtBookings")
+                        .HasForeignKey("ProfileId");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtsDurations", b =>
+                {
+                    b.HasOne("EasyBooking.Domain.Entities.Courts", "Courts")
+                        .WithMany("CourtsDurations")
+                        .HasForeignKey("CourtsId");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Courts", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
+                        .WithMany("Courts")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("EasyBooking.Domain.Entities.Sports", "Sports")
+                        .WithMany("Courts")
+                        .HasForeignKey("SportsId");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Sports", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
+                        .WithMany("Sports")
+                        .HasForeignKey("CompanyId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
