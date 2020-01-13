@@ -8,6 +8,5 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.
 	public class GetSportsQuery : IRequest<GetSportsResponse>
 	{
 		public long SportsId { get; set; }
-
 	}
 }

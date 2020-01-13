@@ -37,15 +37,16 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 						Name = x.Name,
 						LastUpdated = x.ModifiedOn,
 						CourtCount = x.Courts.Count()
-					});
+					}).ToList();
 
 				var totalRecord = result.Count();
-				var sportsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				//var sportsList = result;//await result.Page(1, 10).ToListAsync();
+				//var data = result.ToListAsync();
 				return new GetSportsListResponse()
 				{
 					Successful = true,
 					Message = "Sports are found successfully.",
-					Items = sportsList,
+					Items = result,
 					TotalCount = totalRecord,
 				};
 			}

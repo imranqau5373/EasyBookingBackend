@@ -29,7 +29,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts
 		{
 			try
 			{
-				var courtsObject = await _context.Courts.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+					var courtsObject = await _context.Courts.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 				if (courtsObject == null)
 				{
 					return new GetCourtsResponse()

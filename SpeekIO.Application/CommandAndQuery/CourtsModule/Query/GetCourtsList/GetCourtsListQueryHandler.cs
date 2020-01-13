@@ -35,16 +35,18 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 					{
 						Id = x.Id,
 						Name = x.Name,
+						Description = x.Description,
+						SportsId = x.SportsId,
 						LastUpdated = x.ModifiedOn
-					});
+					}).ToList();
 
 				var totalRecord = result.Count();
-				var courtsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				//var courtsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsListResponse()
 				{
 					Successful = true,
 					Message = "Sports are found successfully.",
-					Items = courtsList,
+					Items = result,
 					TotalCount = totalRecord,
 				};
 			}

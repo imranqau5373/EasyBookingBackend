@@ -4,6 +4,7 @@ using EasyBooking.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
+using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,10 +15,10 @@ namespace EasyBooking.Application.CommandAndQuery.ProfileModule.Command.DeletePr
 {
     public class DeleteProfileCommandHandler : IRequestHandler<DeleteProfileCommand, DeleteProfileResponse>
     {
-        private readonly ISpeekIODbContext _context;
+        private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public DeleteProfileCommandHandler(
-            ISpeekIODbContext context,
+            SpeekIOContext context,
             IMapper mapper)
         {
             _context = context;

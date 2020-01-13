@@ -28,5 +28,6 @@ namespace SpeekIO.Domain.Entities.Portfolio
 
         public ICollection<CourtBookings> CourtBookings { get; set; }
         public virtual long? CompanyId { get; set; }
+        public virtual long? UserId { get; set; }
     }
 }

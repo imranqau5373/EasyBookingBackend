@@ -13,5 +13,6 @@ namespace SpeekIO.Domain.ViewModels.Response
         public string AdminRole { get; set; }
 
         public string PictureUrl { get; set; }
+        public long? CompanyId { get; set; }
     }
 }

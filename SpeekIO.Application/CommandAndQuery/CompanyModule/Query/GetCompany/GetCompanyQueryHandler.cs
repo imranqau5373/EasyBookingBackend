@@ -29,7 +29,12 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 		{
 			try
 			{
-				var companyObject = await _context.Companies.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+				var companyObject = await _context.Companies
+					.Where(x => x.Id == request.Id)
+					.Include(s => s.Sports)
+					.Include(c=>c.Courts)
+					.FirstOrDefaultAsync();
+
 				if (companyObject == null)
 				{
 					return new GetCompanyResponse()

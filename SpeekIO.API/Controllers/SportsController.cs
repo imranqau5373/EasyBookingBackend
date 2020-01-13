@@ -1,6 +1,8 @@
-﻿using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+﻿using EasyBooking.Application.CommandAndQuery.CompanyModule.Command.DeleteSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsByCompanyList.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsCompany.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList.Dto;
 using MediatR;
@@ -78,20 +80,35 @@ namespace EasyBooking.API.Controllers
 				return StatusCode(500, e);
 			}
 		}
+		[HttpGet(nameof(GetSportsByCompanyId))]
+		public async Task<IActionResult> GetSportsByCompanyId(long companyId)
+		{
+			try
+			{
+				GetSportsByCompanyListQuery sportsQuery = new GetSportsByCompanyListQuery() { CompanyId = companyId };
+				var response = await _mediator.Send(sportsQuery);
 
-		//[HttpPost(nameof(DeleteSports))]
-		//public async Task<CommonResponse> DeleteSports(DeleteSportsCommand model)
-		//{
-		//	try
-		//	{
-		//		return await _mediator.Send(model);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		_logger.LogError(ex.Message, ex);
-		//		return new CommonResponse(false, "Something went wrong. Please try again.");
-		//	}
-		//}
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[HttpPost(nameof(DeleteSports))]
+		public async Task<CommonResponse> DeleteSports(DeleteSportsCommand model)
+		{
+			try
+			{
+				return await _mediator.Send(model);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex);
+				return new CommonResponse(false, "Something went wrong. Please try again.");
+			}
+		}
 
 		[HttpPost(nameof(AddSports))]
 		public async Task<IActionResult> AddSports(AddSportsCommand sprots)

@@ -18,6 +18,7 @@ using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.AddProfile.D
 ///using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.UpdateProfile.Dto;
 using EasyBooking.Application.CommandAndQuery.ProfileModule.Query.GetProfile.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
+using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
 using EasyBooking.Domain.Entities;
 using EasyBooking.Domain.Entities.Bookings;
@@ -87,9 +88,10 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 
 			//Update Sports Mappings.
-
-
-
+			CreateMap<UpdateSportsCommand, Sports>()
+				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
+				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 			// Delete Sports Mappings.
 
 			// Get Sports Mappings.
@@ -245,7 +247,7 @@ namespace SpeekIO.Application.Mapping
 			CreateMap<AddCourtsBookingCommand, CourtBookings>()
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtsId, m => m.MapFrom(t => t.CourtId))
 				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
 				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
 				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
@@ -256,7 +258,7 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtsId))
 				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
 				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
 				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
@@ -267,7 +269,7 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtsId, m => m.MapFrom(t => t.CourtId))
 				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
 				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
 				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
@@ -278,7 +280,7 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtsId))
 				.ForMember(t => t.UserId, m => m.MapFrom(t => t.UserId))
 				.ForMember(t => t.BookingStartTime, m => m.MapFrom(t => t.BookingStartTime))
 				.ForMember(t => t.BookingEndTime, m => m.MapFrom(t => t.BookingEndTime))
@@ -291,41 +293,41 @@ namespace SpeekIO.Application.Mapping
 			CreateMap<AddCourtsDurationCommand, CourtsDurations>()
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtsId, m => m.MapFrom(t => t.CourtId))
 				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
 				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
-				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
-				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+				.ForMember(t => t.SlotDuration, m => m.MapFrom(t => t.SlotDuration));
+				//.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 
 			CreateMap<CourtsDurations, AddCourtsDurationResponse>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtsId))
 				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
 				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
-				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
-				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+				.ForMember(t => t.SlotDuration, m => m.MapFrom(t => t.SlotDuration));
+			//.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 			//Update CourtBookings Mapping
 			CreateMap<UpdateCourtsDurationCommand, CourtsDurations>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtsId, m => m.MapFrom(t => t.CourtId))
 				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
 				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
-				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
-				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+				.ForMember(t => t.SlotDuration, m => m.MapFrom(t => t.SlotDuration));
+			//.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 			//Get CourtBookings Query
 			CreateMap<CourtsDurations, GetCourtsDurationResponse>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
-				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.CourtId, m => m.MapFrom(t => t.CourtsId))
 				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
 				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
-				.ForMember(t => t.CourtDuration, m => m.MapFrom(t => t.CourtDuration))
-				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
+				.ForMember(t => t.SlotDuration, m => m.MapFrom(t => t.SlotDuration));
+				//.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId));
 			//Get CourtBookings List Query
 			#endregion
 		}

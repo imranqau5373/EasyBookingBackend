@@ -11,6 +11,7 @@ using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
@@ -43,12 +44,16 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
         public async Task<SignInResponse> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
+            var companyId = await _context.Profiles
+                .Where(u => u.UserId == user.Id)
+                .Select(p => p.CompanyId).FirstAsync();
             if (null == user)
             {
                 return new SignInResponse()
                 {
                     Successful = false,
-                    Message = $"Unable to find account with email {request.Email}"
+                    Message = $"Unable to find account with email {request.Email}",
+                    CompanyId = companyId
                 };
             }
 

@@ -2,6 +2,7 @@
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.Dto.DeleteCourts;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsBySportCompany.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Command.AddSports.Dto;
 using EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports.Dto;
@@ -17,6 +18,8 @@ using System.Threading.Tasks;
 
 namespace EasyBooking.API.Controllers
 {
+	[Route("api/[controller]")]
+	[ApiController]
 	public class CourtsController : EasyBookingController
 	{
 		private readonly IMediator _mediator;
@@ -51,6 +54,22 @@ namespace EasyBooking.API.Controllers
 			try
 			{
 				GetCourtsQuery query = new GetCourtsQuery() { Id = id };
+				var response = await _mediator.Send(query);
+
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+		[HttpGet(nameof(GetCourtsByCompanySportsId))]
+		public async Task<IActionResult> GetCourtsByCompanySportsId(long companyId, long sportsId)
+		{
+			try
+			{
+				GetCourtsBySportCompanyListQuery query = new GetCourtsBySportCompanyListQuery() 
+				{  CompanyId = companyId , SportId = sportsId};
 				var response = await _mediator.Send(query);
 
 				return StatusCode(201, response);
@@ -104,7 +123,5 @@ namespace EasyBooking.API.Controllers
 		}
 
 		#endregion
-
-
 	}
 }

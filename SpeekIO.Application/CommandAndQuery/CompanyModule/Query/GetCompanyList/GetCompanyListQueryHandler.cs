@@ -41,15 +41,15 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 						LastUpdated = x.ModifiedOn,
 						SportsCount = x.Sports.Count,
 						CourtsCount = x.Courts.Count
-					});
+					}).ToList();
 
 				var totalRecord = result.Count();
-				var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCompanyListResponse()
 				{
 					Successful = true,
 					Message = "Companies are found successfully.",
-					Items = comapanyList,
+					Items = result,
 					TotalCount = totalRecord,
 				};
 			}
