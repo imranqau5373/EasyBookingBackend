@@ -37,6 +37,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 						Name = x.Name,
 						Description = x.Description,
 						SportsId = x.SportsId,
+						SportsName = x.Sports.Name,
 						LastUpdated = x.ModifiedOn
 					}).ToList();
 
