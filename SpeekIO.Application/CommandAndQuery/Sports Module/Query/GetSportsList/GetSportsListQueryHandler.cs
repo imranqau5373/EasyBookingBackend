@@ -36,7 +36,8 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 						Id = x.Id,
 						Name = x.Name,
 						LastUpdated = x.ModifiedOn,
-						CourtCount = x.Courts.Count()
+						CourtCount = x.Courts.Count(),
+						
 					}).ToList();
 
 				var totalRecord = result.Count();
