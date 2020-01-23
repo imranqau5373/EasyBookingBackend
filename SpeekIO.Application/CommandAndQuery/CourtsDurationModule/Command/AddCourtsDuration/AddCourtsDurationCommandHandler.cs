@@ -81,9 +81,9 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				data.CourtId = request.CourtId;
 				data.Name = request.Name;
 				data.Description = request.Description;
-				data.UserId = 0;
+				data.UserId = request.UserId;
 				data.IsBooked = false;
-				data.IsEmailed = false;
+				data.IsEmailed = false;				
 				data.BookingStartTime = startTime;
 				startTime = startTime.AddMinutes(slotDuration);
 				data.BookingEndTime = startTime;

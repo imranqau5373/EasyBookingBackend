@@ -46,15 +46,15 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						BookingEndTime = x.BookingEndTime,
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
-					});
+					}).ToList();
 
 				var totalRecord = result.Count();
-				var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsBookingListResponse()
 				{
 					Successful = true,
 					Message = "Bookings are found successfully.",
-					Items = comapanyList,
+					Items = result,
 					TotalCount = totalRecord,
 				};
 			}

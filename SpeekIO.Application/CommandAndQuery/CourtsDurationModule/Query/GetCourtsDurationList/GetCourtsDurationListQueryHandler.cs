@@ -44,7 +44,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						CompanyName = x.Courts.Company.Name,
 						CourtStartTime = x.CourtStartTime,
 						CourtEndTime = x.CourtEndTime,
-						SlotDuration = x.SlotDuration
+						SlotDuration = x.SlotDuration,
+						SportId = x.Courts.SportsId
 					}).ToList();
 
 				var totalRecord = result.Count();
