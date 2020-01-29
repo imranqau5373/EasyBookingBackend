@@ -13,7 +13,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 		public string Description { get; set; }
 
 		public long? CourtId { get; set; }
-
+		public long? SportId { get; set; }
 		public long? CompanyId { get; set; }
 
 		public DateTime? CourtStartTime { get; set; }

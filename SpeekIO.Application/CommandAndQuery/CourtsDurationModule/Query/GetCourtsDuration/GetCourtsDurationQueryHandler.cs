@@ -30,7 +30,20 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 		{
 			try
 			{
-				var durationObject = await _context.CourtsDurations.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+				var durationObject = await _context.CourtsDurations
+					.Where(x => x.Id == request.Id)
+					.Select(x => new GetCourtsDurationResponse
+					{
+						Id = x.Id,
+						Name = x.Name,
+						Description = x.Description,
+						CourtId = x.CourtsId,
+						CourtStartTime = x.CourtStartTime,
+						CourtEndTime = x.CourtEndTime,
+						SlotDuration = x.SlotDuration,
+						SportId = x.Courts.SportsId
+					})
+					.FirstOrDefaultAsync();
 				if (durationObject == null)
 				{
 					return new GetCourtsDurationResponse()

@@ -46,14 +46,13 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
             var user = await _userManager.FindByEmailAsync(request.Email);
             var companyId = await _context.Profiles
                 .Where(u => u.UserId == user.Id)
-                .Select(p => p.CompanyId).FirstAsync();
+                .Select(p => p.CompanyId ).FirstAsync();
             if (null == user)
             {
                 return new SignInResponse()
                 {
                     Successful = false,
-                    Message = $"Unable to find account with email {request.Email}",
-                    CompanyId = companyId
+                    Message = $"Unable to find account with email {request.Email}"
                 };
             }
 
@@ -95,7 +94,9 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
                 PictureUrl = !string.IsNullOrEmpty(profile.PictureUrl) ?
                              $"{_applicationConfiguration.BaseProfilePictureUrl}/{profile.PictureUrl }" :
                              _applicationConfiguration.ProfilePicturePlaceholderUrl,
-                AdminRole = "1"
+                AdminRole = "1",
+                CompanyId = companyId,
+                UserId = user.Id
             };
         }
 
