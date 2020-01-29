@@ -63,8 +63,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 		//calcute number of slots
 		public void calculateSlots(AddCourtsDurationCommand request)
 		{
-			var startTime = request.CourtStartTime.Hour;
-			var endTime = request.CourtEndTime.Hour;
+			var startTime = request.CourtStartTime.Value.Hour;
+			var endTime = request.CourtEndTime.Value.Hour;
 			var totalSlots = 0;
 			//chk for -tvie
 			totalSlots =((endTime - startTime)*60) / request.SlotDuration;
@@ -85,10 +85,12 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				data.IsBooked = false;
 				data.IsEmailed = false;
 				data.BookingStartTime = startTime;
-				startTime = startTime.AddMinutes(slotDuration);
-				data.BookingEndTime = startTime;
+				var endTime = startTime.Value.AddMinutes(slotDuration);
+				data.BookingEndTime = endTime;
+				
 				var model = _mapper.Map<CourtBookings>(data);
 				_context.CourtsBookings.AddAsync(model);
+				startTime = endTime;
 			}
 		}
 	}

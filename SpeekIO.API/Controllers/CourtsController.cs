@@ -63,13 +63,13 @@ namespace EasyBooking.API.Controllers
 				return StatusCode(500, e);
 			}
 		}
-		[HttpGet(nameof(GetCourtsByCompanySportsId))]
-		public async Task<IActionResult> GetCourtsByCompanySportsId(long companyId, long sportsId)
+		[HttpGet(nameof(GetCourtsBySportsId))]
+		public async Task<IActionResult> GetCourtsBySportsId(long sportsId)
 		{
 			try
 			{
 				GetCourtsBySportCompanyListQuery query = new GetCourtsBySportCompanyListQuery() 
-				{  CompanyId = companyId , SportId = sportsId};
+				{ SportId = sportsId};
 				var response = await _mediator.Send(query);
 
 				return StatusCode(201, response);

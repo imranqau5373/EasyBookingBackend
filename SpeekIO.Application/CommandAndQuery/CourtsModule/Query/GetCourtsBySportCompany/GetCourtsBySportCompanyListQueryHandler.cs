@@ -32,7 +32,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsBy
 			try
 			{
 				var result = _context.Courts
-					.Where(c=>c.CompanyId== request.CompanyId & c.SportsId == request.SportId)
+					.Where(c=>c.SportsId == request.SportId)
 					.Select(x => new GetCourtsBySportCompanyListDto
 					{
 						Id = x.Id,

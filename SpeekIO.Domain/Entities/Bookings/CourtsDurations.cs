@@ -20,6 +20,8 @@ namespace EasyBooking.Domain.Entities.Bookings
 
 		public DateTime? CourtEndTime { get; set; }
 
+		public DateTime? CourtDate { get; set; }
+
 		public virtual Courts Courts { get; set; }
 
 	}

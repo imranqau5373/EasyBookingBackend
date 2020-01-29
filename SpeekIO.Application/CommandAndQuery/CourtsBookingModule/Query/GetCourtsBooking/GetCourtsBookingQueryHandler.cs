@@ -29,6 +29,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 		{
 			try
 			{
+				//Need to add that check with company ID as well. just get list of those booking related to the companyId
 				var bookingObject = await _context.CourtsBookings.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 				if (bookingObject == null)
 				{
