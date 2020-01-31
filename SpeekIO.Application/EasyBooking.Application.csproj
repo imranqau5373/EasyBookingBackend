@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CommandAndQuery\BookingModule\Command\" />
     <Folder Include="CommandAndQuery\CourtsBookingModule\Command\DeleteCourtsBooking\Dto\" />
     <Folder Include="CommandAndQuery\CourtsBookingModule\Command\UpdateCourtsBooking\Dto\" />
     <Folder Include="CommandAndQuery\CourtsDurationModule\Command\AddCourtsDuration\" />

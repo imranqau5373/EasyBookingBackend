@@ -12,7 +12,10 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 		public long? CourtId { get; set; }
 		public long? UserId { get; set; }
 		public int SlotDuration { get; set; }
-		public DateTime CourtStartTime { get; set; }
-		public DateTime CourtEndTime { get; set; }
+		public DateTime? CourtStartTime { get; set; }
+		public DateTime? CourtEndTime { get; set; }
+
+		public DateTime? CourtDate { get; set; }
+
 	}
 }

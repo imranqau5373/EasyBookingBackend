@@ -47,9 +47,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
 					}).ToList();
-
-				var totalRecord = result.Count();
 				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				var totalRecord = result.Count();
 				return new GetCourtsBookingListResponse()
 				{
 					Successful = true,

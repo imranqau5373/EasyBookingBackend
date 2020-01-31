@@ -9,5 +9,6 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 {
     public class GetCourtsBookingListQuery : PagingQuery, IRequest<GetCourtsBookingListResponse>
     {
+
     }
 }
