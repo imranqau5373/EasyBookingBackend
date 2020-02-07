@@ -31,8 +31,8 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 			{
 				var companyObject = await _context.Companies
 					.Where(x => x.Id == request.Id)
-					.Include(s => s.Sports)
-					.Include(c=>c.Courts)
+					//.Include(s => s.Sports)
+					//.Include(c=>c.Courts)
 					.FirstOrDefaultAsync();
 
 				if (companyObject == null)
