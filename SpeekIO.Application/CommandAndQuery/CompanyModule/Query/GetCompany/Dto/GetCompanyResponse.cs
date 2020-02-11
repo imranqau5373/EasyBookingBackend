@@ -13,7 +13,7 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
         public string Url { get; set; }
 
         public string SubDomainPrefix { get; set; }
-        public ICollection<Sports> Sport { get; set; }
-        public ICollection<Courts> Court { get; set; }
+       // public ICollection<Sports> Sport { get; set; }
+       // public ICollection<Courts> Court { get; set; }
     }
 }

@@ -36,9 +36,10 @@ namespace EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompany
 						CourtId = x.CourtsId,
 						UserId = x.UserId,
 						UserName = "",
+						Style = "#EA157A",
 						Description = x.Description,
-						BookingStartTime = x.BookingStartTime,
-						BookingEndTime = x.BookingEndTime,
+						BookingStartTime = "2020-02-10 10:00",
+						BookingEndTime = "2020-20-10 11:00",
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
 					}).ToList();
