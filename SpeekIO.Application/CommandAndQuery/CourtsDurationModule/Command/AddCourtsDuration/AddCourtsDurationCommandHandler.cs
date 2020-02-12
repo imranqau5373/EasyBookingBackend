@@ -8,6 +8,7 @@ using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,6 +34,19 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 			try
 			{
 				var model = _mapper.Map<CourtsDurations>(request);
+				//chk if duration exists before
+				if (_context.CourtsDurations
+						.Any(x => x.CourtsId == request.CourtId &&
+						   ((request.CourtStartTime >= x.CourtStartTime && request.CourtStartTime <= x.CourtEndTime) ||
+						   (request.CourtEndTime >= x.CourtStartTime && request.CourtEndTime <= x.CourtEndTime))))
+				{
+					return new AddCourtsDurationResponse()
+					{
+						Successful = false,
+						Message = "Duration for this interval exists for this court."
+					};
+				}
+
 				var data = await _context.CourtsDurations.AddAsync(model);
 				calculateSlots(request);
 				await _context.SaveChangesAsync();
@@ -89,6 +103,20 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				data.BookingEndTime = endTime;
 				
 				var model = _mapper.Map<CourtBookings>(data);
+
+				var entity = _context.CourtsBookings
+					  .Where(x => x.CourtsId == request.CourtId && x.IsBooked == true || x.IsBooked == false &&
+						 ((data.BookingStartTime >= x.BookingStartTime && data.BookingStartTime <= x.BookingEndTime) ||
+						 (data.BookingEndTime >= x.BookingStartTime && data.BookingEndTime <= x.BookingEndTime))).FirstOrDefault();
+				if (entity != null)
+				{
+					
+				}
+				else
+				{
+					_context.CourtsBookings.AddAsync(model);
+				}
+
 				_context.CourtsBookings.AddAsync(model);
 				startTime = endTime;
 			}
