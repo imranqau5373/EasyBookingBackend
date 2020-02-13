@@ -111,14 +111,17 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.U
                 var model = _mapper.Map<CourtBookings>(data);
                 var entity = _context.CourtsBookings
                        .Where(x => x.CourtsId == request.CourtId && x.IsBooked == false &&
-                          ((data.BookingStartTime >= x.BookingStartTime && data.BookingStartTime <= x.BookingEndTime) ||
-                          (data.BookingEndTime >= x.BookingStartTime && data.BookingEndTime <= x.BookingEndTime))).FirstOrDefault();
+                          ((data.BookingStartTime > x.BookingStartTime && data.BookingStartTime < x.BookingEndTime) ||
+                          (data.BookingEndTime > x.BookingStartTime && data.BookingEndTime < x.BookingEndTime))).FirstOrDefault();
                 if (entity!=null)
                 {
-                   // _context.CourtsBookings.Remove(entity);
-                    _context.Entry(entity).State = EntityState.Detached;
-                    entity = _mapper.Map<CourtBookings>(data);
-                    _context.Entry(entity).State = EntityState.Modified;
+                    _context.CourtsBookings.Remove(entity);
+                     _context.SaveChanges();
+
+                    _context.CourtsBookings.AddAsync(model);
+                    //_context.Entry(entity).State = EntityState.Detached;
+                    //entity = _mapper.Map<CourtBookings>(data);
+                    //_context.Entry(entity).State = EntityState.Modified;
                 }
                 else
                 {

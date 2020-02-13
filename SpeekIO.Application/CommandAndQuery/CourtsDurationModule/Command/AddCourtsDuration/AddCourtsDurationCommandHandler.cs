@@ -37,8 +37,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				//chk if duration exists before
 				if (_context.CourtsDurations
 						.Any(x => x.CourtsId == request.CourtId &&
-						   ((request.CourtStartTime >= x.CourtStartTime && request.CourtStartTime <= x.CourtEndTime) ||
-						   (request.CourtEndTime >= x.CourtStartTime && request.CourtEndTime <= x.CourtEndTime))))
+						   ((request.CourtStartTime > x.CourtStartTime && request.CourtStartTime < x.CourtEndTime) ||
+						   (request.CourtEndTime > x.CourtStartTime && request.CourtEndTime < x.CourtEndTime))))
 				{
 					return new AddCourtsDurationResponse()
 					{
@@ -106,8 +106,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 
 				var entity = _context.CourtsBookings
 					  .Where(x => x.CourtsId == request.CourtId && x.IsBooked == true || x.IsBooked == false &&
-						 ((data.BookingStartTime >= x.BookingStartTime && data.BookingStartTime <= x.BookingEndTime) ||
-						 (data.BookingEndTime >= x.BookingStartTime && data.BookingEndTime <= x.BookingEndTime))).FirstOrDefault();
+						 ((data.BookingStartTime > x.BookingStartTime && data.BookingStartTime < x.BookingEndTime) ||
+						 (data.BookingEndTime > x.BookingStartTime && data.BookingEndTime < x.BookingEndTime))).FirstOrDefault();
 				if (entity != null)
 				{
 					
