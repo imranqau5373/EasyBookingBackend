@@ -29,6 +29,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<DateTime?>("BookingStartTime");
 
+                    b.Property<long?>("CourtsDurationsId");
+
                     b.Property<long?>("CourtsId");
 
                     b.Property<long>("CreatedBy");
@@ -36,6 +38,8 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Description");
+
+                    b.Property<long>("DurationId");
 
                     b.Property<bool>("IsBooked");
 
@@ -52,6 +56,8 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<long?>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourtsDurationsId");
 
                     b.HasIndex("CourtsId");
 
@@ -80,6 +86,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<long>("DurationStatusId");
+
                     b.Property<long>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedOn");
@@ -92,7 +100,30 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.HasIndex("CourtsId");
 
+                    b.HasIndex("DurationStatusId");
+
                     b.ToTable("CourtsDurations");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.DurationStatus", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CreatedBy");
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<long>("ModifiedBy");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DurationStatus");
                 });
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Courts", b =>
@@ -389,6 +420,10 @@ namespace EasyBooking.Presistence.Migrations
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Bookings.CourtBookings", b =>
                 {
+                    b.HasOne("EasyBooking.Domain.Entities.Bookings.CourtsDurations", "CourtsDurations")
+                        .WithMany("CourtBookings")
+                        .HasForeignKey("CourtsDurationsId");
+
                     b.HasOne("EasyBooking.Domain.Entities.Courts", "Courts")
                         .WithMany("CourtBookings")
                         .HasForeignKey("CourtsId");
@@ -403,6 +438,11 @@ namespace EasyBooking.Presistence.Migrations
                     b.HasOne("EasyBooking.Domain.Entities.Courts", "Courts")
                         .WithMany("CourtsDurations")
                         .HasForeignKey("CourtsId");
+
+                    b.HasOne("EasyBooking.Domain.Entities.Bookings.DurationStatus", "DurationStatus")
+                        .WithMany()
+                        .HasForeignKey("DurationStatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EasyBooking.Domain.Entities.Courts", b =>

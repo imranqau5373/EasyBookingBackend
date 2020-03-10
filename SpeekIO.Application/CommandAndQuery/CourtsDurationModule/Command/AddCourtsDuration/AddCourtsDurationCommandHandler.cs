@@ -34,8 +34,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 			{
 				var model = _mapper.Map<CourtsDurations>(request);
 				var data = await _context.CourtsDurations.AddAsync(model);
-				calculateSlots(request);
 				await _context.SaveChangesAsync();
+				
 				if (data.Entity.Id < 1)
 				{
 					return new AddCourtsDurationResponse()
@@ -46,6 +46,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				}
 				else
 				{
+					request.DurationId = data.Entity.Id;
+					await calculateSlots(request);
 					var courtsObject = _mapper.Map<AddCourtsDurationResponse>(data.Entity);
 					courtsObject.Successful = true;
 					return courtsObject;
@@ -61,17 +63,17 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 			}
 		}
 		//calcute number of slots
-		public void calculateSlots(AddCourtsDurationCommand request)
+		public async Task calculateSlots(AddCourtsDurationCommand request)
 		{
 			var startTime = request.CourtStartTime.Value.Hour;
 			var endTime = request.CourtEndTime.Value.Hour;
 			var totalSlots = 0;
 			//chk for -tvie
 			totalSlots =((endTime - startTime)*60) / request.SlotDuration;
-			addBooking(totalSlots,request);
+			await addBooking(totalSlots,request);
 		}
 		//add court bookings
-		public void addBooking(int slotsCount, AddCourtsDurationCommand request)
+		public async Task addBooking(int slotsCount, AddCourtsDurationCommand request)
 		{
 			AddCourtsBookingCommand data = new AddCourtsBookingCommand();
 			var startTime = request.CourtStartTime;
@@ -89,7 +91,9 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				data.BookingEndTime = endTime;
 				
 				var model = _mapper.Map<CourtBookings>(data);
-				_context.CourtsBookings.AddAsync(model);
+				model.DurationId = request.DurationId;
+				await _context.CourtsBookings.AddAsync(model);
+				await _context.SaveChangesAsync();
 				startTime = endTime;
 			}
 		}

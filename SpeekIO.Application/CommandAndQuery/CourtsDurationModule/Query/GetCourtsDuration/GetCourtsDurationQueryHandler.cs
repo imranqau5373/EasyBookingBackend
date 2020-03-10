@@ -41,7 +41,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 						CourtStartTime = x.CourtStartTime,
 						CourtEndTime = x.CourtEndTime,
 						SlotDuration = x.SlotDuration,
-						SportId = x.Courts.SportsId
+						SportId = x.Courts.SportsId,
+						DurationStatusId = x.DurationStatusId
 					})
 					.FirstOrDefaultAsync();
 				if (durationObject == null)

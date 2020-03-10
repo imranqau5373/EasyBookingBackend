@@ -14,6 +14,7 @@ using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.Updat
 using SpeekIO.Domain.ViewModels.Response;
 using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.DeleteCourtsDuration.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.GetCourtsDurationList.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.GetCourtsDurationSlots.Dto;
 
 namespace EasyBooking.API.Controllers
 {
@@ -52,6 +53,22 @@ namespace EasyBooking.API.Controllers
 			try
 			{
 				GetCourtsDurationQuery query = new GetCourtsDurationQuery() { Id = id };
+				var response = await _mediator.Send(query);
+
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		[HttpGet(nameof(GetDurationSlots))]
+		public async Task<IActionResult> GetDurationSlots(int id)
+		{
+			try
+			{
+				GetCourtsDurationSlotsQuery query = new GetCourtsDurationSlotsQuery() { Id = id };
 				var response = await _mediator.Send(query);
 
 				return StatusCode(201, response);

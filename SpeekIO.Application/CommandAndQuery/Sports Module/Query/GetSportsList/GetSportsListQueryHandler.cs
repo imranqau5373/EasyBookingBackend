@@ -31,11 +31,13 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 			try
 			{
 				var result = _context.Sports.Include(x => x.Courts)
+					 //.Join(_context.Profiles, s => s.CreatedBy, p => p.UserId, (s, p) => new { sports = s, Profile = p })
 					.Select(x => new GetSportsListDto
 					{
 						Id = x.Id,
 						Name = x.Name,
 						LastUpdated = x.ModifiedOn,
+						CreatedBy = "Super Admin",
 						CourtCount = x.Courts.Count(),
 						
 					}).ToList();

@@ -47,7 +47,6 @@
     <Folder Include="CommandAndQuery\CourtsDurationModule\Command\AddCourtsDuration\" />
     <Folder Include="CommandAndQuery\CourtsDurationModule\Command\DeleteCourtsDuration\" />
     <Folder Include="CommandAndQuery\CourtsDurationModule\Command\UpdateCourtsDuration\" />
-    <Folder Include="CommandAndQuery\CourtsDurationModule\Query\" />
     <Folder Include="CommandAndQuery\CourtsModule\Command\" />
     <Folder Include="CommandAndQuery\CourtsModule\Query\GetCourtsBySportCompany\Dto\" />
     <Folder Include="CommandAndQuery\ProfileModule\Command\AddProfile\" />
