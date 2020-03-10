@@ -11,23 +11,29 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompanyList
 {
-    public class GetCompanyListQueryHandler : IRequestHandler<GetCompanyListQuery, GetCompanyListResponse>
+    public class GetCompanyListQueryHandler : CommandHandlerBase<GetCompanyListQuery, GetCompanyListResponse>
 	{
 		private readonly ILogger<GetCompanyListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetCompanyListQueryHandler(ILogger<GetCompanyListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetCompanyListQueryHandler(
+			ApplicationUserManager userManager, 
+			IHttpContextAccessor httpContextAccessor, 
+			ILogger<GetCompanyListQueryHandler> logger, 
+			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public async Task<GetCompanyListResponse> Handle(GetCompanyListQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCompanyListResponse> Handle(GetCompanyListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

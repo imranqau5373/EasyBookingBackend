@@ -11,22 +11,24 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.DeleteCourtsDuration
 {
-    public class DeleteCourtsDurationCommandHandler : IRequestHandler<DeleteCourtsDurationCommand, DeleteCourtsDurationResponse>
+    public class DeleteCourtsDurationCommandHandler : CommandHandlerBase<DeleteCourtsDurationCommand, DeleteCourtsDurationResponse>
     {
         private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
-        public DeleteCourtsDurationCommandHandler(
+        public DeleteCourtsDurationCommandHandler(ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
             SpeekIOContext context,
-            IMapper mapper)
+            IMapper mapper) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<DeleteCourtsDurationResponse> Handle(DeleteCourtsDurationCommand request, CancellationToken cancellationToken)
+        public override async Task<DeleteCourtsDurationResponse> Handle(DeleteCourtsDurationCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -40,7 +42,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.D
                     };
                 }
                 _context.CourtsDurations.Remove(data);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(User);
 
                 return new DeleteCourtsDurationResponse()
                 {

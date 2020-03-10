@@ -8,29 +8,32 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts
 {
-    public class AddCourtsCommandHandler : IRequestHandler<AddCourtsCommand, AddCourtsResponse>
+    public class AddCourtsCommandHandler : CommandHandlerBase<AddCourtsCommand, AddCourtsResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public AddCourtsCommandHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<AddCourtsResponse> Handle(AddCourtsCommand request, CancellationToken cancellationToken)
+		public override async Task<AddCourtsResponse> Handle(AddCourtsCommand request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var courtsModel = _mapper.Map<Courts>(request);
 				var courtsData = await _context.Courts.AddAsync(courtsModel);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				if (courtsData.Entity.Id < 1)
 				{
 					return new AddCourtsResponse()

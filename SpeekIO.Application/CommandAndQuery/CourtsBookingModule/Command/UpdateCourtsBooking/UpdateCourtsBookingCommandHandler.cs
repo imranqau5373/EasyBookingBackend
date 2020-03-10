@@ -16,7 +16,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.UpdateCourtsBooking
 {
     public class UpdateCompanyCommandHandler : CommandHandlerBase<UpdateCourtsBookingCommand, UpdateCourtsBookingResponse>

@@ -11,30 +11,32 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.AddCourtsDuration
 {
-	public class AddCourtsBookingCommandHandler : IRequestHandler<AddCourtsDurationCommand, AddCourtsDurationResponse>
+	public class AddCourtsBookingCommandHandler : CommandHandlerBase<AddCourtsDurationCommand, AddCourtsDurationResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
-		public AddCourtsBookingCommandHandler(
-			SpeekIOContext context, IMapper mapper)
+		public AddCourtsBookingCommandHandler(ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<AddCourtsDurationResponse> Handle(AddCourtsDurationCommand request, CancellationToken cancellationToken)
+		public override async Task<AddCourtsDurationResponse> Handle(AddCourtsDurationCommand request, CancellationToken cancellationToken)
 		{
 			
 			try
 			{
 				var model = _mapper.Map<CourtsDurations>(request);
 				var data = await _context.CourtsDurations.AddAsync(model);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				
 				if (data.Entity.Id < 1)
 				{
@@ -47,7 +49,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				else
 				{
 					request.DurationId = data.Entity.Id;
-					await calculateSlots(request);
+					await calculateSlots(request,User);
 					var courtsObject = _mapper.Map<AddCourtsDurationResponse>(data.Entity);
 					courtsObject.Successful = true;
 					return courtsObject;
@@ -63,17 +65,17 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 			}
 		}
 		//calcute number of slots
-		public async Task calculateSlots(AddCourtsDurationCommand request)
+		public async Task calculateSlots(AddCourtsDurationCommand request,ApplicationUser User)
 		{
 			var startTime = request.CourtStartTime.Value.Hour;
 			var endTime = request.CourtEndTime.Value.Hour;
 			var totalSlots = 0;
 			//chk for -tvie
 			totalSlots =((endTime - startTime)*60) / request.SlotDuration;
-			await addBooking(totalSlots,request);
+			await addBooking(totalSlots,request,User);
 		}
 		//add court bookings
-		public async Task addBooking(int slotsCount, AddCourtsDurationCommand request)
+		public async Task addBooking(int slotsCount, AddCourtsDurationCommand request,ApplicationUser User)
 		{
 			AddCourtsBookingCommand data = new AddCourtsBookingCommand();
 			var startTime = request.CourtStartTime;
@@ -93,7 +95,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				var model = _mapper.Map<CourtBookings>(data);
 				model.DurationId = request.DurationId;
 				await _context.CourtsBookings.AddAsync(model);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				startTime = endTime;
 			}
 		}

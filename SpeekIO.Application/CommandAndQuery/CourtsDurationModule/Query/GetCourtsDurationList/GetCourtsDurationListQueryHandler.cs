@@ -13,23 +13,27 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBookingList
 {
-	public class GetCourtsDurationListQueryHandler : IRequestHandler<GetCourtsDurationListQuery, GetCourtsDurationListResponse>
+	public class GetCourtsDurationListQueryHandler : CommandHandlerBase<GetCourtsDurationListQuery, GetCourtsDurationListResponse>
 	{
 		private readonly ILogger<GetCourtsDurationListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetCourtsDurationListQueryHandler(ILogger<GetCourtsDurationListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetCourtsDurationListQueryHandler(ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			ILogger<GetCourtsDurationListQueryHandler> logger, 
+			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public async Task<GetCourtsDurationListResponse> Handle(GetCourtsDurationListQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCourtsDurationListResponse> Handle(GetCourtsDurationListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
