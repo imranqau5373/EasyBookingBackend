@@ -9,6 +9,11 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 {
 	public class GetSportsListQuery : PagingQuery, IRequest<GetSportsListResponse>
 	{
-
+		public string Name { get; set; }
+		public int? CourtCount { get; set; }
+		public DateSearchDto LastUpdated { get; set; }
+		public string CreatedBy { get; set; }
+		public string SortColumn { get; set; }
+		public string SortDirection { get; set; }
 	}
 }
