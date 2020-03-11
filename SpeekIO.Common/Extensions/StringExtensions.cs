@@ -77,5 +77,13 @@ namespace SpeekIO.Common.Extensions
         {
             return Convert.FromBase64String(input.Split(',')[1]);
         }
-    }
+		public static bool IsNullOrEmpty(this string input)
+		{
+			return string.IsNullOrEmpty(input);
+		}
+		public static string GetTypeFromBase64(this string input)
+		{
+			return input.Substring(5, 5);
+		}
+	}
 }

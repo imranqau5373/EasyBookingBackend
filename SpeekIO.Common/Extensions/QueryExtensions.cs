@@ -24,7 +24,16 @@ namespace SpeekIO.Common.Extensions
             return en.Skip((page - 1) * itemsPerPage).Take(itemsPerPage);
         }
 
-        public static IQueryable<T> OrderByField<T>(this IQueryable<T> source, string sortField, bool ascending)
+		public static IQueryable<T> WhereIf<T>(this IQueryable<T> query, bool condition, Expression<Func<T, bool>> predicate)
+		{
+			if (condition)
+			{
+				return query.Where(predicate);
+			}
+			return query;
+		}
+
+		public static IQueryable<T> OrderByField<T>(this IQueryable<T> source, string sortField, bool ascending)
         {
             var root = Expression.Parameter(typeof(T), "x");
             var member = sortField.Split('.').Aggregate((Expression)root, Expression.PropertyOrField);

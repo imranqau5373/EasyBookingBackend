@@ -44,16 +44,27 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 						CreatedBy = "Super Admin",
 						CourtCount = x.Courts.Count(),
 						
-					}).ToList();
-
+					}).WhereIf(!request.Name.IsNullOrEmpty(), x => x.Name.Contains(request.Name));
+				switch (request.SortColumn)
+				{
+					case "Name":
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+					default:
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+				}
 				var totalRecord = result.Count();
-				//var sportsList = result;//await result.Page(1, 10).ToListAsync();
-				//var data = result.ToListAsync();
+				var sportsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetSportsListResponse()
 				{
 					Successful = true,
 					Message = "Sports are found successfully.",
-					Items = result,
+					Items = sportsList,
 					TotalCount = totalRecord,
 				};
 			}
