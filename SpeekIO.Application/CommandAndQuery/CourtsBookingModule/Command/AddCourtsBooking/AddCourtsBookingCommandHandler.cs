@@ -11,29 +11,32 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.AddCourtsBooking
 {
-    public class AddCourtsBookingCommandHandler : IRequestHandler<AddCourtsBookingCommand, AddCourtsBookingResponse>
+    public class AddCourtsBookingCommandHandler : CommandHandlerBase<AddCourtsBookingCommand, AddCourtsBookingResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public AddCourtsBookingCommandHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<AddCourtsBookingResponse> Handle(AddCourtsBookingCommand request, CancellationToken cancellationToken)
+		public override async Task<AddCourtsBookingResponse> Handle(AddCourtsBookingCommand request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var bookingModel = _mapper.Map<CourtBookings>(request);
 				var bookingData = await _context.CourtsBookings.AddAsync(bookingModel);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				if (bookingData.Entity.Id < 1)
 				{
 					return new AddCourtsBookingResponse()

@@ -11,31 +11,35 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsByCompanyList
 {
-	public class GetSportsByCompanyListQueryHandler : IRequestHandler<GetSportsByCompanyListQuery, GetSportsByCompanyListResponse>
+	public class GetSportsByCompanyListQueryHandler : CommandHandlerBase<GetSportsByCompanyListQuery, GetSportsByCompanyListResponse>
 	{
 		private readonly ILogger<GetSportsByCompanyListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetSportsByCompanyListQueryHandler(ILogger<GetSportsByCompanyListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetSportsByCompanyListQueryHandler(
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor, 
+			ILogger<GetSportsByCompanyListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
-		public async Task<GetSportsByCompanyListResponse> Handle(GetSportsByCompanyListQuery request, CancellationToken cancellationToken)
+		public override async Task<GetSportsByCompanyListResponse> Handle(GetSportsByCompanyListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
-				var result = _context.Sports.Where(x=> x.CompanyId == request.CompanyId)
+				var result =await _context.Sports.Where(x=> x.CompanyId == request.CompanyId)
 					.Select(x => new GetSportsByCompanyListDto
 					{
 						Id = x.Id,
 						Name = x.Name
-					}).ToList();
+					}).ToListAsync();
 
 				var totalRecord = result.Count();
 				return new GetSportsByCompanyListResponse()

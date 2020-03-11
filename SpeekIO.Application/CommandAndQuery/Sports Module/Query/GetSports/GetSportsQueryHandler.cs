@@ -11,24 +11,28 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSports
 {
-	public class GetSportsQueryHandler : IRequestHandler<GetSportsQuery, GetSportsResponse>
+	public class GetSportsQueryHandler : CommandHandlerBase<GetSportsQuery, GetSportsResponse>
 	{
 
 		private readonly ILogger<GetSportsQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetSportsQueryHandler(ILogger<GetSportsQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetSportsQueryHandler(
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor, 
+			ILogger<GetSportsQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public async Task<GetSportsResponse> Handle(GetSportsQuery request, CancellationToken cancellationToken)
+		public override async Task<GetSportsResponse> Handle(GetSportsQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

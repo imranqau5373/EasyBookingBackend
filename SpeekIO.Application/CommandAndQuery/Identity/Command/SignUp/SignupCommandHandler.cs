@@ -112,7 +112,7 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
             company.Profiles.Add(profile);
             _context.Companies.Add(company);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(user);
 
             return profile;
         }

@@ -2,6 +2,9 @@
 using EasyBooking.Application.CommandAndQuery.CompanyModule.Command.AddCompany.Dto;
 using EasyBooking.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Presistence.Context;
 using System;
@@ -12,26 +15,27 @@ using System.Threading.Tasks;
 
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Command.AddCompany
 {
-    public class AddCompanyCommandHandler : IRequestHandler<AddCompanyCommand, AddCompanyResponse>
+    public class AddCompanyCommandHandler : CommandHandlerBase<AddCompanyCommand, AddCompanyResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public AddCompanyCommandHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<AddCompanyResponse> Handle(AddCompanyCommand request, CancellationToken cancellationToken)
+		public override async Task<AddCompanyResponse> Handle(AddCompanyCommand request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var companyModel = _mapper.Map<Company>(request);
 				var companyData = await _context.Companies.AddAsync(companyModel);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				if (companyData.Entity.Id < 1)
 				{
 					return new AddCompanyResponse()

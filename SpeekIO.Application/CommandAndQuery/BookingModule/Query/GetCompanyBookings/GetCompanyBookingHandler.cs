@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompanyBookings.Dto;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Presistence.Context;
 using System;
 using System.Collections.Generic;
@@ -11,19 +14,20 @@ using System.Threading.Tasks;
 
 namespace EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompanyBookings
 {
-	public class GetCompanyBookingHandler : IRequestHandler<GetCompanyBookingQuery, GetCompanyBookingResponse>
+	public class GetCompanyBookingHandler : CommandHandlerBase<GetCompanyBookingQuery, GetCompanyBookingResponse>
 	{
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public GetCompanyBookingHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<GetCompanyBookingResponse> Handle(GetCompanyBookingQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCompanyBookingResponse> Handle(GetCompanyBookingQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

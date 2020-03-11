@@ -10,23 +10,28 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList
 {
-    public class GetCourtsListQueryHandler : IRequestHandler<GetCourtsListQuery, GetCourtsListResponse>
+    public class GetCourtsListQueryHandler : CommandHandlerBase<GetCourtsListQuery, GetCourtsListResponse>
 	{
 		private readonly ILogger<GetCourtsListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetCourtsListQueryHandler(ILogger<GetCourtsListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetCourtsListQueryHandler(
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			ILogger<GetCourtsListQueryHandler> logger,
+			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public async Task<GetCourtsListResponse> Handle(GetCourtsListQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCourtsListResponse> Handle(GetCourtsListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

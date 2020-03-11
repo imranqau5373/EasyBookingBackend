@@ -9,23 +9,26 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 {
-    public class GetCompanyQueryHandler : IRequestHandler<GetCompanyQuery, GetCompanyResponse>
+    public class GetCompanyQueryHandler : CommandHandlerBase<GetCompanyQuery, GetCompanyResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public GetCompanyQueryHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<GetCompanyResponse> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCompanyResponse> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

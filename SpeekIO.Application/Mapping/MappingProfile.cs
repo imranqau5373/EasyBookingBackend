@@ -294,6 +294,7 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Description, m => m.MapFrom(t => t.Description))
 				.ForMember(t => t.CourtsId, m => m.MapFrom(t => t.CourtId))
+				.ForMember(t => t.DurationStatusId, m => m.MapFrom(t => t.DurationStatusId))
 				.ForMember(t => t.CourtStartTime, m => m.MapFrom(t => t.CourtStartTime))
 				.ForMember(t => t.CourtEndTime, m => m.MapFrom(t => t.CourtEndTime))
 				.ForMember(t => t.SlotDuration, m => m.MapFrom(t => t.SlotDuration));

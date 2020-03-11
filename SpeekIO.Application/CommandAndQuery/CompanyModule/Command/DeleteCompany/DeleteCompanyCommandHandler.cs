@@ -2,6 +2,9 @@
 using EasyBooking.Application.CommandAndQuery.CompanyModule.Command.DeleteCompany.Dto;
 using EasyBooking.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Interfaces;
 using SpeekIO.Presistence.Context;
@@ -13,19 +16,20 @@ using System.Threading.Tasks;
 
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Command.DeleteCompany
 {
-    public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, DeleteCompanyResponse>
+    public class DeleteCompanyCommandHandler : CommandHandlerBase<DeleteCompanyCommand, DeleteCompanyResponse>
     {
         private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public DeleteCompanyCommandHandler(
+            ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
             SpeekIOContext context,
-            IMapper mapper)
+            IMapper mapper) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<DeleteCompanyResponse> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
+        public override async Task<DeleteCompanyResponse> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -39,7 +43,7 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Command.DeleteCo
                     };
                 }
                 _context.Companies.Remove(company);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(User);
 
                 return new DeleteCompanyResponse()
                 {

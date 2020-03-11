@@ -10,22 +10,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.ProfileModule.Command.DeleteProfile
 {
-    public class DeleteProfileCommandHandler : IRequestHandler<DeleteProfileCommand, DeleteProfileResponse>
+    public class DeleteProfileCommandHandler : CommandHandlerBase<DeleteProfileCommand, DeleteProfileResponse>
     {
         private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public DeleteProfileCommandHandler(
+            ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
             SpeekIOContext context,
-            IMapper mapper)
+            IMapper mapper) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<DeleteProfileResponse> Handle(DeleteProfileCommand request, CancellationToken cancellationToken)
+        public override async Task<DeleteProfileResponse> Handle(DeleteProfileCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -39,7 +42,7 @@ namespace EasyBooking.Application.CommandAndQuery.ProfileModule.Command.DeletePr
                     };
                 }
                 _context.Profiles.Remove(profile);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(User);
 
                 return new DeleteProfileResponse()
                 {

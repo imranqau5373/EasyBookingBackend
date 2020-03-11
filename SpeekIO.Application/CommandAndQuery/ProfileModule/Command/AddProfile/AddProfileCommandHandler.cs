@@ -9,29 +9,32 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.ProfileModule.Command.AddProfile
 {
-	public class AddProfileCommandHandler : IRequestHandler<AddProfileCommand, AddProfileResponse>
+	public class AddProfileCommandHandler : CommandHandlerBase<AddProfileCommand, AddProfileResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public AddProfileCommandHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<AddProfileResponse> Handle(AddProfileCommand request, CancellationToken cancellationToken)
+		public override async Task<AddProfileResponse> Handle(AddProfileCommand request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var profileModel = _mapper.Map<SpeekIO.Domain.Entities.Portfolio.Profile>(request);
 				var profileData = await _context.Profiles.AddAsync(profileModel);
-				await _context.SaveChangesAsync();
+				await _context.SaveChangesAsync(User);
 				if (profileData.Entity.Id < 1)
 				{
 					return new AddProfileResponse()

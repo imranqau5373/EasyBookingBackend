@@ -11,23 +11,28 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsBySportCompany
 {
-    public class GetCourtsBySportCompanyQueryHandler : IRequestHandler<GetCourtsBySportCompanyListQuery, GetCourtsBySportCompanyListResponse>
+    public class GetCourtsBySportCompanyQueryHandler : CommandHandlerBase<GetCourtsBySportCompanyListQuery, GetCourtsBySportCompanyListResponse>
 	{
 		private readonly ILogger<GetCourtsBySportCompanyQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
-		public GetCourtsBySportCompanyQueryHandler(ILogger<GetCourtsBySportCompanyQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context)
+		public GetCourtsBySportCompanyQueryHandler(
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			ILogger<GetCourtsBySportCompanyQueryHandler> logger, 
+			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public async Task<GetCourtsBySportCompanyListResponse> Handle(GetCourtsBySportCompanyListQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCourtsBySportCompanyListResponse> Handle(GetCourtsBySportCompanyListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{

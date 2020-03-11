@@ -11,22 +11,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.DeleteCourts
 {
-    public class DeleteCourtsCommandHandler : IRequestHandler<DeleteCourtsCommand, DeleteCourtsResponse>
+    public class DeleteCourtsCommandHandler : CommandHandlerBase<DeleteCourtsCommand, DeleteCourtsResponse>
     {
         private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
         public DeleteCourtsCommandHandler(
+            ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
             SpeekIOContext context,
-            IMapper mapper)
+            IMapper mapper) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<DeleteCourtsResponse> Handle(DeleteCourtsCommand request, CancellationToken cancellationToken)
+        public override async Task<DeleteCourtsResponse> Handle(DeleteCourtsCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -40,7 +43,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.DeleteCou
                     };
                 }
                 _context.Courts.Remove(courts);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(User);
 
                 //var court = new Courts() { Id = request.Id };
                 //_context.Courts.Attach(court);

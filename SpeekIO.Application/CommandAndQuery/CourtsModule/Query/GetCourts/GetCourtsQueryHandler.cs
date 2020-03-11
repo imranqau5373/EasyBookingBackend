@@ -9,23 +9,26 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Commands;
+using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts
 {
-    public class GetCourtsQueryHandler : IRequestHandler<GetCourtsQuery, GetCourtsResponse>
+    public class GetCourtsQueryHandler : CommandHandlerBase<GetCourtsQuery, GetCourtsResponse>
 	{
 
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		public GetCourtsQueryHandler(
-			SpeekIOContext context, IMapper mapper)
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public async Task<GetCourtsResponse> Handle(GetCourtsQuery request, CancellationToken cancellationToken)
+		public override async Task<GetCourtsResponse> Handle(GetCourtsQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
