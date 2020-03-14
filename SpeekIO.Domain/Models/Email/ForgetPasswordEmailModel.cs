@@ -19,9 +19,9 @@ namespace SpeekIO.Domain.Models.Email
             _resetPasswordUrl = resetPasswordUrl;
         }
 
-        public string TemplateName => "ForgetPassword";
+		public string TemplateName { get; set; } = "ForgetPassword";
 
-        public IList<IEmailRecipientPayloadInfo> Prepare()
+		public IList<IEmailRecipientPayloadInfo> Prepare()
         {
             IList<IEmailRecipientPayloadInfo> list = new List<IEmailRecipientPayloadInfo>();
 

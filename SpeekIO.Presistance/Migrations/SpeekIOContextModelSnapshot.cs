@@ -43,6 +43,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<bool>("IsBooked");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<bool>("IsEmailed");
 
                     b.Property<long>("ModifiedBy");
@@ -88,6 +90,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<long>("DurationStatusId");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<long>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedOn");
@@ -115,6 +119,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<DateTime?>("CreatedOn");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<long>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedOn");
@@ -140,6 +146,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<long>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedOn");
@@ -157,6 +165,60 @@ namespace EasyBooking.Presistence.Migrations
                     b.ToTable("Courts");
                 });
 
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Identity.ApplicationRoleClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<long>("RoleId");
+
+                    b.Property<long?>("RoleId1");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("RoleId1");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Identity.ApplicationUserRole", b =>
+                {
+                    b.Property<long>("UserId");
+
+                    b.Property<long>("RoleId");
+
+                    b.Property<long>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<long?>("ModifiedBy");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<long?>("RoleId1");
+
+                    b.Property<long?>("UserId1");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
             modelBuilder.Entity("EasyBooking.Domain.Entities.Sports", b =>
                 {
                     b.Property<long>("Id")
@@ -171,6 +233,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<long>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedOn");
@@ -182,25 +246,6 @@ namespace EasyBooking.Presistence.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Sports");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType");
-
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<long>("RoleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
@@ -237,19 +282,6 @@ namespace EasyBooking.Presistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
-                {
-                    b.Property<long>("UserId");
-
-                    b.Property<long>("RoleId");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
@@ -330,6 +362,8 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<bool>("IsPublic");
+
                     b.Property<string>("Name")
                         .HasMaxLength(256);
 
@@ -355,6 +389,10 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<long>("CreatedBy");
 
                     b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<long>("ModifiedBy");
 
@@ -386,6 +424,10 @@ namespace EasyBooking.Presistence.Migrations
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName");
 
@@ -456,19 +498,44 @@ namespace EasyBooking.Presistence.Migrations
                         .HasForeignKey("SportsId");
                 });
 
-            modelBuilder.Entity("EasyBooking.Domain.Entities.Sports", b =>
-                {
-                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
-                        .WithMany("Sports")
-                        .HasForeignKey("CompanyId");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Identity.ApplicationRoleClaim", b =>
                 {
                     b.HasOne("SpeekIO.Domain.Entities.Identity.UserRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SpeekIO.Domain.Entities.Identity.UserRole", "Role")
+                        .WithMany("RoleClaims")
+                        .HasForeignKey("RoleId1");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Identity.ApplicationUserRole", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Identity.UserRole")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SpeekIO.Domain.Entities.Identity.UserRole", "Role")
+                        .WithMany("ApplicationUserRoles")
+                        .HasForeignKey("RoleId1");
+
+                    b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId1");
+                });
+
+            modelBuilder.Entity("EasyBooking.Domain.Entities.Sports", b =>
+                {
+                    b.HasOne("SpeekIO.Domain.Entities.Portfolio.Company", "Company")
+                        .WithMany("Sports")
+                        .HasForeignKey("CompanyId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
@@ -481,19 +548,6 @@ namespace EasyBooking.Presistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
-                    b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
-                {
-                    b.HasOne("SpeekIO.Domain.Entities.Identity.UserRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("SpeekIO.Domain.Entities.Identity.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")

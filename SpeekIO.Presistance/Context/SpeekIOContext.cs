@@ -1,5 +1,7 @@
 ﻿using EasyBooking.Domain.Entities;
 using EasyBooking.Domain.Entities.Bookings;
+using EasyBooking.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Domain.Entities;
@@ -15,9 +17,10 @@ namespace SpeekIO.Presistence.Context
 	/// <summary>
 	/// SpeekIO Database Context
 	/// </summary>
-	public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long>
+	public class SpeekIOContext : IdentityDbContext<ApplicationUser, UserRole, long, IdentityUserClaim<long>, ApplicationUserRole, IdentityUserLogin<long>, ApplicationRoleClaim, IdentityUserToken<long>>
     {
-        public SpeekIOContext(DbContextOptions options) : base(options)
+		
+		public SpeekIOContext(DbContextOptions options) : base(options)
         {
         }
         // Entities Set
@@ -31,6 +34,11 @@ namespace SpeekIO.Presistence.Context
 		public DbSet<CourtBookings> CourtsBookings { get; set; }
 
 		public DbSet<CourtsDurations> CourtsDurations { get; set; }
+
+		public virtual DbSet<UserRole> UserRole { get; set; }
+		public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
+		public virtual DbSet<ApplicationUserRole> ApplicationUserRole { get; set; }
+		public virtual DbSet<ApplicationRoleClaim> ApplicationRoleClaim { get; set; }
 
 		/// <summary>
 		/// Apply Configurations to the model here

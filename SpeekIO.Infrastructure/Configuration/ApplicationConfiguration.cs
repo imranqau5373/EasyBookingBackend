@@ -26,8 +26,11 @@ namespace SpeekIO.Infrastructure.Configuration
         public int TokenExpiry => configuration.GetSection("Identity")?.GetValue<int>("TokenExpiry") ?? 0;
 
         public string Domain => configuration.GetValue<string>("Domain") ?? "localhost:4200";
-
-        public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
+		public string EmailVerificationEndPoint => configuration.GetSection("URLs")?.GetValue<string>("EmailVerificationEndPoint");
+		public string ClientAppUrl => configuration.GetSection("URLs")?.GetValue<string>("ClientAppUrl");
+		public string EmailVerificationPageUrl => configuration.GetSection("URLs")?.GetValue<string>("EmailVerificationPageUrl");
+		public string APIUrl => configuration.GetSection("URLs")?.GetValue<string>("APIUrl");
+		public string AdminEmail => configuration.GetSection("Emails")?.GetValue<string>("AdminEmail");
 
         public string ProfilePicturePlaceholderUrl => configuration.GetSection("DefaultSettings")?.GetValue<string>("ProfilePicturePlaceholderUrl");
 
@@ -35,7 +38,8 @@ namespace SpeekIO.Infrastructure.Configuration
 
         public string DefaultFileExtension => configuration.GetSection("DefaultSettings").GetValue<string>("DefaultFileExtension");
 
-        public string StorageBlobUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl");
+		public string DefaultPassword => configuration.GetSection("DefaultSettings")?.GetValue<string>("DefaultPassword");
+		public string StorageBlobUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl");
         public string AzureUrlBinding => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding");
         public string BaseProfilePictureUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding")
             + configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl")

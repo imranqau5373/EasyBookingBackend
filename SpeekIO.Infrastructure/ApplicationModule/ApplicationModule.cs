@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EasyBooking.Application.Modules;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ using SpeekIO.Presistence.Extensions;
 using SpeekIO.UploadService.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,10 +58,10 @@ namespace SpeekIO.Infrastructure.ApplicationModule
                 options.Password.RequiredUniqueChars = 0;
             });
 
-            CreateRolesIfNotExists(services);
+			Task.Run(() => CreateRolesIfNotExists(services));
 
-            // configure automapper
-            var applicationProfile = Application.Modules.ApplicationModule.GetMappingProfile(services);
+			// configure automapper
+			var applicationProfile = Application.Modules.ApplicationModule.GetMappingProfile(services);
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -73,28 +75,58 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             return services;
         }
 
-        private static async Task CreateRolesIfNotExists(IServiceCollection services)
-        {
-            var roleManager = services.BuildServiceProvider().GetService<ApplicationRoleManager>();
+		private static async Task CreateRolesIfNotExists(IServiceCollection services)
+		{
+			var roleManager = services.BuildServiceProvider().GetService<ApplicationRoleManager>();
 
-            var roles = new List<string>();
+			var roles = new List<UserRole>();
+			roles.Add(new UserRole { Name = "Admin", IsPublic = false });
+			roles.Add(new UserRole { Name = "Super Admin", IsPublic = true });
+			roles.Add(new UserRole { Name = "Booking User", IsPublic = true });
 
-            roles.Add(UserRoles.SystemAdmin.ToString());
-            roles.Add(UserRoles.Admin.ToString());
-            roles.Add(UserRoles.HRManager.ToString());
-            roles.Add(UserRoles.User.ToString());
-            roles.Add(UserRoles.GuestUser.ToString());
+			foreach (var role in roles)
+			{
+				if (!await roleManager.RoleExistsAsync(role.Name))
+				{
+					await roleManager.CreateAsync(role);
+					//default user permissions
+					if (role.Name == "Admin")
+					{
+						await AddAdminPermissions(role, roleManager);
+					}
+					else if (role.Name == "Super Admin")
+					{
+						await AddSuperAdminPermissions(role, roleManager);
+					}
+					else if (role.Name == "Booking User")
+					{
+						await AddBookingUserPermissions(role, roleManager);
+					}
+				}
+			}
+			//var adminRole = await roleManager.FindByNameAsync("Admin");
+			//await AddAdminPermissions(adminRole, roleManager);
 
-            foreach (var role in roles)
-            {
-                if (!await roleManager.RoleExistsAsync(role))
-                {
-                    var identityRole = new UserRole();
-                    identityRole.Name = role;
+		}
 
-                    await roleManager.CreateAsync(identityRole);
-                }
-            }
-        }
-    }
+		private static async Task AddAdminPermissions(UserRole role, ApplicationRoleManager roleManager)
+		{
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.AdminDashboard.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsBookingManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsDurationManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.AdminUsers.View));
+		}
+		private static async Task AddSuperAdminPermissions(UserRole role, ApplicationRoleManager roleManager)
+		{
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SuperAdminDashboard.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SportsManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SuperAdminUsers.View));
+		}
+		private static async Task AddBookingUserPermissions(UserRole role, ApplicationRoleManager roleManager)
+		{
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.BookingUserDashboard.View));
+		}
+
+	}
 }
