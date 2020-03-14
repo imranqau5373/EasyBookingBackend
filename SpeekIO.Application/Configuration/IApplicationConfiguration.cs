@@ -16,11 +16,18 @@ namespace SpeekIO.Application.Configuration
         int TokenExpiry { get; }
         string Domain { get; }
         string AdminEmail { get; }
-        string ProfilePicturePlaceholderUrl { get; }
+
+		string EmailVerificationPageUrl { get; }
+		string APIUrl { get; }
+		string EmailVerificationEndPoint { get; }
+		string ClientAppUrl { get; }
+		string ProfilePicturePlaceholderUrl { get; }
         string UserAccountsContainerName { get; }
         string DefaultFileExtension { get; }
         string StorageBlobUrl { get; }
         string AzureUrlBinding { get; }
         string BaseProfilePictureUrl { get; }
-    }
+
+		string DefaultPassword { get; }
+	}
 }

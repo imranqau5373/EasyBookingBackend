@@ -21,10 +21,10 @@ namespace SpeekIO.Domain.Models.Email
         public ConferenceSessionInvitationEmailModel()
         {
         }
-        public string TemplateName => "ConferenceSessionInvitation";
+		public string TemplateName { get; set; } = "ConferenceSessionInvitation";
 
 
-        public IList<IEmailRecipientPayloadInfo> Prepare()
+		public IList<IEmailRecipientPayloadInfo> Prepare()
         {
             var response = new List<IEmailRecipientPayloadInfo>();
             foreach (var email in Emails)

@@ -80,7 +80,7 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 
                 await _userManager.UpdateAsync(user);
 
-                await SendActivationEmail(user);
+                //await SendActivationEmail(user);
 
                 return new SignupResponse()
                 {
@@ -129,12 +129,12 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
         private async Task AssignRoles(ApplicationUser user)
         {
             var roles = new List<string>();
+			roles.Add("Super Admin");
+			//roles.Add(UserRoles.Admin.ToString());
+			//roles.Add(UserRoles.HRManager.ToString());
+			//roles.Add(UserRoles.User.ToString());
 
-            roles.Add(UserRoles.Admin.ToString());
-            roles.Add(UserRoles.HRManager.ToString());
-            roles.Add(UserRoles.User.ToString());
-
-            await _userManager.AddToRolesAsync(user, roles);
+			await _userManager.AddToRolesAsync(user, roles);
         }
 
         private SignupResponse CreateAlreadyExistsResponse()

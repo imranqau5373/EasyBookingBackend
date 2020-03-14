@@ -14,6 +14,7 @@ using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.Dto.DeleteCou
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
 using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.AddProfile.Dto;
 ///using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.UpdateProfile.Dto;
 using EasyBooking.Application.CommandAndQuery.ProfileModule.Query.GetProfile.Dto;
@@ -241,6 +242,8 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.CompanyId, m => m.MapFrom(t => t.CompanyId))
 				.ForMember(t => t.OptInNewsletter, m => m.MapFrom(t => t.OptInNewsletter));
 
+			CreateMap<AddUserCommand, ApplicationUser>().ReverseMap();
+			CreateMap<AddUserCommand, Profile>().ReverseMap();
 			#endregion
 			#region Booking Mappings
 			//Create CourtsBooking Mapping

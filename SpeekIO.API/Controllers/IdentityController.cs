@@ -24,6 +24,9 @@ using SpeekIO.Domain.ViewModels.Response;
 using SpeekIO.Application.Commands.Identity.UpdateProfile;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
 
 namespace SpeekIO.API.Controllers
 {
@@ -42,8 +45,8 @@ namespace SpeekIO.API.Controllers
         }
 
 
-        // POST api/Identity/SignUp
-        [AllowAnonymous]
+		// POST api/Identity/SignUp
+		[AllowAnonymous]
         [HttpPost(nameof(SignUp))]
         public async Task<IActionResult> SignUp([FromBody] SignupCommand signupCommand)
         {
@@ -59,8 +62,51 @@ namespace SpeekIO.API.Controllers
             }
         }
 
-        // POST api/Identity/Activate
-        [AllowAnonymous]
+		[HttpPost(nameof(GetUserRoles))]
+		public async Task<CommonResponse> GetUserRoles()
+		{
+			try
+			{
+				return await _mediator.Send(new GetUserRolesQuery());
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex.StackTrace);
+				return new CommonResponse(false, "Something went wrong. Please try again");
+			}
+		}
+
+		[HttpPost(nameof(GetUserList))]
+		public async Task<CommonResponse> GetUserList(GetUserListQuery model)
+		{
+			try
+			{
+				return await _mediator.Send(model);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex.StackTrace);
+				return new CommonResponse(false, "Something went wrong. Please try again");
+			}
+		}
+
+		[HttpPost(nameof(AddUser))]
+		//[Authorize(Permissions.Users.View)]
+		public async Task<CommonResponse> AddUser(AddUserCommand model)
+		{
+			try
+			{
+				return await _mediator.Send(model);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex.StackTrace);
+				return new CommonResponse(false, "Something went wrong. Please try again");
+			}
+		}
+
+		// POST api/Identity/Activate
+		[AllowAnonymous]
         [HttpPost(nameof(Activate))]
         public async Task<IActionResult> Activate([FromBody] AccountActivationCommand activationCommand)
         {

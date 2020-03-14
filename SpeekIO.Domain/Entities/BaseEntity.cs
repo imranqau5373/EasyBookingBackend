@@ -21,5 +21,8 @@ namespace SpeekIO.Domain.Entities
         public long CreatedBy { get; set; }
         public long ModifiedBy { get; set; }
 
-    }
+
+		public bool IsDeleted { get; set; }
+
+	}
 }

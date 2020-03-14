@@ -22,7 +22,7 @@ namespace SpeekIO.Domain.Models.Email
 			_recipient = recipient;
 		}
 
-		public string TemplateName => "ContactUs";
+		public string TemplateName { get; set; } = "ContactUs";
 
 		public IList<IEmailRecipientPayloadInfo> Prepare()
 		{

@@ -12,6 +12,8 @@ using EasyBooking.Application.CommandAndQuery.ProfileModule.Query.GetProfile.Dto
 using SpeekIO.Domain.ViewModels.Response;
 using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.DeleteProfile.Dto;
 using SpeekIO.Application.Commands.Identity.UpdateProfile;
+using Microsoft.AspNetCore.Authorization;
+using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
 
 namespace EasyBooking.API.Controllers
 {
@@ -101,6 +103,25 @@ namespace EasyBooking.API.Controllers
 				return StatusCode(500, e);
 			}
 		}
+		#endregion
+
+		#region User Roles and Permissions
+
+		[HttpPost(nameof(AddUser))]
+		//[Authorize(Permissions.Users.View)]
+		public async Task<CommonResponse> AddUser(AddUserCommand model)
+		{
+			try
+			{
+				return await _mediator.Send(model);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex.StackTrace);
+				return new CommonResponse(false, "Something went wrong. Please try again");
+			}
+		}
+
 		#endregion
 	}
 }

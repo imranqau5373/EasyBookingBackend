@@ -9,6 +9,6 @@ namespace SpeekIO.Domain.Intefaces.Email
     {
         IList<IEmailRecipientPayloadInfo> Prepare();
 
-        string TemplateName { get; }
+        string TemplateName { get; set; }
     }
 }

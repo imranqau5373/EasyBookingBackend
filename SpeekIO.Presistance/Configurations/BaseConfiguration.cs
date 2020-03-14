@@ -19,7 +19,10 @@ namespace SpeekIO.Presistence.Configurations
         {
             MapSchema(builder);
             MapPrimaryKey(builder);
-        }
+			builder.Property(e => e.IsDeleted).HasDefaultValue(false);
+
+			builder.HasQueryFilter(t => t.IsDeleted == false);
+		}
 
         protected virtual void MapSchema(EntityTypeBuilder<T> builder)
         {

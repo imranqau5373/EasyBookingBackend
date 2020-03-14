@@ -17,9 +17,9 @@ namespace SpeekIO.Domain.Models.Email
             this._recipient = recipient;
         }
 
-        public string TemplateName => "AccountActivation";
+		public string TemplateName { get; set; } = "AccountActivation";
 
-        public IList<IEmailRecipientPayloadInfo> Prepare()
+		public IList<IEmailRecipientPayloadInfo> Prepare()
         {
             IList<IEmailRecipientPayloadInfo> list = new List<IEmailRecipientPayloadInfo>();
 
