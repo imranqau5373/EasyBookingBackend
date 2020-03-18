@@ -59,7 +59,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 						break;
 				}
 
-				var totalRecord = result.Count();
+				var totalRecord = await result.CountAsync();
 				var courtsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsListResponse()
 				{
