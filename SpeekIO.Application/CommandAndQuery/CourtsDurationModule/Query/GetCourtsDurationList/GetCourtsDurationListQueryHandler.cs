@@ -51,15 +51,28 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						SlotDuration = x.SlotDuration,
 						SportId = x.Courts.SportsId,
 						DurationStatusId = x.DurationStatusId
-					}).ToList();
+					}).WhereIf(!request.Name.IsNullOrEmpty(), x => x.Name.Contains(request.Name));
+				switch (request.SortColumn)
+				{
+					case "Name":
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+					default:
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+				}
 
 				var totalRecord = result.Count();
-				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsDurationListResponse()
 				{
 					Successful = true,
 					Message = "Courts Durations are found successfully.",
-					Items = result,
+					Items = comapanyList,
 					TotalCount = totalRecord,
 				};
 			}

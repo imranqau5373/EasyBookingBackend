@@ -13,9 +13,8 @@ namespace SpeekIO.Presistence.Extensions
         public static IServiceCollection ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
         {
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<SpeekIOContext>(builder =>
-                                                  builder.UseSqlServer(defaultConnectionString));
-
+            //services.AddDbContext<SpeekIOContext>(builder => builder.UseSqlServer(defaultConnectionString),builder.UseRowNumberForPaging());
+            services.AddDbContext<SpeekIOContext>(options => options.UseSqlServer(defaultConnectionString, builder => builder.UseRowNumberForPaging()));
             //services.AddScoped<ISpeekIODbContext>(provider => provider.GetService<SpeekIOContext>());
 
             // migrate database changes
