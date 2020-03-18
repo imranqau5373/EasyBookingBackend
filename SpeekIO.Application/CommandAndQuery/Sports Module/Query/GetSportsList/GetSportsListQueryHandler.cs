@@ -58,7 +58,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 						}
 						break;
 				}
-				var totalRecord = result.Count();
+				var totalRecord = await result.CountAsync();
 				var sportsList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetSportsListResponse()
 				{

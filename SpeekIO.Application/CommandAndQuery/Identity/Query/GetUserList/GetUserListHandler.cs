@@ -40,8 +40,8 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList
 				 .WhereIf(!request.Cell.IsNullOrEmpty(), x => x.profile.Phone.Contains(request.Cell))
 				 .WhereIf(request.StatusIds != null && request.StatusIds.Length == 1 && request.StatusIds[0] == UserAccountStatus.Active, x => x.profile.User.EmailConfirmed)
 				 .WhereIf(request.StatusIds != null && request.StatusIds.Length == 1 && request.StatusIds[0] == UserAccountStatus.InActive, x => !x.profile.User.EmailConfirmed);
-				//.Join(_context.UserRole, ur=>ur.userRoleMapping.)
-				//.Where(t => t.profile.CompanyId == _userSession.CompanyId);
+			//.Join(_context.UserRole, ur=>ur.userRoleMapping.)
+			//.Where(t => t.profile.CompanyId == _userSession.CompanyId);
 			switch (request.SortColumn)
 			{
 				case "Name":
