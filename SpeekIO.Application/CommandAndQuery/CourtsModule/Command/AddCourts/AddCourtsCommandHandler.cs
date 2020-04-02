@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using EasyBooking.Common.Session;
+
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts
 {
     public class AddCourtsCommandHandler : CommandHandlerBase<AddCourtsCommand, AddCourtsResponse>
@@ -19,12 +21,15 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts
 
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
+		private readonly IUserSession _userSession;
 		public AddCourtsCommandHandler(
 			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
+			IUserSession userSession,
 			SpeekIOContext context, IMapper mapper) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
+			_userSession = userSession;
 		}
 
 		public override async Task<AddCourtsResponse> Handle(AddCourtsCommand request, CancellationToken cancellationToken)
@@ -32,6 +37,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.AddCourts
 			try
 			{
 				var courtsModel = _mapper.Map<Courts>(request);
+				courtsModel.CompanyId = _userSession.CompanyId;
 				var courtsData = await _context.Courts.AddAsync(courtsModel);
 				await _context.SaveChangesAsync(User);
 				if (courtsData.Entity.Id < 1)

@@ -3,6 +3,7 @@ using SpeekIO.Domain.Entities.Portfolio;
 using SpeekIO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EasyBooking.Domain.Entities.Bookings
@@ -16,6 +17,7 @@ namespace EasyBooking.Domain.Entities.Bookings
 		public bool IsBooked { get; set; }
 		public bool IsEmailed { get; set; }
 
+		[ForeignKey("DurationId")]
 		public long DurationId { get; set; }
 
 		public virtual CourtsDurations CourtsDurations { get; set; }

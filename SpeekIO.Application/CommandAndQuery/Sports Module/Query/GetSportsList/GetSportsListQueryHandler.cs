@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using EasyBooking.Common.Session;
+
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsList
 {
 	public class GetSportsListQueryHandler : CommandHandlerBase<GetSportsListQuery, GetSportsListResponse>
@@ -21,21 +23,23 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Query.GetSportsL
 		private readonly ILogger<GetSportsListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
-
+		private readonly IUserSession _userSession;
 		public GetSportsListQueryHandler(
-			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor, 
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor, IUserSession userSession,
 			ILogger<GetSportsListQueryHandler> logger, AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
+			_userSession = userSession;
 		}
 		public override async Task<GetSportsListResponse> Handle(GetSportsListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var result = _context.Sports.Include(x => x.Courts)
-					 //.Join(_context.Profiles, s => s.CreatedBy, p => p.UserId, (s, p) => new { sports = s, Profile = p })
+										 //.Join(_context.Profiles, s => s.CreatedBy, p => p.UserId, (s, p) => new { sports = s, Profile = p })
+					.Where(x => x.IsDeleted != true && x.CompanyId == _userSession.CompanyId)
 					.Select(x => new GetSportsListDto
 					{
 						Id = x.Id,

@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using EasyBooking.Common.Session;
+
 namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList
 {
     public class GetCourtsListQueryHandler : CommandHandlerBase<GetCourtsListQuery, GetCourtsListResponse>
@@ -20,15 +22,17 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 		private readonly ILogger<GetCourtsListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
-
+		private readonly IUserSession _userSession;
 		public GetCourtsListQueryHandler(
 			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
 			ILogger<GetCourtsListQueryHandler> logger,
+			 IUserSession userSession,
 			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
+			_userSession = userSession;
 		}
 
 		public override async Task<GetCourtsListResponse> Handle(GetCourtsListQuery request, CancellationToken cancellationToken)
@@ -36,6 +40,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 			try
 			{
 				var result = _context.Courts
+					.Where(x => x.IsDeleted != true && x.CompanyId == _userSession.CompanyId)
 					.Select(x => new GetCourtsListDto
 					{
 						Id = x.Id,
@@ -43,6 +48,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsLi
 						Description = x.Description,
 						SportsId = x.SportsId,
 						SportsName = x.Sports.Name,
+						CreatedBy = "Super Admin",
 						LastUpdated = x.ModifiedOn
 					}).WhereIf(!request.Name.IsNullOrEmpty(), x => x.Name.Contains(request.Name));
 				switch (request.SortColumn)

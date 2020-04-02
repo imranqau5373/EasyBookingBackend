@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using EasyBooking.Common.Session;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SpeekIO.Common.HttpClient;
 using System;
@@ -12,8 +13,8 @@ namespace SpeekIO.Common.Extensions
         public static IServiceCollection ConfigureCommonServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<ISpeekIOHttpClient, SpeekIOHttpClient>();
-
-            return services;
+			services.AddScoped<IUserSession, UserSession>();
+			return services;
         }
     }
 }

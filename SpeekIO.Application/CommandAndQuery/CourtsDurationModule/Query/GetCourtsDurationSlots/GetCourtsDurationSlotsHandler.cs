@@ -30,25 +30,26 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 		{
 			try
 			{
-				var result = await _context.CourtsBookings.Include(x => x.CourtsDurations).Where(x => x.DurationId == request.Id)
-					.Select(x => new GetCourtsDurationSlotsDto
-					{
-						Id = x.Id,
-						Name = x.Name,
-						Description = x.Description,
-						CourtsId = x.CourtsId,
-						BookingStartTime = x.BookingStartTime,
-						BookingEndTime = x.BookingEndTime,
-						IsBooked = x.IsBooked,
-						IsEmailed = x.IsEmailed,
-						DurationStatusId = x.CourtsDurations.DurationStatusId
-					}).ToListAsync();
-				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+				var result = from booking in _context.CourtsBookings
+							 join duration in _context.CourtsDurations
+							 on booking.DurationId equals duration.Id
+							 where booking.DurationId == request.Id
+							 select new GetCourtsDurationSlotsDto
+							 {
+								 Id = booking.Id,
+								 Name = booking.Name,
+								 Description = booking.Description,
+								 BookingStartTime = booking.BookingStartTime,
+								 BookingEndTime = booking.BookingEndTime,
+								 IsBooked = booking.IsBooked,
+								 IsEmailed = booking.IsEmailed,
+								 SlotDuration = duration.SlotDuration
+							 };
 				return new GetCourtsDurationSlotsResponse()
 				{
 					Successful = true,
 					Message = "Courts Durations are found successfully.",
-					slotsList = result
+					slotsList = await result.ToListAsync()
 				};
 			}
 			catch (Exception ex)

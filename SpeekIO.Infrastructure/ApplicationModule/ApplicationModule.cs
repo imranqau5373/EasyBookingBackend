@@ -122,6 +122,8 @@ namespace SpeekIO.Infrastructure.ApplicationModule
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SportsManager.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsManager.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SuperAdminUsers.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsBookingManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsDurationManager.View));
 		}
 		private static async Task AddBookingUserPermissions(UserRole role, ApplicationRoleManager roleManager)
 		{

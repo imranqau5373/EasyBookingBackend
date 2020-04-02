@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using EasyBooking.Common.Session;
+
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBookingList
 {
 	public class GetCourtsDurationListQueryHandler : CommandHandlerBase<GetCourtsDurationListQuery, GetCourtsDurationListResponse>
@@ -23,21 +25,23 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 		private readonly ILogger<GetCourtsDurationListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
-
+		private readonly IUserSession _userSession;
 		public GetCourtsDurationListQueryHandler(ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
-			ILogger<GetCourtsDurationListQueryHandler> logger, 
+			ILogger<GetCourtsDurationListQueryHandler> logger, IUserSession userSession,
 			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
+			this._userSession = userSession;
 		}
 
 		public override async Task<GetCourtsDurationListResponse> Handle(GetCourtsDurationListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
-				var result = _context.CourtsDurations
+				var result = _context.CourtsDurations.Include(x => x.Courts)
+					.Where(x => x.Courts.CompanyId == _userSession.CompanyId)
 					.Select(x => new GetCourtsDurationListDto
 					{
 						Id = x.Id,
@@ -66,7 +70,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						break;
 				}
 
-				var totalRecord = result.Count();
+				var totalRecord = await result.CountAsync();
 				var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsDurationListResponse()
 				{
