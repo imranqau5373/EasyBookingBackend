@@ -1,5 +1,7 @@
-﻿using System;
+﻿using EasyBooking.Domain.Entities.Bookings;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SpeekIO.Presistence.Context
@@ -26,9 +28,26 @@ namespace SpeekIO.Presistence.Context
             }
         }
 
-        public void SeedEverything()
+        public void SeedEverything(SpeekIOContext context)
         {
             // insert seeding logic & code here
+            SeeDurationStatus(context);
+        }
+
+        private void SeeDurationStatus(SpeekIOContext context)
+        {
+            if (!context.DurationStatus.Any())
+            {
+                var durationStatuses = new[]
+                {
+                    new DurationStatus {Name = "Published"},
+                    new DurationStatus {Name = "Un-Published"}
+
+                };
+                context.DurationStatus.AddRange(durationStatuses);
+                context.SaveChanges();
+            }
+
         }
     }
 }
