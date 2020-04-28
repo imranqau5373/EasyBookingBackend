@@ -1,4 +1,5 @@
 ﻿
+using EasyBooking.Application.Common.Dto;
 using MediatR;
 using SpeekIO.Application.Common.CommandAndQuery;
 using System;
@@ -9,6 +10,11 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 {
     public class GetCourtsBookingListQuery : PagingQuery, IRequest<GetCourtsBookingListResponse>
     {
-
-    }
+		public string Name { get; set; }
+		//public int? CourtCount { get; set; }
+		public DateSearchDto LastUpdated { get; set; }
+		public string CreatedBy { get; set; }
+		public string SortColumn { get; set; }
+		public string SortDirection { get; set; }
+	}
 }

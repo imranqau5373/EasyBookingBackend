@@ -19,6 +19,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using SpeekIO.Domain.Entities.Portfolio;
+using EasyBooking.Common.Session;
 
 namespace EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser
 {
@@ -26,7 +27,7 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser
 	{
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
-		//private readonly IUserSession _userSession;
+		private readonly IUserSession _userSession;
 		private readonly IApplicationConfiguration _applicationConfiguration;
 		private readonly IEmailService _emailService;
 
@@ -34,14 +35,14 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser
 			 SpeekIOContext context,
 			IMapper mapper,
 			IEmailService emailService,
-			//IUserSession userSession,
+			IUserSession userSession,
 			IApplicationConfiguration applicationConfiguration,
 			ApplicationUserManager userManager,
 			IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
-			//_userSession = userSession;
+			_userSession = userSession;
 			_applicationConfiguration = applicationConfiguration;
 			_emailService = emailService;
 		}
@@ -140,7 +141,7 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser
 				var profile = _mapper.Map<SpeekIO.Domain.Entities.Portfolio.Profile>(request);
 				profile.Id = user.Id;
 				profile.UserId = user.Id;
-				profile.CompanyId = 10002;
+				profile.CompanyId = _userSession.CompanyId;
 				_context.Profiles.Add(profile);
 				await _context.SaveChangesAsync(User);
 			}

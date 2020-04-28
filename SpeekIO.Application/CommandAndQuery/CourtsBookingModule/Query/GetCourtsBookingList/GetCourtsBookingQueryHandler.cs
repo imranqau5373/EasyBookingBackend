@@ -17,23 +17,22 @@ using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBookingList
 {
-	public class GetCourtsBookingListQueryHandler : CommandHandlerBase<GetCourtsBookingListQuery, GetCourtsBookingListResponse>
+	public class GetCourtsBookingListQueryHandler : IRequestHandler<GetCourtsBookingListQuery, GetCourtsBookingListResponse>
 	{
 		private readonly ILogger<GetCourtsBookingListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 		private readonly SpeekIOContext _context;
 
 		public GetCourtsBookingListQueryHandler(
-			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor,
 			ILogger<GetCourtsBookingListQueryHandler> logger, 
-			AutoMapper.IMapper mapper, SpeekIOContext context) : base(userManager, httpContextAccessor)
+			AutoMapper.IMapper mapper, SpeekIOContext context)
 		{
 			this._logger = logger;
 			this._mapper = mapper;
 			this._context = context;
 		}
 
-		public override async Task<GetCourtsBookingListResponse> Handle(GetCourtsBookingListQuery request, CancellationToken cancellationToken)
+		public async Task<GetCourtsBookingListResponse> Handle(GetCourtsBookingListQuery request, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -51,14 +50,29 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						BookingEndTime = x.BookingEndTime,
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
-					}).ToList();
-				//var comapanyList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
-				var totalRecord = result.Count();
+					}).WhereIf(!request.Name.IsNullOrEmpty(), x => x.Name.Contains(request.Name));
+				switch (request.SortColumn)
+				{
+					case "Name":
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+					default:
+						{
+							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+						}
+						break;
+				}
+				var totalRecord = await result.CountAsync();
+				request.PageNumber = 1;
+				request.PageSize = 1000;
+				var bookingList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsBookingListResponse()
 				{
 					Successful = true,
 					Message = "Bookings are found successfully.",
-					Items = result,
+					Items = bookingList,
 					TotalCount = totalRecord,
 				};
 			}

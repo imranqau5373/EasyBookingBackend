@@ -14,7 +14,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 		public DateTime? BookingEndTime { get; set; }
 		public bool IsBooked { get; set; }
 		public bool IsEmailed { get; set; }
-		public long DurationId { get; set; }
+		public int SlotDuration { get; set; }
 		public long? CourtsId { get; set; }
 		public long? UserId { get; set; }
 		public long DurationStatusId { get; set; }

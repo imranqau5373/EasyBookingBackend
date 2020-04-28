@@ -20,7 +20,7 @@ namespace SpeekIO.Presistence.Extensions
             // migrate database changes
             var context = services.BuildServiceProvider().GetService<SpeekIOContext>();
             context.Database.Migrate();
-            SpeekIODataSeed.Instance(context).SeedEverything();
+            SpeekIODataSeed.Instance(context).SeedEverything(context);
 
             return services;
         }

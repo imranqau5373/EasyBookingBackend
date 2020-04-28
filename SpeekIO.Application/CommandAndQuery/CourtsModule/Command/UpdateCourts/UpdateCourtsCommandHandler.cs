@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.Dto;
+using EasyBooking.Common.Session;
 using EasyBooking.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -20,13 +21,16 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCou
     {
         private readonly SpeekIOContext _context;
         private readonly IMapper _mapper;
-        public UpdateCourtsCommandHandler(
+		private readonly IUserSession _userSession;
+		public UpdateCourtsCommandHandler(
             SpeekIOContext context, IMapper mapper, IApplicationConfiguration applicationConfiguration,
-            ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
+			IUserSession userSession,
+			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
-        }
+			_userSession = userSession;
+		}
         public override async Task<UpdateCourtsResponse> Handle(UpdateCourtsCommand request, CancellationToken cancellationToken)
         {
             try
@@ -34,6 +38,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCou
                 var courts = await _context.Courts.FindAsync(request.Id);
                 _context.Entry(courts).State = EntityState.Detached;
                 courts = _mapper.Map<Courts>(request);
+				courts.CompanyId = _userSession.CompanyId;
                 _context.Entry(courts).State = EntityState.Modified;
                 await _context.SaveChangesAsync(User);
                 if(courts.Id < 1)

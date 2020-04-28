@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using EasyBooking.Common.Session;
 
 namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSports
 {
@@ -26,12 +27,15 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSp
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
 		private readonly IApplicationConfiguration _applicationConfiguration;
+		private readonly IUserSession _userSession;
 		public UpdateSportsCommandHandler(
 			SpeekIOContext context, IMapper mapper, IApplicationConfiguration applicationConfiguration,
-			ApplicationUserManager userManager, IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
+			ApplicationUserManager userManager, IUserSession userSession,
+			IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
 		{
 			_context = context;
 			_mapper = mapper;
+			_userSession = userSession;
 		}
 		public override async Task<UpdateSportsResponse> Handle(UpdateSportsCommand request, CancellationToken cancellationToken)
 		{
@@ -40,6 +44,7 @@ namespace EasyBooking.Application.CommandAndQuery.Sports_Module.Command.UpdateSp
 				var sports = await _context.Sports.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 				_context.Entry(sports).State = EntityState.Detached;
 				sports = _mapper.Map<Sports>(request);
+				sports.CompanyId = _userSession.CompanyId;
 				_context.Entry(sports).State = EntityState.Modified;
 				await _context.SaveChangesAsync(User);
 				if (sports.Id < 1)

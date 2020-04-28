@@ -28,6 +28,8 @@ namespace SpeekIO.Presistence.Context
         public DbSet<Profile> Profiles { get; set; }
 
 		public DbSet<Sports> Sports { get; set; }
+		public DbSet<DurationStatus> DurationStatus { get; set; }
+
 
 		public DbSet<Courts> Courts { get; set; }
 

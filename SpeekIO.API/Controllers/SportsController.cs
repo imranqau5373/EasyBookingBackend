@@ -37,8 +37,6 @@ namespace EasyBooking.API.Controllers
 		{
 			try
 			{
-				model.PageNumber = 1;
-				model.PageSize = 100;
 				var response = await _mediator.Send(model);
 				return StatusCode(200, response);
 			}
