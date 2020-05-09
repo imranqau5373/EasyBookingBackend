@@ -43,6 +43,8 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<bool>("IsBooked");
 
+                    b.Property<bool>("IsCancelled");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<bool>("IsEmailed");

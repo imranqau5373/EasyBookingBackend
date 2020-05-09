@@ -14,6 +14,7 @@ using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.Update
 using SpeekIO.Domain.ViewModels.Response;
 using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Command.DeleteCourtsBooking.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBookingList.Dto;
+using EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetBookingCompanies.Dto;
 
 namespace EasyBooking.API.Controllers
 {
@@ -33,12 +34,30 @@ namespace EasyBooking.API.Controllers
 		}
 		#region Bookings CRUD
 
+
+		//Get list of all slots.
 		[HttpPost(nameof(GetCourtsBookingsList))]
 		public async Task<IActionResult> GetCourtsBookingsList([FromBody]GetCourtsBookingListQuery model)
 		{
 			try
 			{
 				var response = await _mediator.Send(model);
+				return StatusCode(200, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+		//Get list of all booking companies.
+		[HttpGet(nameof(GetBookingCompanies))]
+		public async Task<IActionResult> GetBookingCompanies()
+		{
+			try
+			{
+				var query = new GetBookingCompaniesQuery();
+				var response = await _mediator.Send(query);
 				return StatusCode(200, response);
 			}
 			catch (Exception e)
@@ -91,6 +110,7 @@ namespace EasyBooking.API.Controllers
 				return StatusCode(500, e);
 			}
 		}
+
 		[HttpPost(nameof(DeleteCourtsBooking))]
 		public async Task<CommonResponse> DeleteCourtsBooking(DeleteCourtsBookingCommand model)
 		{

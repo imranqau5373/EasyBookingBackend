@@ -10,4 +10,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
         public List<GetCourtsBookingListDto> Items { get; set; }
         public int TotalCount { get; set; }
     }
+
+
+    
 }

@@ -16,6 +16,8 @@ namespace EasyBooking.Domain.Entities.Bookings
 		public DateTime? BookingEndTime { get; set; }
 		public bool IsBooked { get; set; }
 		public bool IsEmailed { get; set; }
+		public bool IsCancelled { get; set; }
+
 
 		[ForeignKey("DurationId")]
 		public long DurationId { get; set; }
