@@ -56,3 +56,9 @@ bld/
 .vs/EasyBooking.Application/v16/Server/sqlite3/storage.ide
 .vs/EasyBooking.Application/v16/Server/sqlite3/storage.ide-shm
 .vs/EasyBooking.Application/v16/Server/sqlite3/storage.ide-wal
+/SpeekIO.API/Controllers/CourtsControlle.cs
+/SpeekIO.Application/CommandAndQuery/BookingModule/Query/GetAllCourtsBookings/Dto/GetAllCourtsBookingsListDto.cs
+/SpeekIO.Application/CommandAndQuery/BookingModule/Query/GetAllCourtsBookings/Dto/GetAllCourtsBookingsQuery.cs
+/SpeekIO.Application/CommandAndQuery/BookingModule/Query/GetAllCourtsBookings/Dto/GetAllCourtsBookingsResponse.cs
+/SpeekIO.Application/CommandAndQuery/BookingModule/Query/GetAllCourtsBookings/GetAllCourtsBookingsHandler.cs
+/.vs/EasyBooking.Application/DesignTimeBuild/.dtbcache.v2
