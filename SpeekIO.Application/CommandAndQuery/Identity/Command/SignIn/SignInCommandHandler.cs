@@ -125,59 +125,6 @@ namespace SpeekIO.Application.Commands.Identity.SignIn
 				IsAdmin = isAdmin,
 				Permissions = roleClaims
 			};
-
-
-			//if (null == user)
-			//         {
-			//             return new SignInResponse()
-			//             {
-			//                 Successful = false,
-			//                 Message = $"Unable to find account with email {request.Email}"
-			//             };
-			//         }
-
-			//         if (!user.EmailConfirmed)
-			//         {
-			//             return new SignInResponse()
-			//             {
-			//                 Successful = false,
-			//                 Message = $"Email not confirmed"
-			//             };
-			//         }
-			//         var profile = await _context.Profiles.FirstOrDefaultAsync(t => t.Id == user.Id);
-			//         if (profile == null)
-			//         {
-			//             return new SignInResponse()
-			//             {
-			//                 Successful = false,
-			//                 Message = "Unable to sign in. Please try again."
-			//             };
-			//         }
-
-			//         var signInResult = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, false);
-
-			//         if (!signInResult.Succeeded)
-			//         {
-			//             return new SignInResponse()
-			//             {
-			//                 Successful = false,
-			//                 Message = $"Unable to sign in"
-			//             };
-			//         }
-
-			//         var token = await _tokenGenerator.GenerateSignInTokenAsync(user);
-			//         return new SignInResponse
-			//         {
-			//             Successful = signInResult.Succeeded,
-			//             AuthenticationToken = token,
-			//             UserName = user.UserName,
-			//             PictureUrl = !string.IsNullOrEmpty(profile.PictureUrl) ?
-			//                          $"{_applicationConfiguration.BaseProfilePictureUrl}/{profile.PictureUrl }" :
-			//                          _applicationConfiguration.ProfilePicturePlaceholderUrl,
-			//             AdminRole = "1",
-			//             CompanyId = companyId,
-			//             UserId = user.Id
-			//         };
 		}
 
 

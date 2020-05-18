@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyBooking.Application.CommandAndQuery.BookingSlotsModule.Command.BookedSlot.Dto;
 using EasyBooking.Application.CommandAndQuery.BookingSlotsModule.Command.CancelBookingSlot.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -59,13 +60,12 @@ namespace EasyBooking.API.Controllers
         }
 
 
-        [HttpGet(nameof(BookedSlot))]
-        public async Task<IActionResult> BookedSlot(int slotId)
+        [HttpPost(nameof(BookedSlot))]
+        public async Task<IActionResult> BookedSlot(BookedSlotCommand bookingSlot)
         {
             try
             {
-                CancelBookingCommand command = new CancelBookingCommand() { SlotId = slotId };
-                var response = await _mediator.Send(command);
+                var response = await _mediator.Send(bookingSlot);
 
                 return StatusCode(201, response);
             }

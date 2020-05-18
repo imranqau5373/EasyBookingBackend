@@ -35,6 +35,7 @@ namespace EasyBooking.Application.CommandAndQuery.BookingSlotsModule.Command.Boo
 
 			try
 			{
+				var existingUser = await _userManager.FindByEmailAsync(request.Email);
 				var slot = await _context.CourtsBookings.Where(x => x.Id == request.SlotId).FirstOrDefaultAsync();
 				if (slot != null)
 				{
