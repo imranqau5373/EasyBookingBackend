@@ -35,21 +35,28 @@ namespace EasyBooking.Application.CommandAndQuery.BookingSlotsModule.Query.Detai
 
 			try
 			{
-				var slot = await _context.CourtsBookings.Where(x => x.Id == request.SlotId).FirstOrDefaultAsync();
-				if (slot != null)
-				{
-					slot.IsBooked = false;
-					slot.IsCancelled = true;
-					await _context.SaveChangesAsync(User);
+				return await (from booking in _context.CourtsBookings // outer sequence
+							  join user in _context.Users //inner sequence 
+							  on booking.UserId equals user.Id // key selector 
+							  join duration in _context.CourtsDurations
+							  on booking.DurationId equals duration.Id
+							  where booking.Id == request.SlotId
+							  select new DetailSlotReponse
+							  { // result selector 
+								  Successful = true,
+								  Message = "Slot detail sent successfully.",
+								  BookingStartTime = booking.BookingStartTime,
+								  BookingEndTime = booking.BookingEndTime,
+								  PinCode = booking.PinCode,
+								  SlotAmount = booking.SlotAmount,
+								  Name = booking.Name,
+								  BookedEmail = user != null ? user.Email : "",
+								  SlotIsPaid = booking.SlotIsPaid,
+								  SlotDuration = duration.SlotDuration
+							  }).FirstOrDefaultAsync();
 
-				}
-				return new DetailSlotReponse
-				{
-					Successful = true,
-					Message = "Slot detail sent successfully."
-				};
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 
 				throw;

@@ -8,5 +8,7 @@ namespace EasyBooking.Application.CommandAndQuery.BookingSlotsModule.Command.Can
     public class CancelBookingCommand : IRequest<CancelBookingResponse>
     {
         public int SlotId { get; set; }
+
+        public string CancelMessage { get; set; }
     }
 }

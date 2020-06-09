@@ -104,8 +104,10 @@ namespace SpeekIO.Infrastructure.ApplicationModule
 					}
 				}
 			}
-			//var adminRole = await roleManager.FindByNameAsync("Admin");
-			//await AddAdminPermissions(adminRole, roleManager);
+			//var adminRole = await roleManager.FindByNameAsync("Super Admin");
+			//await AddSuperAdminPermissions(adminRole, roleManager);
+			//var bookingRole = await roleManager.FindByNameAsync("Booking User");
+			//await AddBookingUserPermissions(bookingRole, roleManager);
 
 		}
 
@@ -115,6 +117,7 @@ namespace SpeekIO.Infrastructure.ApplicationModule
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsBookingManager.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsDurationManager.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.AdminUsers.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.MyBookingsManager.View));
 		}
 		private static async Task AddSuperAdminPermissions(UserRole role, ApplicationRoleManager roleManager)
 		{
@@ -124,10 +127,21 @@ namespace SpeekIO.Infrastructure.ApplicationModule
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.SuperAdminUsers.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsBookingManager.View));
 			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.CourtsDurationManager.View));
+			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.MyBookingsManager.View));
 		}
 		private static async Task AddBookingUserPermissions(UserRole role, ApplicationRoleManager roleManager)
 		{
-			await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.BookingUserDashboard.View));
+			try
+			{
+				await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.BookingUserDashboard.View));
+				await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, Permissions.MyBookingsManager.View));
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
 		}
 
 	}

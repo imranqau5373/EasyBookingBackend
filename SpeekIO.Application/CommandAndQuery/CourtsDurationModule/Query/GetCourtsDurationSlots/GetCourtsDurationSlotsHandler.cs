@@ -43,6 +43,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Query.Get
 								 BookingEndTime = booking.BookingEndTime,
 								 IsBooked = booking.IsBooked,
 								 IsEmailed = booking.IsEmailed,
+								 IsCancelled = booking.IsCancelled,
+								 PinCode = booking.PinCode,
 								 SlotDuration = duration.SlotDuration
 							 };
 				return new GetCourtsDurationSlotsResponse()

@@ -18,6 +18,12 @@ namespace EasyBooking.Domain.Entities.Bookings
 		public bool IsEmailed { get; set; }
 		public bool IsCancelled { get; set; }
 
+		public long? PinCode { get; set; }
+
+		public long? SlotAmount { get; set; }
+
+		public bool SlotIsPaid { get; set; }
+
 
 		[ForeignKey("DurationId")]
 		public long DurationId { get; set; }

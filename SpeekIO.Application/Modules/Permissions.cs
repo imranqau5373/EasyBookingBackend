@@ -35,6 +35,11 @@ namespace EasyBooking.Application.Modules
 		{
 			public const string View = "Permissions.CourtsBookingManager.View";
 		}
+
+		public static class MyBookingsManager
+		{
+			public const string View = "Permissions.MyBookingsManager.View";
+		}
 		public static class AdminUsers
 		{
 			public const string View = "Permissions.AdminUsers.View";

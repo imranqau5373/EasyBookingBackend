@@ -55,7 +55,13 @@ namespace EasyBooking.Presistence.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<long?>("PinCode");
+
                     b.Property<long?>("ProfileId");
+
+                    b.Property<long?>("SlotAmount");
+
+                    b.Property<bool>("SlotIsPaid");
 
                     b.Property<long?>("UserId");
 
