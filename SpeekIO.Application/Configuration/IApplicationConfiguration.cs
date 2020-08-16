@@ -29,5 +29,7 @@ namespace SpeekIO.Application.Configuration
         string BaseProfilePictureUrl { get; }
 
 		string DefaultPassword { get; }
-	}
+
+        string DefaultCompanyEmail { get; }
+    }
 }

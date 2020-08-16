@@ -61,8 +61,8 @@ namespace SpeekIO.API.Controllers
                 return StatusCode(500, e);
             }
         }
-
-		[HttpPost(nameof(GetUserRoles))]
+        [AllowAnonymous]
+        [HttpPost(nameof(GetUserRoles))]
 		public async Task<CommonResponse> GetUserRoles()
 		{
 			try
@@ -91,8 +91,9 @@ namespace SpeekIO.API.Controllers
 		}
 
 		[HttpPost(nameof(AddUser))]
-		//[Authorize(Permissions.Users.View)]
-		public async Task<CommonResponse> AddUser(AddUserCommand model)
+        [AllowAnonymous]
+        //[Authorize(Permissions.Users.View)]
+        public async Task<CommonResponse> AddUser(AddUserCommand model)
 		{
 			try
 			{

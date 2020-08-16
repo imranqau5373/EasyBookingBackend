@@ -36,13 +36,13 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsBy
 		{
 			try
 			{
-				var result = _context.Courts
+				var result = await _context.Courts
 					.Where(c=>c.SportsId == request.SportId)
 					.Select(x => new GetCourtsBySportCompanyListDto
 					{
 						Id = x.Id,
 						Name = x.Name
-					}).ToList();
+					}).ToListAsync();
 
 				var totalRecord = result.Count();
 				return new GetCourtsBySportCompanyListResponse()

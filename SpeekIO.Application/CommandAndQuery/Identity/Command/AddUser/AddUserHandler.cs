@@ -141,6 +141,8 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser
 				var profile = _mapper.Map<SpeekIO.Domain.Entities.Portfolio.Profile>(request);
 				profile.Id = user.Id;
 				profile.UserId = user.Id;
+				if(_userSession.CompanyId <= 0)
+					profile.CompanyId = _context.Profiles.Where(x => x.Email == _applicationConfiguration.DefaultCompanyEmail).FirstOrDefault().CompanyId;
 				profile.CompanyId = _userSession.CompanyId;
 				_context.Profiles.Add(profile);
 				await _context.SaveChangesAsync(User);

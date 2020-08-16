@@ -39,7 +39,10 @@ namespace SpeekIO.Infrastructure.Configuration
         public string DefaultFileExtension => configuration.GetSection("DefaultSettings").GetValue<string>("DefaultFileExtension");
 
 		public string DefaultPassword => configuration.GetSection("DefaultSettings")?.GetValue<string>("DefaultPassword");
-		public string StorageBlobUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl");
+        public string DefaultCompanyEmail => configuration.GetSection("DefaultSettings")?.GetValue<string>("DefaultCompanyEmail");
+
+
+        public string StorageBlobUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl");
         public string AzureUrlBinding => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding");
         public string BaseProfilePictureUrl => configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("DefaultBinding")
             + configuration.GetSection("Storage").GetSection("Azure").GetValue<string>("StorageBlobUrl")
