@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompanyBookings.Dto;
+using EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetUserBookings.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,22 @@ namespace EasyBooking.API.Controllers
 			try
 			{
 				var response = await _mediator.Send(companyBookingQuery);
+
+				return StatusCode(201, response);
+			}
+			catch (Exception e)
+			{
+				return StatusCode(500, e);
+			}
+		}
+
+
+		[HttpPost(nameof(GetUserBookings))]
+		public async Task<IActionResult> GetUserBookings([FromBody]GetUserBookingQuery userBookingQuery)
+		{
+			try
+			{
+				var response = await _mediator.Send(userBookingQuery);
 
 				return StatusCode(201, response);
 			}

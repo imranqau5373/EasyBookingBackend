@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using EasyBooking.Application.Common.Enum;
+
 namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetCourtsBookingList
 {
 	public class GetCourtsBookingListQueryHandler : IRequestHandler<GetCourtsBookingListQuery, GetCourtsBookingListResponse>
@@ -50,7 +52,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						BookingEndTime = x.BookingEndTime,
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
-					}).WhereIf(!request.Name.IsNullOrEmpty(), x => x.Name.Contains(request.Name));
+					})//.Where(x => x.BookingStartTime.Value.Date == bookingDate.Date);
+					.WhereIf(request.BookingDate != null, x => (x.BookingStartTime != null && request.BookingDate.Date.Date > x.BookingStartTime.Value.Date));
 				switch (request.SortColumn)
 				{
 					case "Name":
@@ -65,8 +68,6 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 						break;
 				}
 				var totalRecord = await result.CountAsync();
-				request.PageNumber = 1;
-				request.PageSize = 1000;
 				var bookingList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 				return new GetCourtsBookingListResponse()
 				{

@@ -27,6 +27,7 @@ using System.IO;
 using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
 using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto;
 using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Command.AddGuestUser;
 
 namespace SpeekIO.API.Controllers
 {
@@ -106,8 +107,25 @@ namespace SpeekIO.API.Controllers
 			}
 		}
 
-		// POST api/Identity/Activate
-		[AllowAnonymous]
+
+        [HttpPost(nameof(AddGuestUser))]
+        [AllowAnonymous]
+        //[Authorize(Permissions.Users.View)]
+        public async Task<CommonResponse> AddGuestUser(AddGuestUserCommand model)
+        {
+            try
+            {
+                return await _mediator.Send(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return new CommonResponse(false, "Something went wrong. Please try again");
+            }
+        }
+
+        // POST api/Identity/Activate
+        [AllowAnonymous]
         [HttpPost(nameof(Activate))]
         public async Task<IActionResult> Activate([FromBody] AccountActivationCommand activationCommand)
         {

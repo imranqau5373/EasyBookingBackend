@@ -13,6 +13,9 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
         public string UserName { get; set; }
         public long? CourtId { get; set; }
         public long? UserId { get; set; }
+
+        public long? PinCode { get; set; }
+
         public DateTime? BookingStartTime { get; set; }
         public DateTime? BookingEndTime { get; set; }
         public bool IsBooked { get; set; }
