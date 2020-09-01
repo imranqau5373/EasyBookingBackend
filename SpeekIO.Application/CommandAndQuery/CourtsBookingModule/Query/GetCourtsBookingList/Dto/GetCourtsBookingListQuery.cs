@@ -19,6 +19,8 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 		public string SortColumn { get; set; }
 		public string SortDirection { get; set; }
 
+		public bool? IsBooked { get; set; }
+
 		public int CompanyId { get; set; }
 	}
 }

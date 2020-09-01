@@ -38,44 +38,51 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
 		{
 			try
 			{
-				var result = _context.CourtsBookings
-					.Select(x => new GetCourtsBookingListDto
-					{
-						Id = x.Id,
-						Name = x.Name,
-						CourtName = x.Courts.Name,
-						CourtId = x.CourtsId,
-						UserId = x.UserId,
-						UserName = "",
-						Description = x.Description,
-						BookingStartTime = x.BookingStartTime,
-						BookingEndTime = x.BookingEndTime,
-						IsBooked = x.IsBooked,
-						IsEmailed = x.IsEmailed
-					})//.Where(x => x.BookingStartTime.Value.Date == bookingDate.Date);
-					.WhereIf(request.BookingDate != null, x => (x.BookingStartTime != null && request.BookingDate.Date.Date > x.BookingStartTime.Value.Date));
+				
+					var result = _context.CourtsBookings
+						.Include(x => x.Courts)
+						.Select(x => new GetCourtsBookingListDto
+						{
+							Id = x.Id,
+							Name = x.Name,
+							CourtName = x.Courts.Name,
+							CourtId = x.CourtsId,
+							UserId = x.UserId,
+							UserName = "",
+							Description = x.Description,
+							BookingStartTime = x.BookingStartTime,
+							BookingEndTime = x.BookingEndTime,
+							IsBooked = x.IsBooked,
+							IsEmailed = x.IsEmailed,
+							CompanyId = x.Courts.CompanyId,
+						})//.Where(x => x.BookingStartTime.Value.Date == bookingDate.Date);
+						  //.WhereIf(request.BookingDate != null, x => (x.BookingStartTime != null && request.BookingDate.Date.Date > x.BookingStartTime.Value.Date));
+						.WhereIf(request.IsBooked != null, x => request.IsBooked == x.IsBooked)
+						.WhereIf(request.CompanyId > 0, x => request.CompanyId == x.CompanyId);
+
+
 				switch (request.SortColumn)
-				{
-					case "Name":
-						{
-							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
-						}
-						break;
-					default:
-						{
-							result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
-						}
-						break;
-				}
-				var totalRecord = await result.CountAsync();
-				var bookingList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
-				return new GetCourtsBookingListResponse()
-				{
-					Successful = true,
-					Message = "Bookings are found successfully.",
-					Items = bookingList,
-					TotalCount = totalRecord,
-				};
+					{
+						case "Name":
+							{
+								result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+							}
+							break;
+						default:
+							{
+								result = request.SortDirection == "ASC" ? result.OrderBy(x => x.Name) : result.OrderByDescending(x => x.Name);
+							}
+							break;
+					}
+					var totalRecord = await result.CountAsync();
+					var bookingList = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
+					return new GetCourtsBookingListResponse()
+					{
+						Successful = true,
+						Message = "Bookings are found successfully.",
+						Items = bookingList,
+						TotalCount = totalRecord,
+					};
 			}
 			catch (Exception ex)
 			{

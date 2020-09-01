@@ -20,5 +20,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsBookingModule.Query.GetC
         public DateTime? BookingEndTime { get; set; }
         public bool IsBooked { get; set; }
         public bool IsEmailed { get; set; }
+
+        public long? CompanyId { get; set; }
     }
 }
