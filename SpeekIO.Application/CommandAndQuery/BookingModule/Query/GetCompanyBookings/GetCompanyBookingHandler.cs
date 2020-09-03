@@ -2,6 +2,7 @@
 using EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompanyBookings.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Presistence.Context;
@@ -31,7 +32,7 @@ namespace EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompany
 		{
 			try
 			{
-				var result = _context.CourtsBookings
+				var result = await _context.CourtsBookings
 					.Select(x => new GetCompanyBookingListDto
 					{
 						Id = x.Id,
@@ -46,7 +47,7 @@ namespace EasyBooking.Application.CommandAndQuery.BookingModule.Query.GetCompany
 						BookingEndTime = "2020-20-10 11:00",
 						IsBooked = x.IsBooked,
 						IsEmailed = x.IsEmailed
-					}).ToList();
+					}).ToListAsync();
 				return new GetCompanyBookingResponse()
 				{
 					Successful = true,

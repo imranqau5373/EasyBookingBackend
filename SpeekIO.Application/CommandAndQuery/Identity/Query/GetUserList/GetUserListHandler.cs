@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto;
 using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
+using EasyBooking.Common.Session;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SpeekIO.Common.Extensions;
@@ -18,15 +19,18 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList
 	{
 		private readonly SpeekIOContext _context;
 		private readonly IMapper _mapper;
-		
+		private readonly IUserSession _userSession;
+
 		public GetUserListHandler(
 			
 			SpeekIOContext context,
+			 IUserSession userSession,
 			IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
-	
+			_userSession = userSession;
+
 		}
 		public async Task<GetUserListResponse> Handle(GetUserListQuery request, CancellationToken cancellationToken)
 		{
@@ -35,6 +39,7 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList
 				.Include(t => t.User)
 				.GroupJoin(_context.ApplicationUserRole.Where(t => !t.IsDeleted), p => p.UserId, ur => ur.UserId,
 				(profile, userRoleMapping) => new { profile, userRoleMapping })
+				.Where(x => x.profile.CompanyId == _userSession.CompanyId)
 				 .WhereIf(!request.Name.IsNullOrEmpty(), x => x.profile.FirstName.Contains(request.Name) || x.profile.LastName.Contains(request.Name))
 				 .WhereIf(!request.Email.IsNullOrEmpty(), x => x.profile.Email.Contains(request.Email))
 				 .WhereIf(!request.Cell.IsNullOrEmpty(), x => x.profile.Phone.Contains(request.Cell))
