@@ -1,7 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Command.UpdateCompany.Dto
 {
@@ -11,5 +8,6 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Command.UpdateCo
         public string Name { get; set; }
         public string Url { get; set; }
         public string SubDomainPrefix { get; set; }
+        public long? PackageId { get; set; }
     }
 }

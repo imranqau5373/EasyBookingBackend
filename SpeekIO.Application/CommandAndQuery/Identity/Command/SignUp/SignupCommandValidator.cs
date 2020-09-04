@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using SpeekIO.Application.Validators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SpeekIO.Application.Commands.Identity.SignUp
 {
@@ -25,6 +22,7 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
             RuleFor(t => t.Password).Must(t => PasswordValidation(t)).WithMessage("Password do not match the criteria");
             RuleFor(t => t).Must(t => t.Password == t.ConfirmPassword).WithMessage("Password and ConfirmPassword donot match");
             RuleFor(t => t.Timezone).NotNull().NotEmpty().WithMessage("Time zone is missing");
+            RuleFor(t => t.PackageId).NotNull().NotEmpty().WithMessage("Package plan is missing");
 
         }
     }

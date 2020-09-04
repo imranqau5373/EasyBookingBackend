@@ -1,6 +1,11 @@
-﻿using MediatR;
+﻿using EasyBooking.Application.CommandAndQuery.Identity.Command.AddGuestUser;
+using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Query.GetPackageList.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto;
+using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands.Identity.AccountActivation;
@@ -8,26 +13,15 @@ using SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepOne
 using SpeekIO.Application.Commands.Identity.ForgetPassword.ForgetPasswordStepTwo;
 using SpeekIO.Application.Commands.Identity.Guest;
 using SpeekIO.Application.Commands.Identity.SignIn;
-using SpeekIO.Application.Commands.Identity.SignUp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
 using SpeekIO.Application.Commands.Identity.SignOut;
-using SpeekIO.Application.Queries.Identity.SearchCompanyUrl;
-using SpeekIO.Application.Queries.GetProfile;
-using SpeekIO.Domain.ViewModels.Response.IdentityResponse.QueryResponse;
-using SpeekIO.Domain.ViewModels.Response;
+using SpeekIO.Application.Commands.Identity.SignUp;
 using SpeekIO.Application.Commands.Identity.UpdateProfile;
-using Microsoft.AspNetCore.Http;
+using SpeekIO.Application.Queries.GetProfile;
+using SpeekIO.Application.Queries.Identity.SearchCompanyUrl;
+using SpeekIO.Domain.ViewModels.Response;
+using System;
 using System.IO;
-using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
-using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto;
-using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
-using EasyBooking.Application.CommandAndQuery.Identity.Command.AddGuestUser;
+using System.Threading.Tasks;
 
 namespace SpeekIO.API.Controllers
 {
@@ -69,6 +63,20 @@ namespace SpeekIO.API.Controllers
 			try
 			{
 				return await _mediator.Send(new GetUserRolesQuery());
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex.Message, ex.StackTrace);
+				return new CommonResponse(false, "Something went wrong. Please try again");
+			}
+		}
+        [AllowAnonymous]
+        [HttpPost(nameof(GetPackageList))]
+		public async Task<CommonResponse> GetPackageList()
+		{
+			try
+			{
+				return await _mediator.Send(new GetPackageListQuery());
 			}
 			catch (Exception ex)
 			{

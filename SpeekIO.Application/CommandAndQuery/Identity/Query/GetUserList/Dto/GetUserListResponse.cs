@@ -1,14 +1,13 @@
 ﻿using EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserRoles.Dto;
 using SpeekIO.Domain.ViewModels.Response;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList.Dto
 {
 	public class GetUserListResponse : CommonResponse
 	{
 		public List<UserListModel> UserList { get; set; }
+		public int TotalCount { get; set; }
 	}
 
 	public class UserListModel

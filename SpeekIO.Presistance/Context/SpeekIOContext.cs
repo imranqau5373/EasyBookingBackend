@@ -1,6 +1,7 @@
 ﻿using EasyBooking.Domain.Entities;
 using EasyBooking.Domain.Entities.Bookings;
 using EasyBooking.Domain.Entities.Identity;
+using EasyBooking.Domain.Entities.Portfolio;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +30,7 @@ namespace SpeekIO.Presistence.Context
 
 		public DbSet<Sports> Sports { get; set; }
 		public DbSet<DurationStatus> DurationStatus { get; set; }
-
-
+		public DbSet<Package> Package { get; set; }
 		public DbSet<Courts> Courts { get; set; }
 
 		public DbSet<CourtBookings> CourtsBookings { get; set; }
