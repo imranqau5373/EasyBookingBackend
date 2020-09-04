@@ -123,12 +123,14 @@ namespace SpeekIO.API.Controllers
         {
             try
             {
+                //_logger.LogError("test the message is working.","test error stack");
+                //return new CommonResponse(false, "Something went wrong. Please try again");
                 return await _mediator.Send(model);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message, ex.StackTrace);
-                return new CommonResponse(false, "Something went wrong. Please try again");
+                return new CommonResponse(false, ex.Message);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EasyBooking.Domain.Models.Email;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -79,6 +80,8 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
                 var profile = await CreateProfile(request, user);
 
                 await _userManager.UpdateAsync(user);
+
+                await SendThankYouEmail(request.CompanyName, request.Email);
 
                 //await SendActivationEmail(user);
 
@@ -171,5 +174,13 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 				Message = message
 			};
 		}
-	}
+
+        private async Task SendThankYouEmail(string companyName,string adminEmail)
+        {
+            IRecipient recipient = new Recipient("", adminEmail);
+            IEmailModel emailModel = new SignupEmailModel(recipient,companyName,adminEmail);
+            emailModel.TemplateName = "SignupThankYou";
+            await _emailService.SendEmailAsync(emailModel);
+        }
+    }
 }
