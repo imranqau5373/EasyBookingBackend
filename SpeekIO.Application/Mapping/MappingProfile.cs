@@ -36,12 +36,10 @@ using SpeekIO.Domain.Entities.Identity;
 using SpeekIO.Domain.Entities.Portfolio;
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SpeekIO.Application.Mapping
 {
-    public class MappingProfile : AutoMapper.Profile
+	public class MappingProfile : AutoMapper.Profile
     {
         private IApplicationConfiguration _applicationConfiguration;
 
@@ -67,6 +65,7 @@ namespace SpeekIO.Application.Mapping
 
             CreateMap<SignupCommand, Domain.Entities.Portfolio.Company>()
                 .ForMember(t => t.Name, m => m.MapFrom(t => t.CompanyName))
+                .ForMember(t => t.PackageId, m => m.MapFrom(t => t.PackageId))
                 .ForMember(t => t.Url, m => m.MapFrom(t => t.CompanyPrivateUrl));
 
             CreateMap<CreateGuestUserCommand, ApplicationUser>()
@@ -154,6 +153,7 @@ namespace SpeekIO.Application.Mapping
 			CreateMap<AddCompanyCommand, Company>()
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.PackageId, m => m.MapFrom(t => t.PackageId))
 				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
 			CreateMap<Company, AddCompanyResponse>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
@@ -165,17 +165,20 @@ namespace SpeekIO.Application.Mapping
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 			  	.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
 				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
+				.ForMember(t => t.PackageId, m => m.MapFrom(t => t.PackageId))
 				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
 			//Get Company Query
 			CreateMap<Company, GetCompanyResponse>()
 			    .ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 			    .ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.PackageId, m => m.MapFrom(t => t.PackageId))
 				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
 				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
 			//Get Company List Mappings
 			CreateMap<Company, GetCompanyListDto>()
 				.ForMember(t => t.Id, m => m.MapFrom(t => t.Id))
 				.ForMember(t => t.Name, m => m.MapFrom(t => t.Name))
+				.ForMember(t => t.PackageId, m => m.MapFrom(t => t.PackageId))
 				.ForMember(t => t.Url, m => m.MapFrom(t => t.Url))
 				.ForMember(t => t.SubDomainPrefix, m => m.MapFrom(t => t.SubDomainPrefix));
 

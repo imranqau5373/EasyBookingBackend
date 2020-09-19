@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompanyList.Dto
 {
@@ -17,6 +15,7 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
         public string CreatedBy { get; set; }
 
         public bool? IsDeletedCourt { get; set; }
+        public long? PackageId { get; set; }
         //should include the list for relevant Sports and Courts ?
     }
 }

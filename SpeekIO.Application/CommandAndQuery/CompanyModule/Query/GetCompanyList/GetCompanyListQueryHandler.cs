@@ -1,22 +1,17 @@
 ﻿
 using EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompanyList.Dto;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using SpeekIO.Common.Extensions;
-using SpeekIO.Presistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Presistence.Context;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompanyList
 {
-    public class GetCompanyListQueryHandler : CommandHandlerBase<GetCompanyListQuery, GetCompanyListResponse>
+	public class GetCompanyListQueryHandler : CommandHandlerBase<GetCompanyListQuery, GetCompanyListResponse>
 	{
 		private readonly ILogger<GetCompanyListQueryHandler> _logger;
 		private readonly AutoMapper.IMapper _mapper;
@@ -46,6 +41,7 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 						SubDomainPrefix = x.SubDomainPrefix,
 						LastUpdated = x.ModifiedOn,
 						SportsCount = x.Sports.Count,
+						PackageId = x.PackageId,
 						CourtsCount = x.Courts.Count
 					}).ToList();
 

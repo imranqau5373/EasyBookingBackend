@@ -7,9 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SpeekIO.Common.Extensions;
 using SpeekIO.Presistence.Context;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -75,7 +73,7 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList
 					}
 					break;
 			}
-
+			var totalRecord = await result.CountAsync();
 			var data = await result.Page(request.PageNumber, request.PageSize).ToListAsync();
 
 			var profiles = data.Select(t => new UserListModel()
@@ -98,6 +96,7 @@ namespace EasyBooking.Application.CommandAndQuery.Identity.Query.GetUserList
 
 			return new GetUserListResponse()
 			{
+				TotalCount = totalRecord,
 				UserList = profiles,
 				Successful = true
 			};

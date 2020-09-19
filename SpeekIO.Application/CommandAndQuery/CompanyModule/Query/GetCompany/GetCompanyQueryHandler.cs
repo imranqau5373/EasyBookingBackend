@@ -1,20 +1,17 @@
 ﻿using AutoMapper;
 using EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany.Dto;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using SpeekIO.Presistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using SpeekIO.Presistence.Context;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 {
-    public class GetCompanyQueryHandler : CommandHandlerBase<GetCompanyQuery, GetCompanyResponse>
+	public class GetCompanyQueryHandler : CommandHandlerBase<GetCompanyQuery, GetCompanyResponse>
 	{
 
 
@@ -34,7 +31,7 @@ namespace EasyBooking.Application.CommandAndQuery.CompanyModule.Query.GetCompany
 			{
 				var companyObject = await _context.Companies
 					.Where(x => x.Id == request.Id)
-					//.Include(s => s.Sports)
+					.Include(s => s.Package)
 					//.Include(c=>c.Courts)
 					.FirstOrDefaultAsync();
 

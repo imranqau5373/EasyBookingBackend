@@ -1,8 +1,5 @@
 ﻿using MediatR;
 using SpeekIO.Domain.ViewModels.Response;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SpeekIO.Application.Commands.Identity.SignUp
 {
@@ -19,5 +16,6 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
         public string ConfirmPassword { get; set; }
         public string Timezone { get; set; }
         public bool SubscribeNewsLetter { get; set; }
+        public long? PackageId { get; set; }
     }
 }
