@@ -12,6 +12,9 @@ namespace SpeekIO.Domain.Entities.Portfolio
 		{
 			Sports = new HashSet<Sports>();
 			Courts = new HashSet<Courts>();
+			DayTimeSchedules = new HashSet<DayTimeSchedule>();
+
+			
 		}
         public string Name { get; set; }
         public string Url { get; set; }
@@ -21,6 +24,8 @@ namespace SpeekIO.Domain.Entities.Portfolio
 		public List<Profile> Profiles { get; set; } = new List<Profile>();
 		public ICollection<Sports> Sports { get; set; }
 		public ICollection<Courts> Courts { get; set; }
+
+		public ICollection<DayTimeSchedule> DayTimeSchedules { get; set; }
 
 	}
 }

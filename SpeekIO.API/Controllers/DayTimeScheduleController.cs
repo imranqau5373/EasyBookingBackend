@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.AddDayTimeSchedule.Dto;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.UpdateDayTimeSchedule.Dto;
+using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Query.GetDayTimeSchedule.Dto;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Query.ListDayTimeSchedule.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,22 @@ namespace EasyBooking.API.Controllers
             {
                 var response = await _mediator.Send(model);
                 return StatusCode(200, response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+        }
+
+        [HttpGet(nameof(GetDayTimeSchedule))]
+        public async Task<IActionResult> GetDayTimeSchedule(int id)
+        {
+            try
+            {
+                GetDayTimeScheduleQuery query = new GetDayTimeScheduleQuery() { Id = id };
+                var response = await _mediator.Send(query);
+
+                return StatusCode(201, response);
             }
             catch (Exception e)
             {
