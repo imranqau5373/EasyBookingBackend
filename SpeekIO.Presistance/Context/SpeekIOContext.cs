@@ -33,6 +33,8 @@ namespace SpeekIO.Presistence.Context
 
 		public DbSet<Courts> Courts { get; set; }
 
+		public DbSet<DayTimeSchedule> DayTimeSchedules { get; set; }
+
 		public DbSet<CourtBookings> CourtsBookings { get; set; }
 
 		public DbSet<CourtsDurations> CourtsDurations { get; set; }

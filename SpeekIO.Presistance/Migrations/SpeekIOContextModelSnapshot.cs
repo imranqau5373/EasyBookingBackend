@@ -173,6 +173,31 @@ namespace EasyBooking.Presistence.Migrations
                     b.ToTable("Courts");
                 });
 
+            modelBuilder.Entity("EasyBooking.Domain.Entities.DayTimeSchedule", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CreatedBy");
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<long>("ModifiedBy");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DayTimeSchedules");
+                });
+
             modelBuilder.Entity("EasyBooking.Domain.Entities.Identity.ApplicationRoleClaim", b =>
                 {
                     b.Property<int>("Id")
