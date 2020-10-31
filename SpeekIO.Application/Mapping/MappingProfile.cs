@@ -15,8 +15,10 @@ using EasyBooking.Application.CommandAndQuery.CourtsModule.Command.UpdateCourts.
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourts.Dto;
 using EasyBooking.Application.CommandAndQuery.CourtsModule.Query.GetCourtsList.Dto;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.AddDayTimeSchedule.Dto;
+using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.AddTimeSchedule.Dto;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.UpdateDayTimeSchedule.Dto;
 using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Query.GetDayTimeSchedule.Dto;
+using EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Query.GetDayTimeSchedules.Dto;
 using EasyBooking.Application.CommandAndQuery.Identity.Command.AddGuestUser;
 using EasyBooking.Application.CommandAndQuery.Identity.Command.AddUser.Dto;
 using EasyBooking.Application.CommandAndQuery.ProfileModule.Command.AddProfile.Dto;
@@ -349,12 +351,13 @@ namespace SpeekIO.Application.Mapping
 			#region DayTimeSChedule
 
 			CreateMap<AddDayTimeCommand, DayTimeSchedule>().ReverseMap();
+			CreateMap<AddTimeScheduleCommand, DayTimeDays>().ReverseMap();
 			CreateMap<AddDayTimeResponse, DayTimeSchedule>().ReverseMap();
 
 			CreateMap<UpdateDayTimeCommand, DayTimeSchedule>().ReverseMap();
 			CreateMap<UpdateDayTimeResponse, DayTimeSchedule>().ReverseMap();
 			CreateMap<GetDayTimeScheduleReponse, DayTimeSchedule>().ReverseMap();
-
+			CreateMap<DayTimeSchedulesDto, DayTimeSchedule>().ReverseMap();
 
 			#endregion
 		}

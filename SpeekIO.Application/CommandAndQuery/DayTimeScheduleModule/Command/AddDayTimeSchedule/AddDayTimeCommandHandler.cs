@@ -35,6 +35,7 @@ namespace EasyBooking.Application.CommandAndQuery.DayTimeScheduleModule.Command.
 			try
 			{
 				var dayTimeModel = _mapper.Map<DayTimeSchedule>(request);
+				dayTimeModel.CompanyId = _userSession.CompanyId;
 				await _context.DayTimeSchedules.AddAsync(dayTimeModel);
 				await _context.SaveChangesAsync(User);
 				if (dayTimeModel.Id < 1)

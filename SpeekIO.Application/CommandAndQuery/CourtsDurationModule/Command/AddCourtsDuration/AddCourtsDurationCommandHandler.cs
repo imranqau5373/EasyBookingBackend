@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SpeekIO.Application.Commands;
 using SpeekIO.Domain.Entities.Identity;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.AddCourtsDuration
 {
 	public class AddCourtsBookingCommandHandler : CommandHandlerBase<AddCourtsDurationCommand, AddCourtsDurationResponse>
@@ -49,7 +52,7 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				else
 				{
 					request.DurationId = data.Entity.Id;
-					await calculateSlots(request,User);
+					await GetSlotsDetails(request.DayTimeZoneId.Value,request);
 					var courtsObject = _mapper.Map<AddCourtsDurationResponse>(data.Entity);
 					courtsObject.Successful = true;
 					return courtsObject;
@@ -99,5 +102,51 @@ namespace EasyBooking.Application.CommandAndQuery.CourtsDurationModule.Command.A
 				startTime = endTime;
 			}
 		}
+
+		private async Task GetSlotsDetails(long dayTimeZoneId, AddCourtsDurationCommand request)
+		{
+			var getSlotDays = await _context.DayTimeDays.Where(x => x.DayTimeScheduleId == dayTimeZoneId).ToListAsync();
+			if(getSlotDays != null)
+			{
+				for(int i = 0; i<getSlotDays.Count; i++)
+				{
+					var obj = getSlotDays[i];
+					await DaySlotCalculated(obj.StartTime, obj.EndTime, request);
+				}
+			}
+
+		}
+
+		private async Task DaySlotCalculated(DateTime startTime,DateTime endTime, AddCourtsDurationCommand request)
+		{
+			var totalSlots = 0;
+			totalSlots = ((endTime.Hour - startTime.Hour) * 60) / request.SlotDuration;
+			await addBookingSlot(totalSlots, request, User,startTime);
+		}
+
+		public async Task addBookingSlot(int slotsCount, AddCourtsDurationCommand request, ApplicationUser User,DateTime startTime)
+		{
+			AddCourtsBookingCommand data = new AddCourtsBookingCommand();
+			var slotDuration = request.SlotDuration;
+			for (int i = 0; i < slotsCount; i++)
+			{
+				data.CourtId = request.CourtId;
+				data.Name = request.Name;
+				data.Description = request.Description;
+				data.UserId = request.UserId;
+				data.IsBooked = false;
+				data.IsEmailed = false;
+				data.BookingStartTime = startTime;
+				var endTime = startTime.AddMinutes(slotDuration);
+				data.BookingEndTime = endTime;
+
+				var model = _mapper.Map<CourtBookings>(data);
+				model.DurationId = request.DurationId;
+				await _context.CourtsBookings.AddAsync(model);
+				await _context.SaveChangesAsync(User);
+				startTime = endTime;
+			}
+		}
+
 	}
 }
