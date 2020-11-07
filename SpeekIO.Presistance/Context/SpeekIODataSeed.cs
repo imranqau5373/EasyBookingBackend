@@ -1,4 +1,5 @@
 ﻿using EasyBooking.Domain.Entities.Bookings;
+using EasyBooking.Domain.Entities.Portfolio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace SpeekIO.Presistence.Context
         {
             // insert seeding logic & code here
             SeeDurationStatus(context);
+            AddPackageDetails(context);
         }
 
         private void SeeDurationStatus(SpeekIOContext context)
@@ -45,6 +47,23 @@ namespace SpeekIO.Presistence.Context
 
                 };
                 context.DurationStatus.AddRange(durationStatuses);
+                context.SaveChanges();
+            }
+
+        }
+
+        private void AddPackageDetails(SpeekIOContext context)
+        {
+            if (!context.Package.Any())
+            {
+                var packages = new[]
+                {
+                    new Package {Name = "Free",Description = "it is avaliable for 10 days",Charges = 0,ExpiryDays = 10},
+                    new Package {Name = "Basic",Description = "it is avaliable for 30 days",Charges = 10,ExpiryDays = 30},
+                    new Package {Name = "Premium",Description = "it is avaliable for 365 days",Charges = 100,ExpiryDays = 365},
+
+                };
+                context.Package.AddRange(packages);
                 context.SaveChanges();
             }
 

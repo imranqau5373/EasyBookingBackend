@@ -106,18 +106,27 @@ namespace SpeekIO.Application.Commands.Identity.SignUp
 
         private async Task<Domain.Entities.Portfolio.Profile> CreateProfile(SignupCommand request, ApplicationUser user)
         {
-            var company = _mapper.Map<Company>(request);
-            var profile = _mapper.Map<Domain.Entities.Portfolio.Profile>(request);
-            profile.Id = user.Id;
-            profile.User = user;
-            profile.Company = company;
+            try
+            {
+                var company = _mapper.Map<Company>(request);
+                var profile = _mapper.Map<Domain.Entities.Portfolio.Profile>(request);
+                profile.Id = user.Id;
+                profile.User = user;
+                profile.Company = company;
+                company.PackageId = request.PackageId;
 
-            company.Profiles.Add(profile);
-            _context.Companies.Add(company);
+                company.Profiles.Add(profile);
+                _context.Companies.Add(company);
 
-            await _context.SaveChangesAsync(user);
+                await _context.SaveChangesAsync(user);
 
-            return profile;
+                return profile;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+   
         }
 
         private async Task SendActivationEmail(ApplicationUser user)
