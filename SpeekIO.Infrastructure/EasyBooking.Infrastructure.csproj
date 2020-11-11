@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EasyBooking.StripePayment\EasyBooking.StripePayment.csproj" />
     <ProjectReference Include="..\SpeekIO.Application\EasyBooking.Application.csproj" />
     <ProjectReference Include="..\SpeekIO.Common\EasyBooking.Common.csproj" />
     <ProjectReference Include="..\SpeekIO.EmailService\EasyBooking.EmailService.csproj" />

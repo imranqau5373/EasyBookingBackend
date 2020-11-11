@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EasyBooking.Application.Modules;
+using EasyBooking.StripePayment.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,8 @@ namespace SpeekIO.Infrastructure.ApplicationModule
             services.ConfigureCore(configuration);
             services.ConfigurePersistence(configuration);
             services.ConfigureEmailService(configuration);
-            services.ConfigureUploadService();
+			services.ConfigureStripePaymenService(configuration);
+			services.ConfigureUploadService();
 
             services.AddIdentity<ApplicationUser, UserRole>()
                         .AddEntityFrameworkStores<SpeekIOContext>()

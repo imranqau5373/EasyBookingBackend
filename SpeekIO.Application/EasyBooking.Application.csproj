@@ -55,6 +55,7 @@
     <Folder Include="CommandAndQuery\ProfileModule\Query\GetProfileList\" />
     <Folder Include="CommandAndQuery\Sports Module\Command\DeleteSports\" />
     <Folder Include="CommandAndQuery\Sports Module\Query\GetSprotsByCompany\Dto\" />
+    <Folder Include="CommandAndQuery\StripePaymentModule\Command\" />
   </ItemGroup>
 
 </Project>

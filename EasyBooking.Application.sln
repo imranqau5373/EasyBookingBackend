@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyBooking.EmailService", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyBooking.UploadService", "SpeekIO.UploadService\EasyBooking.UploadService.csproj", "{567EAE40-ABF2-4418-893A-76B4D9769237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyBooking.StripePayment", "EasyBooking.StripePayment\EasyBooking.StripePayment.csproj", "{B8569F68-F79D-4FDB-882E-E0B55BC3CD03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{567EAE40-ABF2-4418-893A-76B4D9769237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{567EAE40-ABF2-4418-893A-76B4D9769237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{567EAE40-ABF2-4418-893A-76B4D9769237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8569F68-F79D-4FDB-882E-E0B55BC3CD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8569F68-F79D-4FDB-882E-E0B55BC3CD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8569F68-F79D-4FDB-882E-E0B55BC3CD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8569F68-F79D-4FDB-882E-E0B55BC3CD03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{3FF6E1D9-658B-402B-B9A8-7CDD9C7533C0} = {F6CB4697-E05C-48F9-A952-0AE92A5A00F5}
 		{A16C7952-7D1D-420D-A6F4-BB30C1EDA5A5} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
 		{567EAE40-ABF2-4418-893A-76B4D9769237} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
+		{B8569F68-F79D-4FDB-882E-E0B55BC3CD03} = {CD915719-CDB9-4582-9D60-68ECD1A62855}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {570F7D72-737E-4820-A432-E970857EA619}
